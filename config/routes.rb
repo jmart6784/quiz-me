@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get '/quizes/index'
-      post '/quizes/create'
-      get '/show/:id', to: 'quizes#show'
-      delete '/destroy/:id', to: 'quizes#destroy'
-      put '/update/:id', to: 'quizes#update'
+      get '/quizzes/index'
+      post '/quizzes/create'
+      get '/show/:id', to: 'quizzes#show'
+      delete '/destroy/:id', to: 'quizzes#destroy'
+      put '/update/:id', to: 'quizzes#update'
     end
   end
 end
