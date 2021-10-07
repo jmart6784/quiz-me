@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "homepage#index"
+  get '/*path' => 'homepage#index'
 
   namespace :api do
     namespace :v1 do
