@@ -26,7 +26,7 @@ const QuizIndex = () => {
 
   let noQuizzes = (
     <h1>
-      No recipes yet. Why not <Link to="/">create one</Link>
+      No Quizzes yet. Why not <Link to="/">create one</Link>
     </h1>
   );
 
