@@ -20,7 +20,7 @@ const QuizIndex = () => {
   let allQuizzes = quizzes.map((quiz) => (
     <div key={quiz.id}>
       <p>Name: {quiz.name}</p>
-      <p>Description: {quiz.name}</p>
+      <p>Description: {quiz.description}</p>
     </div>
   ));
 
