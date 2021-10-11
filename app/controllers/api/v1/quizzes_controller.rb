@@ -8,6 +8,11 @@ class Api::V1::QuizzesController < ApplicationController
   end
 
   def show
+    if quiz
+      render json: quiz
+    else
+      render json: quiz.errors
+    end
   end
 
   def destroy
