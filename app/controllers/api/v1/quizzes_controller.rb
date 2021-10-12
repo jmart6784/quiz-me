@@ -1,7 +1,7 @@
 class Api::V1::QuizzesController < ApplicationController
   def index
-    quiz = Quiz.all.order(created_at: :desc)
-    render json: quiz, status: 200
+    quizzes = Quiz.all.order(created_at: :desc)
+    render json: quizzes, status: 200
   end
 
   def create
