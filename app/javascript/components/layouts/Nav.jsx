@@ -21,6 +21,7 @@ const Nav = () => {
       ) : (
         ""
       )}
+      <Link to="/users">Users Index</Link>
     </div>
   );
 };

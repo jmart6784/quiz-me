@@ -4,6 +4,7 @@ import UserContext from "../components/context/UserContext";
 import Nav from "../components/layouts/Nav";
 import QuizIndex from "../components/quiz/QuizIndex";
 import QuizShow from "../components/quiz/QuizShow";
+import UserIndex from "../components/user/UserIndex";
 import UserShow from "../components/user/UserShow";
 
 const Index = () => {
@@ -38,6 +39,7 @@ const Index = () => {
         <Switch>
           <Route path="/" exact component={QuizIndex} />
           <Route path="/quizzes/:id" exact component={QuizShow} />
+          <Route path="/users" exact component={UserIndex} />
           <Route path="/users/:id" exact component={UserShow} />
         </Switch>
       </Router>
