@@ -37,8 +37,8 @@ const Index = () => {
         <Nav />
         <Switch>
           <Route path="/" exact component={QuizIndex} />
-          <Route path="/quiz/:id" exact component={QuizShow} />
-          <Route path="/user/:id" exact component={UserShow} />
+          <Route path="/quizzes/:id" exact component={QuizShow} />
+          <Route path="/users/:id" exact component={UserShow} />
         </Switch>
       </Router>
     </UserContext.Provider>

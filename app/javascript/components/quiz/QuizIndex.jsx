@@ -21,15 +21,11 @@ const QuizIndex = () => {
     <div key={quiz.id}>
       <p>Name: {quiz.name}</p>
       <p>Description: {quiz.description}</p>
-      <Link to={`/quiz/${quiz.id}`}>Show</Link>
+      <Link to={`/quizzes/${quiz.id}`}>Show</Link>
     </div>
   ));
 
-  let noQuizzes = (
-    <h1>
-      No Quizzes yet. Why not <Link to="/">create one</Link>
-    </h1>
-  );
+  let noQuizzes = <h1>No Quizzes yet.</h1>;
 
   return (
     <div>
