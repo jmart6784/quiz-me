@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const UserIndex = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,7 @@ const UserIndex = () => {
   let usersJsx = users.map((user) => {
     return (
       <div key={user.id}>
-        <p>{user.email}</p>
+        <Link to={`users/${user.id}`}>{user.username}</Link>
       </div>
     );
   });
