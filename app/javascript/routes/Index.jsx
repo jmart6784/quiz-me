@@ -4,6 +4,7 @@ import UserContext from "../components/context/UserContext";
 import Nav from "../components/layouts/Nav";
 import QuizIndex from "../components/quiz/QuizIndex";
 import QuizShow from "../components/quiz/QuizShow";
+import UserShow from "../components/user/UserShow";
 
 const Index = () => {
   const [user, setUser] = useState({});
@@ -37,6 +38,7 @@ const Index = () => {
         <Switch>
           <Route path="/" exact component={QuizIndex} />
           <Route path="/quiz/:id" exact component={QuizShow} />
+          <Route path="/user/:id" exact component={UserShow} />
         </Switch>
       </Router>
     </UserContext.Provider>
