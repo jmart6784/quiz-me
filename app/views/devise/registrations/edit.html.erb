@@ -18,6 +18,11 @@
     <%= f.text_field :last_name %>
   </div>
 
+  <div class="su-field">
+    <%= f.label :bio %>
+    <%= f.text_area :bio, class: "su-input" %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>
