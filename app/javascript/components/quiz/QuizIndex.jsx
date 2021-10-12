@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const QuizIndex = () => {
   const [quizzes, setQuizzes] = useState([]);
 
-  useEffect((props) => {
+  useEffect(() => {
     const url = "/api/v1/quizzes/index";
     fetch(url)
       .then((response) => {
