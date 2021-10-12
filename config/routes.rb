@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       delete '/destroy/:id', to: 'quizzes#destroy'
       put '/update/:id', to: 'quizzes#update'
 
-      get '/users/current_user', to: 'users#current_user'
+      get '/users/user_info', to: 'users#user_info'
     end
   end
 end

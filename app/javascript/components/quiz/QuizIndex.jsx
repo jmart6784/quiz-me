@@ -14,7 +14,7 @@ const QuizIndex = () => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setQuizzes(response))
-      .catch(() => props.history.push("/"));
+      .catch(() => console.log("Error getting quiz index"));
   }, []);
 
   let allQuizzes = quizzes.map((quiz) => (

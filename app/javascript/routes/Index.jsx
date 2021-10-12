@@ -9,7 +9,7 @@ const Index = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const url = "/api/v1/users/current_user";
+    const url = "/api/v1/users/user_info";
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
