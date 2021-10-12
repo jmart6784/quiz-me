@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       put '/quizzes/update/:id', to: 'quizzes#update'
 
       get '/users/user_info', to: 'users#user_info'
+      get '/users/index', to: 'users#index'
       get '/users/show/:id', to: 'users#show'
     end
   end
