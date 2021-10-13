@@ -26,7 +26,8 @@ const UserShow = (props) => {
   return (
     <div>
       <h1>User Show</h1>
-      <p>{user.email}</p>
+      <p>{user.username}</p>
+      <p>{`${user.first_name} ${user.last_name}`}</p>
     </div>
   );
 };

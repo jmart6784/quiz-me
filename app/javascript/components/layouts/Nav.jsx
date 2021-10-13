@@ -13,7 +13,7 @@ const Nav = () => {
         <Link to="/">HOME</Link>
         <Link to="/users">Users Index</Link>
         <Link to={`/users/${user.current_user.id}`}>
-          {user.current_user.email}
+          {user.current_user.username}
         </Link>
         <a href="/users/edit">Edit Profile</a>
         <a rel="nofollow" data-method="delete" href="/users/sign_out">
