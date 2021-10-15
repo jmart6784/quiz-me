@@ -39,8 +39,8 @@ const Index = () => {
         <Nav />
         <Switch>
           <Route path="/" exact component={QuizIndex} />
-          <Route path="/quizzes/:id" exact component={QuizShow} />
           <Route path="/quizzes/new" exact component={QuizNew} />
+          <Route path="/quizzes/:id" exact component={QuizShow} />
           <Route path="/users" exact component={UserIndex} />
           <Route path="/users/:id" exact component={UserShow} />
         </Switch>

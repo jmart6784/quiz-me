@@ -12,6 +12,7 @@ const Nav = () => {
       <div>
         <Link to="/">HOME</Link>
         <Link to="/users">Users Index</Link>
+        <Link to="/quizzes/new">Create Quiz</Link>
         <Link to={`/users/${user.current_user.id}`}>
           {user.current_user.username}
         </Link>
