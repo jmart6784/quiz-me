@@ -5,7 +5,7 @@ class Api::V1::QuizzesController < ApplicationController
   end
 
   def create
-    quiz = quiz.new(quiz_params)
+    quiz = Quiz.new(quiz_params)
     quiz.user_id = current_user.id
     if quiz.save
       render json: quiz

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState({
@@ -65,7 +64,7 @@ const QuizNew = (props) => {
           <span>Description</span>
           <input
             type="text"
-            name="quizDescription"
+            name="description"
             id="quizDescription"
             required
             onChange={onChange}
