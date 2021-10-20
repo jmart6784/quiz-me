@@ -41,7 +41,7 @@ const Index = () => {
         <Switch>
           <Route path="/" exact component={QuizIndex} />
           <Route path="/quizzes/new" exact component={QuizNew} />
-          <Route path="/quizzes/edit" exact component={QuizEdit} />
+          <Route path="/quizzes/edit/:id" exact component={QuizEdit} />
           <Route path="/quizzes/:id" exact component={QuizShow} />
           <Route path="/users" exact component={UserIndex} />
           <Route path="/users/:id" exact component={UserShow} />
