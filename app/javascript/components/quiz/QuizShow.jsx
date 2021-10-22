@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const QuizShow = (props) => {
   const [quiz, setQuiz] = useState("");
@@ -28,6 +29,7 @@ const QuizShow = (props) => {
       <h1>Quiz Show</h1>
       <h3>Name: {quiz.name}</h3>
       <p>Description: {quiz.description}</p>
+      <Link to={`/quizzes/edit/${props.match.params.id}`}>Edit</Link>
     </div>
   );
 };
