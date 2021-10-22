@@ -29,7 +29,7 @@ const QuizShow = (props) => {
       <h1>Quiz Show</h1>
       <h3>Name: {quiz.name}</h3>
       <p>Description: {quiz.description}</p>
-      <Link to={`/quizzes/edit/${props.match.params.id}`}>Edit</Link>
+      <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
     </div>
   );
 };
