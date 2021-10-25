@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState({
     name: "",
     description: "",
   });
+
+  const [quiz, setQuiz] = useState({ name: "", description: "" });
+
+  useEffect(() => {
+    const {
+      match: {
+        params: { id },
+      },
+    } = props;
+
+    const url = `/api/v1/quizzes/show/${id}`;
+
+    fetch(url)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setQuiz(response))
+      .catch(() => props.history.push("/"));
+  }, []);
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -63,6 +85,7 @@ const QuizEdit = (props) => {
             id="quizName"
             required
             onChange={onChange}
+            value={quiz.name}
           />
         </label>
 
@@ -74,6 +97,7 @@ const QuizEdit = (props) => {
             id="quizDescription"
             required
             onChange={onChange}
+            value={quiz.description}
           />
         </label>
 
