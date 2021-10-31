@@ -1,4 +1,6 @@
 class Api::V1::QuizzesController < ApplicationController
+  before_action :authenticate_user!, only: [ :create, :update, :destroy ]
+
   def index
     quizzes = Quiz.all.order(created_at: :desc)
     render json: quizzes, status: 200
