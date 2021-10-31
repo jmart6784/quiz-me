@@ -22,6 +22,7 @@ const QuizIndex = () => {
       <p>Name: {quiz.name}</p>
       <p>Description: {quiz.description}</p>
       <Link to={`/quizzes/${quiz.id}`}>Show</Link>
+      <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
     </div>
   ));
 
