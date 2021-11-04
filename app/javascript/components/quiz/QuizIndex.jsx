@@ -45,6 +45,10 @@ const QuizIndex = (props) => {
       <Link to={`/quizzes/${quiz.id}`}>Show</Link>
       <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
       <button onClick={() => deleteQuiz(quiz.id)}>Delete</button>
+      <br />
+      <p>
+        By: <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
+      </p>
     </div>
   ));
 
