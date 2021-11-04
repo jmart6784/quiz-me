@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const QuizShow = (props) => {
-  const [quiz, setQuiz] = useState("");
+  const [quiz, setQuiz] = useState({
+    id: "",
+    name: "",
+    description: "",
+    user: {
+      id: "",
+      username: "",
+    },
+  });
 
   useEffect(() => {
     const {
@@ -57,6 +65,9 @@ const QuizShow = (props) => {
       <p>Description: {quiz.description}</p>
       <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
       <button onClick={deleteQuiz}>Delete</button>
+      <p>
+        By: <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
+      </p>
     </div>
   );
 };
