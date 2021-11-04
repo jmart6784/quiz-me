@@ -50,6 +50,21 @@ const QuizNew = (props) => {
 
       <form onSubmit={onSubmit}>
         <label htmlFor="quizName">
+          <span>Cover Image</span>
+          <input
+            type="file"
+            name="cover"
+            id="quizCover"
+            required
+            onChange={onChange}
+            onClick={(e) => (e.target.value = null)}
+          />
+        </label>
+
+        <br />
+        <br />
+
+        <label htmlFor="quizName">
           <span>Quiz Name</span>
           <input
             type="text"
