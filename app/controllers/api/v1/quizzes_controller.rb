@@ -1,5 +1,6 @@
 class Api::V1::QuizzesController < ApplicationController
   before_action :authenticate_user!, only: [ :create, :update, :destroy ]
+  before_action :set_quiz, only: [:update, :destroy]
 
   def index
     quizzes = Quiz.all.order(created_at: :desc)
@@ -43,5 +44,11 @@ class Api::V1::QuizzesController < ApplicationController
 
   def quiz
     @quiz ||= Quiz.find(params[:id])
+  end
+
+  def set_quiz
+    unless quiz.user === current_user
+      render json: {}, status: 401
+    end
   end
 end
