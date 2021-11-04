@@ -55,7 +55,6 @@ const QuizNew = (props) => {
             type="file"
             name="cover"
             id="quizCover"
-            required
             onChange={onChange}
             onClick={(e) => (e.target.value = null)}
           />
