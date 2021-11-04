@@ -39,7 +39,7 @@ class Api::V1::QuizzesController < ApplicationController
   private
 
   def quiz_params
-    params.require(:quiz).permit(:name, :description)
+    params.require(:quiz).permit(:name, :description, :cover)
   end
 
   def quiz
