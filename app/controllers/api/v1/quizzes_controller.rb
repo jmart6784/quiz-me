@@ -4,7 +4,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def index
     quizzes = Quiz.all.order(created_at: :desc)
-    render json: quizzes, include: ['user'], status: 200
+    render json: quizzes, status: 200
   end
 
   def create
