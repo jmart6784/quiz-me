@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState({
+    cover: "",
     name: "",
     description: "",
   });
@@ -14,25 +15,25 @@ const QuizNew = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const url = "/api/v1/quizzes/create";
-    const { name, description } = forms;
+    const image_upload = document.getElementById("quizCover");
 
-    if (name.length == 0 || description.length == 0) return;
-
-    const body = {
-      name,
-      description,
-    };
+    const formData = new FormData();
+    formData.append("quiz[name]", forms.name);
+    formData.append("quiz[description]", forms.description);
+    formData.append(
+      "quiz[cover]",
+      image_upload.files[0],
+      image_upload.files[0].name
+    );
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(url, {
+    fetch("/api/v1/quizzes/create", {
       method: "POST",
       headers: {
         "X-CSRF-Token": token,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: formData,
     })
       .then((response) => {
         if (response.ok) {
@@ -53,6 +54,7 @@ const QuizNew = (props) => {
           <span>Cover Image</span>
           <input
             type="file"
+            accept="image/*"
             name="cover"
             id="quizCover"
             onChange={onChange}
