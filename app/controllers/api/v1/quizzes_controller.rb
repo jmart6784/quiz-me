@@ -19,7 +19,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def show
     if quiz
-      render json: quiz, include: ['user']
+      render json: quiz
     else
       render json: quiz.errors
     end
