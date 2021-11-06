@@ -2,20 +2,13 @@ import React, { useState, useEffect } from "react";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState({
+    cover: "",
     name: "",
     description: "",
   });
 
-  const [quiz, setQuiz] = useState({ name: "", description: "" });
-
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-
-    const url = `/api/v1/quizzes/show/${id}`;
+    const url = `/api/v1/quizzes/show/${props.match.params.id}`;
 
     fetch(url)
       .then((response) => {
@@ -24,7 +17,13 @@ const QuizEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setQuiz(response))
+      .then((response) =>
+        setForms({
+          cover: response.cover.url,
+          name: response.name,
+          description: response.description,
+        })
+      )
       .catch(() => props.history.push("/"));
   }, []);
 
@@ -37,30 +36,30 @@ const QuizEdit = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-    const url = `/api/v1/quizzes/update/${id}`;
-    const { name, description } = forms;
+    const image_upload = document.getElementById("quizCover");
 
-    if (name.length == 0 || description.length == 0) return;
+    const formData = new FormData();
+    formData.append("quiz[name]", forms.name);
+    formData.append("quiz[description]", forms.description);
+    formData.append(
+      "quiz[cover]",
+      image_upload.files[0],
+      image_upload.files[0].name
+    );
 
-    const body = {
-      name,
-      description,
-    };
+    const { cover, name, description } = forms;
+
+    if (!image_upload.files[0] || name.length == 0 || description.length == 0)
+      return;
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(url, {
+    fetch(`/api/v1/quizzes/update/${props.match.params.id}`, {
       method: "PUT",
       headers: {
         "X-CSRF-Token": token,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: formData,
     })
       .then((response) => {
         if (response.ok) {
@@ -68,8 +67,16 @@ const QuizEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => props.history.push(`/quizzes/${id}`))
+      .then((response) => props.history.push(`/quizzes/${response.id}`))
       .catch((error) => console.log(error.message));
+
+    fetch("/api/v1/quizzes/create", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+      },
+      body: formData,
+    });
   };
 
   return (
@@ -77,6 +84,20 @@ const QuizEdit = (props) => {
       <h1>Edit Quiz</h1>
 
       <form onSubmit={onSubmit}>
+        <label htmlFor="quizCover">
+          <span>Cover Image</span>
+          <input
+            type="file"
+            accept="image/*"
+            name="cover"
+            id="quizCover"
+            onClick={(e) => (e.target.value = null)}
+          />
+        </label>
+
+        <br />
+        <br />
+
         <label htmlFor="quizName">
           <span>Quiz Name</span>
           <input
@@ -85,7 +106,7 @@ const QuizEdit = (props) => {
             id="quizName"
             required
             onChange={onChange}
-            value={quiz.name}
+            value={forms.name}
           />
         </label>
 
@@ -97,12 +118,14 @@ const QuizEdit = (props) => {
             id="quizDescription"
             required
             onChange={onChange}
-            value={quiz.description}
+            value={forms.description}
           />
         </label>
 
-        <button type="submit">Create</button>
+        <button type="submit">Edit</button>
       </form>
+
+      <img src={forms.cover} alt="quiz cover" height="400" width="600" />
     </div>
   );
 };
