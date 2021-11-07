@@ -125,7 +125,7 @@ const QuizEdit = (props) => {
         <button type="submit">Edit</button>
       </form>
 
-      <img src={forms.cover} alt="quiz cover" height="400" width="600" />
+      <img src={forms.cover} alt="quiz cover image" height="400" width="600" />
     </div>
   );
 };
