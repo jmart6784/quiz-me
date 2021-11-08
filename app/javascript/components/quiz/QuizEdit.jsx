@@ -69,14 +69,6 @@ const QuizEdit = (props) => {
       })
       .then((response) => props.history.push(`/quizzes/${response.id}`))
       .catch((error) => console.log(error.message));
-
-    fetch("/api/v1/quizzes/create", {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-      },
-      body: formData,
-    });
   };
 
   return (
