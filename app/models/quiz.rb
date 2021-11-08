@@ -16,7 +16,7 @@ class Quiz < ApplicationRecord
           )
         ), 
         filename: random_image, 
-        content_type: 'image/png'
+        content_type: 'image/jpg'
       )
     end
   end
