@@ -38,19 +38,21 @@ const QuizEdit = (props) => {
 
     const image_upload = document.getElementById("quizCover");
 
-    const formData = new FormData();
-    formData.append("quiz[name]", forms.name);
-    formData.append("quiz[description]", forms.description);
-    formData.append(
-      "quiz[cover]",
-      image_upload.files[0],
-      image_upload.files[0].name
-    );
-
     const { cover, name, description } = forms;
 
-    if (!image_upload.files[0] || name.length == 0 || description.length == 0)
-      return;
+    if (name.length == 0 || description.length == 0) return;
+
+    const formData = new FormData();
+    formData.append("quiz[name]", name);
+    formData.append("quiz[description]", description);
+
+    if (image_upload.files[0]) {
+      formData.append(
+        "quiz[cover]",
+        image_upload.files[0],
+        image_upload.files[0].name
+      );
+    }
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 

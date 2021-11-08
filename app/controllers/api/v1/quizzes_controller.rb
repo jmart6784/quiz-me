@@ -27,7 +27,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def update
     quiz&.update(quiz_params)
-    render json: {message: 'Quiz edited!'}
+    render json: {id: quiz.id, message: 'Quiz edited!'}
   end
 
   def destroy
