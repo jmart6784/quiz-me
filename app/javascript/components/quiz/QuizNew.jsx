@@ -19,17 +19,19 @@ const QuizNew = (props) => {
 
     const { cover, name, description } = forms;
 
-    if (!image_upload.files[0] || name.length == 0 || description.length == 0)
-      return;
+    if (name.length == 0 || description.length == 0) return;
 
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
-    formData.append(
-      "quiz[cover]",
-      image_upload.files[0],
-      image_upload.files[0].name
-    );
+
+    if (image_upload.files[0]) {
+      formData.append(
+        "quiz[cover]",
+        image_upload.files[0],
+        image_upload.files[0].name
+      );
+    }
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
