@@ -7,7 +7,7 @@ class Quiz < ApplicationRecord
 
   def set_default_cover
     unless self.cover.attached?
-      random_image = "cover_#{(1..10).to_a.sample}.jpg"
+      random_image = "cover_#{(1..15).to_a.sample}.jpg"
 
       self.cover.attach(
         io: File.open(
