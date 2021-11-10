@@ -3,6 +3,8 @@ class Quiz < ApplicationRecord
   has_many :questions
   has_one_attached :cover
 
+  accepts_nested_attributes_for :questions
+
   validate :cover_type
   validates :name, presence: true, length: {minimum: 1, maximum: 50}
   validates :description, presence: true, length: {minimum: 1, maximum: 1000}
