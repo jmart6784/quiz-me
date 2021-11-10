@@ -2,6 +2,8 @@ class Quiz < ApplicationRecord
   belongs_to :user
   has_one_attached :cover
   validate :cover_type
+  validates :name, presence: true, length: {minimum: 1, maximum: 50}
+  validates :description, presence: true, length: {minimum: 1, maximum: 1000}
 
   before_create :set_default_cover
 
