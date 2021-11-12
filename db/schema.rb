@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_060004) do
+ActiveRecord::Schema.define(version: 2021_11_12_051456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_11_10_060004) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "type", default: "one answer", null: false
+    t.string "question_type", default: "one answer", null: false
     t.text "question", null: false
     t.string "option_1", null: false
     t.string "option_2", null: false
