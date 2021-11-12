@@ -5,6 +5,7 @@ const QuizNew = (props) => {
     cover: "",
     name: "",
     description: "",
+    questionType: "one answer",
   });
 
   const onChange = (event) => {
@@ -17,13 +18,14 @@ const QuizNew = (props) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description } = forms;
+    const { cover, name, description, questionType } = forms;
 
-    if (name.length == 0 || description.length == 0) return;
+    if (name.length == 0 || description.length == 0 || !questionType) return;
 
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
+    formData.append("quiz[questions_attributes][question_type]", questionType);
 
     if (image_upload.files[0]) {
       formData.append(
@@ -83,6 +85,9 @@ const QuizNew = (props) => {
           />
         </label>
 
+        <br />
+        <br />
+
         <label htmlFor="quizDescription">
           <span>Description</span>
           <input
@@ -93,6 +98,22 @@ const QuizNew = (props) => {
             onChange={onChange}
           />
         </label>
+
+        <br />
+        <br />
+
+        <label htmlFor="questionType">
+          <span>Question type</span>
+          <select name="questionType" onChange={onChange} required>
+            <option value="one answer">Muliple choice (one answer)</option>
+            <option value="multiple answers">
+              Select all (multiple answers)
+            </option>
+          </select>
+        </label>
+
+        <br />
+        <br />
 
         <button type="submit">Create</button>
       </form>

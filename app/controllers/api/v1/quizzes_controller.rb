@@ -41,7 +41,7 @@ class Api::V1::QuizzesController < ApplicationController
   def quiz_params
     params.require(:quiz).permit(
       :name, :description, :cover, questions_attributes: [
-        :type, :question, :option_1, :option_2, :option_3,
+        :question_type, :question, :option_1, :option_2, :option_3,
         :option_4, :option_5, :option_6, :option_7, :option_8,
         :option_9, :option_10, :answer, :quiz_id, :user_id
       ]
