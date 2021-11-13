@@ -6,7 +6,7 @@ const QuizNew = (props) => {
     name: "",
     description: "",
     questions: [],
-    questionType: "one answer",
+    questionType_1: "one answer",
     question_1: "",
   });
 
@@ -117,9 +117,9 @@ const QuizNew = (props) => {
         <div>
           <h3>Question 1</h3>
 
-          <label htmlFor="questionType">
+          <label htmlFor="questionType_1">
             <span>Type</span>
-            <select name="questionType" onChange={onChange} required>
+            <select name="questionType_1" onChange={onChange} required>
               <option value="one answer">Muliple choice (one answer)</option>
               <option value="multiple answers">
                 Select all (multiple answers)
@@ -130,7 +130,7 @@ const QuizNew = (props) => {
           <br />
           <br />
 
-          <label htmlFor="question">
+          <label htmlFor="question_1">
             <span>Question</span>
             <textarea name="question_1" rows="5" required onChange={onChange} />
           </label>
