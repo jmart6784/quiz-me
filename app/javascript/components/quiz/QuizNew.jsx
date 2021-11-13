@@ -7,7 +7,8 @@ const QuizNew = (props) => {
     description: "",
     questionType_1: "one answer",
     question_1: "",
-    option_1: "",
+    q1_option_1: "",
+    q1_option_2: "",
   });
 
   const onChange = (event) => {
@@ -140,9 +141,27 @@ const QuizNew = (props) => {
           <br />
           <br />
 
-          <label htmlFor="option_1">
+          <label htmlFor="q1_option_1">
             <span>Option 1</span>
-            <textarea name="option_1" rows="5" required onChange={onChange} />
+            <textarea
+              name="q1_option_1"
+              rows="5"
+              required
+              onChange={onChange}
+            />
+          </label>
+
+          <br />
+          <br />
+
+          <label htmlFor="q1_option_2">
+            <span>Option 2</span>
+            <textarea
+              name="q1_option_2"
+              rows="5"
+              required
+              onChange={onChange}
+            />
           </label>
         </div>
 
