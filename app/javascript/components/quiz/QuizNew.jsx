@@ -5,9 +5,9 @@ const QuizNew = (props) => {
     cover: "",
     name: "",
     description: "",
-    questions: [],
     questionType_1: "one answer",
     question_1: "",
+    option_1: "",
   });
 
   const onChange = (event) => {
@@ -20,17 +20,19 @@ const QuizNew = (props) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description, questions, questionType, question_1 } =
+    const { cover, name, description, questionType, question_1, option_1 } =
       forms;
 
     if (
       name.length == 0 ||
       description.length == 0 ||
-      questions.length < 2 ||
       !questionType ||
-      !question_1
+      !question_1 ||
+      option_1 == 0
     )
       return;
+
+    let questions = [];
 
     const formData = new FormData();
     formData.append("quiz[name]", name);
@@ -133,6 +135,14 @@ const QuizNew = (props) => {
           <label htmlFor="question_1">
             <span>Question</span>
             <textarea name="question_1" rows="5" required onChange={onChange} />
+          </label>
+
+          <br />
+          <br />
+
+          <label htmlFor="option_1">
+            <span>Option 1</span>
+            <textarea name="option_1" rows="5" required onChange={onChange} />
           </label>
         </div>
 
