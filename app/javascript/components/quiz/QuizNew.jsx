@@ -21,15 +21,23 @@ const QuizNew = (props) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description, questionType, question_1, option_1 } =
-      forms;
+    const {
+      cover,
+      name,
+      description,
+      questionType,
+      question_1,
+      q1_option_1,
+      q1_option_2,
+    } = forms;
 
     if (
       name.length == 0 ||
       description.length == 0 ||
-      !questionType ||
+      !!questionType ||
       !question_1 ||
-      option_1 == 0
+      q1_option_1.length == 0 ||
+      q1_option_2.length == 0
     )
       return;
 
@@ -38,7 +46,10 @@ const QuizNew = (props) => {
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
-    formData.append("quiz[questions_attributes][questions]", questions);
+    formData.append(
+      "quiz[questions_attributes][questions]",
+      JSON.stringify(questions)
+    );
 
     if (image_upload.files[0]) {
       formData.append(
@@ -49,7 +60,6 @@ const QuizNew = (props) => {
     }
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
-
     fetch("/api/v1/quizzes/create", {
       method: "POST",
       headers: {

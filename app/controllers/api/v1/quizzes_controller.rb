@@ -10,6 +10,9 @@ class Api::V1::QuizzesController < ApplicationController
   def create
     quiz = Quiz.new(name: quiz_params[:name], description: quiz_params[:description])
     quiz.user_id = current_user.id
+
+    # question = Question.new(quiz_params[:questions_attributes])
+
     if quiz.save
       render json: quiz
     else
@@ -40,11 +43,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def quiz_params
     params.require(:quiz).permit(
-      :name, :description, :cover, questions_attributes: [
-        :question_type, :question, :option_1, :option_2, :option_3,
-        :option_4, :option_5, :option_6, :option_7, :option_8,
-        :option_9, :option_10, :answer, :quiz_id, :user_id
-      ]
+      :name, :description, :cover, questions_attributes: [:questions]
     )
   end
 
