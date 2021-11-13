@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState({
     cover: "",
     name: "",
     description: "",
+    questions: [],
     questionType: "one answer",
+    question_1: "",
   });
 
   const onChange = (event) => {
@@ -18,14 +20,22 @@ const QuizNew = (props) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description, questionType } = forms;
+    const { cover, name, description, questions, questionType, question_1 } =
+      forms;
 
-    if (name.length == 0 || description.length == 0 || !questionType) return;
+    if (
+      name.length == 0 ||
+      description.length == 0 ||
+      questions.length < 2 ||
+      !questionType ||
+      !question_1
+    )
+      return;
 
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
-    formData.append("quiz[questions_attributes][question_type]", questionType);
+    formData.append("quiz[questions_attributes][questions]", questions);
 
     if (image_upload.files[0]) {
       formData.append(
@@ -53,6 +63,8 @@ const QuizNew = (props) => {
       .then((response) => props.history.push(`/quizzes/${response.id}`))
       .catch((error) => console.log(error.message));
   };
+
+  useEffect(() => console.log(forms), [forms]);
 
   return (
     <div>
@@ -102,15 +114,27 @@ const QuizNew = (props) => {
         <br />
         <br />
 
-        <label htmlFor="questionType">
-          <span>Question type</span>
-          <select name="questionType" onChange={onChange} required>
-            <option value="one answer">Muliple choice (one answer)</option>
-            <option value="multiple answers">
-              Select all (multiple answers)
-            </option>
-          </select>
-        </label>
+        <div>
+          <h3>Question 1</h3>
+
+          <label htmlFor="questionType">
+            <span>Type</span>
+            <select name="questionType" onChange={onChange} required>
+              <option value="one answer">Muliple choice (one answer)</option>
+              <option value="multiple answers">
+                Select all (multiple answers)
+              </option>
+            </select>
+          </label>
+
+          <br />
+          <br />
+
+          <label htmlFor="question">
+            <span>Question</span>
+            <textarea name="question_1" rows="5" required onChange={onChange} />
+          </label>
+        </div>
 
         <br />
         <br />
