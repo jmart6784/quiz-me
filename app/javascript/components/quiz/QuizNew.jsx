@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddOptions from "./AddOptions";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState({
@@ -9,6 +10,11 @@ const QuizNew = (props) => {
     question_1: "",
     q1_option_1: "",
     q1_option_2: "",
+  });
+
+  const [clickOptions, setClickOptions] = useState({
+    isClicked: false,
+    start: 2,
   });
 
   const onChange = (event) => {
@@ -127,52 +133,79 @@ const QuizNew = (props) => {
         <br />
         <br />
 
-        <div>
+        <div id="question-1-div">
           <h3>Question 1</h3>
 
-          <label htmlFor="questionType_1">
-            <span>Type</span>
-            <select name="questionType_1" onChange={onChange} required>
-              <option value="one answer">Muliple choice (one answer)</option>
-              <option value="multiple answers">
-                Select all (multiple answers)
-              </option>
-            </select>
-          </label>
+          <div id="question-1-options">
+            <label htmlFor="questionType_1">
+              <span>Type</span>
+              <select name="questionType_1" onChange={onChange} required>
+                <option value="one answer">Muliple choice (one answer)</option>
+                <option value="multiple answers">
+                  Select all (multiple answers)
+                </option>
+              </select>
+            </label>
 
-          <br />
-          <br />
+            <br />
+            <br />
 
-          <label htmlFor="question_1">
-            <span>Question</span>
-            <textarea name="question_1" rows="5" required onChange={onChange} />
-          </label>
+            <label htmlFor="question_1">
+              <span>Question</span>
+              <textarea
+                name="question_1"
+                rows="5"
+                required
+                onChange={onChange}
+              />
+            </label>
 
-          <br />
-          <br />
+            <br />
+            <br />
 
-          <label htmlFor="q1_option_1">
-            <span>Option 1</span>
-            <textarea
-              name="q1_option_1"
-              rows="5"
-              required
-              onChange={onChange}
-            />
-          </label>
+            <label htmlFor="q1_option_1">
+              <span>Option 1</span>
+              <textarea
+                name="q1_option_1"
+                rows="5"
+                required
+                onChange={onChange}
+              />
+            </label>
 
-          <br />
-          <br />
+            <br />
+            <br />
 
-          <label htmlFor="q1_option_2">
-            <span>Option 2</span>
-            <textarea
-              name="q1_option_2"
-              rows="5"
-              required
-              onChange={onChange}
-            />
-          </label>
+            <label htmlFor="q1_option_2">
+              <span>Option 2</span>
+              <textarea
+                name="q1_option_2"
+                rows="5"
+                required
+                onChange={onChange}
+              />
+            </label>
+
+            {clickOptions.isClicked ? (
+              <AddOptions onChange={onChange} start={clickOptions.start} />
+            ) : (
+              ""
+            )}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              if (clickOptions.start <= 15) {
+                setClickOptions({
+                  isClicked: true,
+                  start: clickOptions.start + 1,
+                });
+              }
+            }}
+          >
+            Add Option
+          </button>
         </div>
 
         <br />
