@@ -182,7 +182,7 @@ const QuizNew = (props) => {
               />
             </label>
 
-            {clickOptions.isClicked ? (
+            {clickOptions.question_1.isClicked ? (
               <AddOptions
                 onChange={onChange}
                 start={clickOptions.question_1.start}
