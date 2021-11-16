@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AddOptions from "./AddOptions";
+import quizFormInfo from "./quiz_form_info";
 
 const QuizNew = (props) => {
-  const [forms, setForms] = useState({
-    cover: "",
-    name: "",
-    description: "",
-    questionType_1: "one answer",
-    question_1: "",
-    q1_option_1: "",
-    q1_option_2: "",
-  });
+  const [forms, setForms] = useState(quizFormInfo()[0]);
 
   const [clickOptions, setClickOptions] = useState({
     question_1: {
