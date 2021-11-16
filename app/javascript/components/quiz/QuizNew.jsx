@@ -196,7 +196,7 @@ const QuizNew = (props) => {
           <button
             type="button"
             onClick={() => {
-              if (clickOptions.question_1.start < 15) {
+              if (clickOptions.question_1.start < 10) {
                 setClickOptions({
                   ...clickOptions,
                   question_1: {
