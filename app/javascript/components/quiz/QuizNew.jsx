@@ -5,13 +5,7 @@ import quizFormInfo from "./quiz_form_info";
 const QuizNew = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
 
-  const [clickOptions, setClickOptions] = useState({
-    question_1: {
-      isClicked: false,
-      start: 2,
-      question: 1,
-    },
-  });
+  const [clickOptions, setClickOptions] = useState(quizFormInfo()[1]);
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -129,10 +123,10 @@ const QuizNew = (props) => {
         <br />
         <br />
 
-        <div id="question-1-div">
+        <div>
           <h3>Question 1</h3>
 
-          <div id="question-1-options">
+          <div>
             <label htmlFor="questionType_1">
               <span>Type</span>
               <select name="questionType_1" onChange={onChange} required>
