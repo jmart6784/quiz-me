@@ -15,6 +15,7 @@ const QuizNew = (props) => {
   const [clickOptions, setClickOptions] = useState({
     isClicked: false,
     start: 2,
+    question: 1,
   });
 
   const onChange = (event) => {
@@ -187,7 +188,11 @@ const QuizNew = (props) => {
             </label>
 
             {clickOptions.isClicked ? (
-              <AddOptions onChange={onChange} start={clickOptions.start} />
+              <AddOptions
+                onChange={onChange}
+                start={clickOptions.start}
+                question={clickOptions.question}
+              />
             ) : (
               ""
             )}
@@ -200,6 +205,7 @@ const QuizNew = (props) => {
                 setClickOptions({
                   isClicked: true,
                   start: clickOptions.start + 1,
+                  question: clickOptions.question,
                 });
               }
             }}
