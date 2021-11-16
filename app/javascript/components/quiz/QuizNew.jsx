@@ -13,9 +13,11 @@ const QuizNew = (props) => {
   });
 
   const [clickOptions, setClickOptions] = useState({
-    isClicked: false,
-    start: 2,
-    question: 1,
+    question_1: {
+      isClicked: false,
+      start: 2,
+      question: 1,
+    },
   });
 
   const onChange = (event) => {
@@ -190,8 +192,8 @@ const QuizNew = (props) => {
             {clickOptions.isClicked ? (
               <AddOptions
                 onChange={onChange}
-                start={clickOptions.start}
-                question={clickOptions.question}
+                start={clickOptions.question_1.start}
+                question={clickOptions.question_1.question}
               />
             ) : (
               ""
@@ -201,11 +203,14 @@ const QuizNew = (props) => {
           <button
             type="button"
             onClick={() => {
-              if (clickOptions.start < 15) {
+              if (clickOptions.question_1.start < 15) {
                 setClickOptions({
-                  isClicked: true,
-                  start: clickOptions.start + 1,
-                  question: clickOptions.question,
+                  ...clickOptions,
+                  question_1: {
+                    isClicked: true,
+                    start: clickOptions.question_1.start + 1,
+                    question: clickOptions.question_1.question,
+                  },
                 });
               }
             }}
