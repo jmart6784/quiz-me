@@ -196,7 +196,7 @@ const QuizNew = (props) => {
           <button
             type="button"
             onClick={() => {
-              if (clickOptions.start <= 15) {
+              if (clickOptions.start < 15) {
                 setClickOptions({
                   isClicked: true,
                   start: clickOptions.start + 1,
