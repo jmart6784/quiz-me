@@ -29,7 +29,7 @@ const QuizNew = (props) => {
       cover,
       name,
       description,
-      questionType,
+      questionType_1,
       question_1,
       q1_option_1,
       q1_option_2,
@@ -38,7 +38,7 @@ const QuizNew = (props) => {
     if (
       name.length == 0 ||
       description.length == 0 ||
-      !!questionType ||
+      !!questionType_1 ||
       !question_1 ||
       q1_option_1.length == 0 ||
       q1_option_2.length == 0
