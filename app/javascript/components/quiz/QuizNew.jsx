@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AddOptions from "./AddOptions";
+import AddQuestion from "./AddQuestion";
 import quizFormInfo from "./quiz_form_info";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
 
   const [clickOptions, setClickOptions] = useState(quizFormInfo()[1]);
+
+  const [clickQuestions, setClickQuestions] = useState({
+    question_1: {
+      isClicked: false,
+      number: 1,
+    },
+  });
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -205,6 +213,38 @@ const QuizNew = (props) => {
             Add Option
           </button>
         </div>
+
+        {clickQuestions.question_1.isClicked ? (
+          <AddQuestion
+            onChange={onChange}
+            number={clickQuestions.question_1.number}
+            clickOptions={clickOptions}
+            setClickOptions={setClickOptions}
+          />
+        ) : (
+          ""
+        )}
+
+        {clickQuestions.question_1.number != 50 ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (clickQuestions.question_1.number < 50) {
+                setClickQuestions({
+                  ...clickQuestions,
+                  question_1: {
+                    isClicked: true,
+                    number: clickQuestions.question_1.number + 1,
+                  },
+                });
+              }
+            }}
+          >
+            Add Question
+          </button>
+        ) : (
+          ""
+        )}
 
         <br />
         <br />
