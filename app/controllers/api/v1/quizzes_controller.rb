@@ -10,13 +10,13 @@ class Api::V1::QuizzesController < ApplicationController
   def create
     quiz = Quiz.new(name: quiz_params[:name], description: quiz_params[:description])
     quiz.user_id = current_user.id
-
-    # question = Question.new(quiz_params[:questions_attributes])
+    
+    # questions = JSON.parse(quiz_params[:questions_attributes][:questions])
 
     if quiz.save
       render json: quiz
     else
-      render json: quiz.errors
+      render json: quiz.errors, status: 422
     end
   end
 
