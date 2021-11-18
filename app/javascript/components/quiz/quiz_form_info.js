@@ -14,7 +14,7 @@ const quizFormInfo = () => {
 
     // Create question options for 1 - 10
     for (let i2 = 1; i2 <= 10; i2++) {
-      forms[`q${i}_options_${i2}`] = "";
+      forms[`q${i}_option_${i2}`] = "";
     }
   }
 
