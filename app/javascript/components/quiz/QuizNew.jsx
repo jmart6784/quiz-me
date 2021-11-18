@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddOptions from "./AddOptions";
 import AddQuestion from "./AddQuestion";
 import quizFormInfo from "./quiz_form_info";
+import questionData from "./questionData";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -38,21 +39,19 @@ const QuizNew = (props) => {
     if (
       name.length == 0 ||
       description.length == 0 ||
-      !!questionType_1 ||
+      !questionType_1 ||
       !question_1 ||
       q1_option_1.length == 0 ||
       q1_option_2.length == 0
     )
       return;
 
-    let questions = [];
-
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
     formData.append(
       "quiz[questions_attributes][questions]",
-      JSON.stringify(questions)
+      JSON.stringify(questionData(forms))
     );
 
     if (image_upload.files[0]) {
