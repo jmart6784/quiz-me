@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AddOptions from "./AddOptions";
-import AddQuestion from "./AddQuestion";
-import quizFormInfo from "./quiz_form_info";
-import questionData from "./questionData";
+import AddOptions from "./form_helpers/AddOptions";
+import AddQuestion from "./form_helpers/AddQuestion";
+import quizFormInfo from "./form_helpers/quiz_form_info";
+import questionData from "./form_helpers/questionData";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
