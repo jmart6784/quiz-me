@@ -78,6 +78,7 @@ const AddQuestion = (props) => {
         </div>
 
         <button
+          disabled={!(clickOptions[`question_${i}`].start < 10)}
           type="button"
           onClick={() => {
             if (clickOptions[`question_${i}`].start < 10) {
