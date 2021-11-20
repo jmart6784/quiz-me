@@ -80,7 +80,7 @@ const QuizNew = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  useEffect(() => console.log(forms), [forms]);
+  useEffect(() => console.log(clickOptions), [clickOptions]);
 
   return (
     <div>
@@ -211,6 +211,28 @@ const QuizNew = (props) => {
           >
             Add Option
           </button>
+
+          {clickOptions.question_1.start != 2 ? (
+            <button
+              type="button"
+              onClick={() => {
+                if (clickOptions.question_1.start != 2) {
+                  setClickOptions({
+                    ...clickOptions,
+                    question_1: {
+                      isClicked: true,
+                      start: clickOptions.question_1.start - 1,
+                      question: clickOptions.question_1.question,
+                    },
+                  });
+                }
+              }}
+            >
+              Remove Option
+            </button>
+          ) : (
+            ""
+          )}
         </div>
 
         {clickQuestions.question_1.isClicked ? (
