@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AddOptions from "./form_helpers/AddOptions";
 import AddQuestion from "./form_helpers/AddQuestion";
 import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
-import Option from "./form_helpers/Option";
 import Question from "./form_helpers/Question";
 
 const QuizNew = (props) => {
@@ -135,6 +133,7 @@ const QuizNew = (props) => {
         <Question
           question="1"
           clickOptions={clickOptions}
+          setClickOptions={setClickOptions}
           onChange={onChange}
         />
 

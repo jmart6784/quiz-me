@@ -1,9 +1,11 @@
 import React from "react";
 import Option from "./Option";
+import AddOptions from "./AddOptions";
 
 const Question = (props) => {
   let ques = props.question;
   let clickOptions = props.clickOptions;
+  let setClickOptions = props.setClickOptions;
 
   return (
     <div>
