@@ -3,6 +3,7 @@ import AddOptions from "./form_helpers/AddOptions";
 import AddQuestion from "./form_helpers/AddQuestion";
 import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
+import Option from "./form_helpers/Option";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -160,28 +161,12 @@ const QuizNew = (props) => {
             <br />
             <br />
 
-            <label htmlFor="q1_option_1">
-              <span>Option 1</span>
-              <textarea
-                name="q1_option_1"
-                rows="5"
-                required
-                onChange={onChange}
-              />
-            </label>
+            <Option question="1" option="1" onChange={onChange} />
 
             <br />
             <br />
 
-            <label htmlFor="q1_option_2">
-              <span>Option 2</span>
-              <textarea
-                name="q1_option_2"
-                rows="5"
-                required
-                onChange={onChange}
-              />
-            </label>
+            <Option question="1" option="2" onChange={onChange} />
 
             {clickOptions.question_1.isClicked ? (
               <AddOptions
