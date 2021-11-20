@@ -4,6 +4,7 @@ import AddQuestion from "./form_helpers/AddQuestion";
 import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
 import Option from "./form_helpers/Option";
+import Question from "./form_helpers/Question";
 
 const QuizNew = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -131,95 +132,11 @@ const QuizNew = (props) => {
         <br />
         <br />
 
-        <div>
-          <h3>Question 1</h3>
-
-          <div>
-            <label htmlFor="questionType_1">
-              <span>Type</span>
-              <select name="questionType_1" onChange={onChange} required>
-                <option value="one answer">Muliple choice (one answer)</option>
-                <option value="multiple answers">
-                  Select all (multiple answers)
-                </option>
-              </select>
-            </label>
-
-            <br />
-            <br />
-
-            <label htmlFor="question_1">
-              <span>Question</span>
-              <textarea
-                name="question_1"
-                rows="5"
-                required
-                onChange={onChange}
-              />
-            </label>
-
-            <br />
-            <br />
-
-            <Option question="1" option="1" onChange={onChange} />
-
-            <br />
-            <br />
-
-            <Option question="1" option="2" onChange={onChange} />
-
-            {clickOptions.question_1.isClicked ? (
-              <AddOptions
-                onChange={onChange}
-                start={clickOptions.question_1.start}
-                question={clickOptions.question_1.question}
-              />
-            ) : (
-              ""
-            )}
-          </div>
-
-          <button
-            disabled={!(clickOptions.question_1.start < 10)}
-            type="button"
-            onClick={() => {
-              if (clickOptions.question_1.start < 10) {
-                setClickOptions({
-                  ...clickOptions,
-                  question_1: {
-                    isClicked: true,
-                    start: clickOptions.question_1.start + 1,
-                    question: clickOptions.question_1.question,
-                  },
-                });
-              }
-            }}
-          >
-            Add Option
-          </button>
-
-          {clickOptions.question_1.start != 2 ? (
-            <button
-              type="button"
-              onClick={() => {
-                if (clickOptions.question_1.start != 2) {
-                  setClickOptions({
-                    ...clickOptions,
-                    question_1: {
-                      isClicked: true,
-                      start: clickOptions.question_1.start - 1,
-                      question: clickOptions.question_1.question,
-                    },
-                  });
-                }
-              }}
-            >
-              Remove Option
-            </button>
-          ) : (
-            ""
-          )}
-        </div>
+        <Question
+          question="1"
+          clickOptions={clickOptions}
+          onChange={onChange}
+        />
 
         {clickQuestions.question_1.isClicked ? (
           <AddQuestion
