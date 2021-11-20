@@ -80,7 +80,7 @@ const QuizNew = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  useEffect(() => console.log(clickOptions), [clickOptions]);
+  useEffect(() => console.log(forms), [forms]);
 
   return (
     <div>
@@ -195,6 +195,7 @@ const QuizNew = (props) => {
           </div>
 
           <button
+            disabled={!(clickOptions.question_1.start < 10)}
             type="button"
             onClick={() => {
               if (clickOptions.question_1.start < 10) {
