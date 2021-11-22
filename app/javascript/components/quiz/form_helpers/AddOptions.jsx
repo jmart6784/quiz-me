@@ -4,7 +4,7 @@ import Option from "./Option";
 const AddOptions = (props) => {
   let optionsJsx = [];
 
-  // Creates inputs 3-15
+  // Creates option inputs 3-15 for a question
   for (let i = 3; i <= props.start; i++) {
     optionsJsx.push(
       <Option
