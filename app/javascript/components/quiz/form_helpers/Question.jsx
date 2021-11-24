@@ -7,6 +7,17 @@ const Question = (props) => {
   let clickOptions = props.clickOptions;
   let setClickOptions = props.setClickOptions;
 
+  let answerOptions = () => {
+    let ary = [];
+    for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
+      ary.push(
+        <option value={i} key={`q${ques}_answer${i}`}>{`Option ${i}`}</option>
+      );
+    }
+
+    return ary;
+  };
+
   return (
     <div>
       <h3>Question {ques}</h3>
@@ -100,6 +111,13 @@ const Question = (props) => {
       ) : (
         ""
       )}
+
+      <label htmlFor={`answer_${ques}`}>
+        <span>Answer</span>
+        <select name={`answer_${ques}`} onChange={props.onChange} required>
+          {answerOptions()}
+        </select>
+      </label>
     </div>
   );
 };
