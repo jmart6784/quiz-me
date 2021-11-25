@@ -11,7 +11,10 @@ const Question = (props) => {
     let ary = [];
     for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
       ary.push(
-        <option value={i} key={`q${ques}_answer${i}`}>{`Option ${i}`}</option>
+        <option
+          value={`${i}`}
+          key={`q${ques}_answer_${i}`}
+        >{`Option ${i}`}</option>
       );
     }
 
@@ -115,9 +118,13 @@ const Question = (props) => {
       <br />
       <br />
 
-      <label htmlFor={`answer_${ques}`}>
+      <label htmlFor={`answer_question_${ques}`}>
         <span>Answer</span>
-        <select name={`answer_${ques}`} onChange={props.onChange} required>
+        <select
+          name={`answer_question_${ques}`}
+          onChange={props.onChange}
+          required
+        >
           {answerOptions()}
         </select>
       </label>
