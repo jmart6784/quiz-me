@@ -112,6 +112,9 @@ const Question = (props) => {
         ""
       )}
 
+      <br />
+      <br />
+
       <label htmlFor={`answer_${ques}`}>
         <span>Answer</span>
         <select name={`answer_${ques}`} onChange={props.onChange} required>
