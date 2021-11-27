@@ -6,8 +6,7 @@ const questionData = (forms) => {
       forms[`question_${i}`] ||
       forms[`question_${i}`] ||
       forms[`q${i}_option_1`] ||
-      forms[`q${i}_option_2`] ||
-      forms[`answer_question_${i}`]
+      forms[`q${i}_option_2`]
     ) {
       questions.push({
         question_type: forms[`questionType_${i}`],

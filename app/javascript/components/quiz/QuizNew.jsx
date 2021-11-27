@@ -134,6 +134,8 @@ const QuizNew = (props) => {
           question="1"
           clickOptions={clickOptions}
           setClickOptions={setClickOptions}
+          forms={forms}
+          setForms={setForms}
           onChange={onChange}
         />
 
@@ -143,6 +145,8 @@ const QuizNew = (props) => {
             number={clickQuestions.question_1.number}
             clickOptions={clickOptions}
             setClickOptions={setClickOptions}
+            forms={forms}
+            setForms={setForms}
           />
         ) : (
           ""

@@ -4,15 +4,14 @@ import Question from "./Question";
 const AddQuestion = (props) => {
   let questionsJsx = [];
 
-  let clickOptions = props.clickOptions;
-  let setClickOptions = props.setClickOptions;
-
   for (let i = 2; i <= props.number; i++) {
     questionsJsx.push(
       <Question
         question={i}
-        clickOptions={clickOptions}
-        setClickOptions={setClickOptions}
+        clickOptions={props.clickOptions}
+        setClickOptions={props.setClickOptions}
+        forms={props.forms}
+        setForms={props.setForms}
         onChange={props.onChange}
         key={`question_${i}`}
       />
