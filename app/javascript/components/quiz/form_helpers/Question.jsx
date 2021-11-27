@@ -7,7 +7,7 @@ const Question = (props) => {
   let clickOptions = props.clickOptions;
   let setClickOptions = props.setClickOptions;
   let forms = props.forms;
-  let setForms = props.setForms;
+  // let setForms = props.setForms;
 
   let answerOptions = () => {
     let ary = [];
