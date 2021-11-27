@@ -11,12 +11,25 @@ const Question = (props) => {
 
   let answerOptions = () => {
     let ary = [];
+    let inputType = "radio";
+
+    forms[`questionType_${ques}`] === "one answer"
+      ? ""
+      : (inputType = "checkbox");
+
     for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
       ary.push(
-        <option
-          value={`${i}`}
-          key={`q${ques}_answer_${i}`}
-        >{`Option ${i}`}</option>
+        <div key={`answer_question_${ques}_option_${i}`}>
+          <input
+            type={inputType}
+            name={`answer_question_${ques}_option_${i}`}
+            value={`${i}`}
+            onChange={props.onChange}
+          />
+          <label
+            htmlFor={`answer_question_${ques}_option_${i}`}
+          >{`Option ${i}`}</label>
+        </div>
       );
     }
 
@@ -120,16 +133,7 @@ const Question = (props) => {
       <br />
       <br />
 
-      <label htmlFor={`answer_question_${ques}`}>
-        <span>Answer</span>
-        <select
-          name={`answer_question_${ques}`}
-          onChange={props.onChange}
-          required
-        >
-          {answerOptions()}
-        </select>
-      </label>
+      {answerOptions()}
     </div>
   );
 };
