@@ -11,26 +11,39 @@ const Question = (props) => {
 
   let answerOptions = () => {
     let ary = [];
-    let inputType = "radio";
 
-    forms[`questionType_${ques}`] === "one answer"
-      ? ""
-      : (inputType = "checkbox");
-
-    for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
-      ary.push(
-        <div key={`answer_question_${ques}_option_${i}`}>
-          <input
-            type={inputType}
-            name={`answer_question_${ques}_option_${i}`}
-            value={`${i}`}
-            onChange={props.onChange}
-          />
-          <label
-            htmlFor={`answer_question_${ques}_option_${i}`}
-          >{`Option ${i}`}</label>
-        </div>
-      );
+    if (forms[`questionType_${ques}`] === "one answer") {
+      for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
+        ary.push(
+          <div key={`answer_question_${ques}_option_${i}`}>
+            <input
+              type="radio"
+              name={`answer_question_${ques}_option_${i}`}
+              value={`${i}`}
+              onChange={props.onChange}
+            />
+            <label
+              htmlFor={`answer_question_${ques}_option_${i}`}
+            >{`Option ${i}`}</label>
+          </div>
+        );
+      }
+    } else {
+      for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
+        ary.push(
+          <div key={`answer_question_${ques}_option_${i}`}>
+            <input
+              type="checkbox"
+              name={`answer_question_${ques}_option_${i}`}
+              value={`${i}`}
+              onChange={props.onChange}
+            />
+            <label
+              htmlFor={`answer_question_${ques}_option_${i}`}
+            >{`Option ${i}`}</label>
+          </div>
+        );
+      }
     }
 
     return ary;
