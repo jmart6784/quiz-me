@@ -22,6 +22,21 @@ const QuizNew = (props) => {
     setForms({ ...forms, [name]: value });
   };
 
+  const handleRadioChange = (e, ques) => {
+    const { name, value } = e.target;
+
+    for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
+      if (i != parseInt(value)) {
+        setForms({
+          ...forms,
+          [`answer_question_${ques}_option_${i}`]: "",
+        });
+      }
+    }
+
+    setForms({ ...forms, [name]: value });
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
@@ -137,6 +152,7 @@ const QuizNew = (props) => {
           forms={forms}
           setForms={setForms}
           onChange={onChange}
+          handleRadioChange={handleRadioChange}
         />
 
         {clickQuestions.question_1.isClicked ? (
@@ -147,6 +163,7 @@ const QuizNew = (props) => {
             setClickOptions={setClickOptions}
             forms={forms}
             setForms={setForms}
+            handleRadioChange={handleRadioChange}
           />
         ) : (
           ""

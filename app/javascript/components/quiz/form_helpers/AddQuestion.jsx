@@ -13,6 +13,7 @@ const AddQuestion = (props) => {
         forms={props.forms}
         setForms={props.setForms}
         onChange={props.onChange}
+        handleRadioChange={props.handleRadioChange}
         key={`question_${i}`}
       />
     );

@@ -20,7 +20,7 @@ const Question = (props) => {
               type="radio"
               name={`answer_question_${ques}_option_${i}`}
               value={`${i}`}
-              onChange={props.onChange}
+              onChange={(e) => props.handleRadioChange(e, ques)}
             />
             <label
               htmlFor={`answer_question_${ques}_option_${i}`}
