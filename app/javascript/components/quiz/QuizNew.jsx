@@ -24,17 +24,19 @@ const QuizNew = (props) => {
 
   const handleRadioChange = (e, ques) => {
     const { name, value } = e.target;
+    let changedRadios = {};
 
     for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
       if (i != parseInt(value)) {
-        setForms({
-          ...forms,
-          [`answer_question_${ques}_option_${i}`]: "",
-        });
+        changedRadios[`answer_question_${ques}_option_${i}`] = "";
       }
     }
 
-    setForms({ ...forms, [name]: value });
+    setForms({
+      ...forms,
+      ...changedRadios,
+      [name]: value,
+    });
   };
 
   const onSubmit = (event) => {

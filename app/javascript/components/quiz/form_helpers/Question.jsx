@@ -21,6 +21,7 @@ const Question = (props) => {
               name={`answer_question_${ques}_option_${i}`}
               value={`${i}`}
               onChange={(e) => props.handleRadioChange(e, ques)}
+              checked={!!forms[`answer_question_${ques}_option_${i}`]}
             />
             <label
               htmlFor={`answer_question_${ques}_option_${i}`}
