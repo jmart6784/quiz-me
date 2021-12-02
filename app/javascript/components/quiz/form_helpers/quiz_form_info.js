@@ -5,7 +5,6 @@ const quizFormInfo = () => {
     cover: "",
     name: "",
     description: "",
-    answer: "",
   };
 
   // create questions state info 1 - 50
