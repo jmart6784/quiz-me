@@ -11,7 +11,6 @@ const AddQuestion = (props) => {
         clickOptions={props.clickOptions}
         setClickOptions={props.setClickOptions}
         forms={props.forms}
-        setForms={props.setForms}
         onChange={props.onChange}
         handleRadioChange={props.handleRadioChange}
         clearAnswers={props.clearAnswers}

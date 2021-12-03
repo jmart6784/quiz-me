@@ -161,7 +161,6 @@ const QuizNew = (props) => {
           clickOptions={clickOptions}
           setClickOptions={setClickOptions}
           forms={forms}
-          setForms={setForms}
           onChange={onChange}
           handleRadioChange={handleRadioChange}
           clearAnswers={clearAnswers}
@@ -174,7 +173,6 @@ const QuizNew = (props) => {
             clickOptions={clickOptions}
             setClickOptions={setClickOptions}
             forms={forms}
-            setForms={setForms}
             handleRadioChange={handleRadioChange}
             clearAnswers={clearAnswers}
           />
