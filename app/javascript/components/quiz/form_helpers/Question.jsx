@@ -59,7 +59,7 @@ const Question = (props) => {
           <span>Type</span>
           <select
             name={`questionType_${ques}`}
-            onChange={props.onChange}
+            onChange={(e) => props.handleQuestionType(e, ques)}
             required
           >
             <option value="one answer">Muliple choice (one answer)</option>
