@@ -37,6 +37,7 @@ const Question = (props) => {
               name={`answer_question_${ques}_option_${i}`}
               value={`${i}`}
               onChange={props.onChange}
+              checked={!!forms[`answer_question_${ques}_option_${i}`]}
             />
             <label
               htmlFor={`answer_question_${ques}_option_${i}`}
