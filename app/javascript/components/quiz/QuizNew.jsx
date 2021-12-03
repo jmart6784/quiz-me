@@ -39,6 +39,15 @@ const QuizNew = (props) => {
     });
   };
 
+  const clearAnswers = (ques) => {
+    let answerObj = {};
+
+    for (let i = 1; i <= 10; i++) {
+      answerObj[`answer_question_${ques}_option_${i}`] = "";
+    }
+    setForms({ ...forms, ...answerObj });
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
@@ -155,6 +164,7 @@ const QuizNew = (props) => {
           setForms={setForms}
           onChange={onChange}
           handleRadioChange={handleRadioChange}
+          clearAnswers={clearAnswers}
         />
 
         {clickQuestions.question_1.isClicked ? (
@@ -166,6 +176,7 @@ const QuizNew = (props) => {
             forms={forms}
             setForms={setForms}
             handleRadioChange={handleRadioChange}
+            clearAnswers={clearAnswers}
           />
         ) : (
           ""

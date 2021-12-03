@@ -136,6 +136,7 @@ const Question = (props) => {
                 },
               });
             }
+            props.clearAnswers(ques);
           }}
         >
           Remove Option

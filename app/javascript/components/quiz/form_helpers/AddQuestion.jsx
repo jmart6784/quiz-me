@@ -14,6 +14,7 @@ const AddQuestion = (props) => {
         setForms={props.setForms}
         onChange={props.onChange}
         handleRadioChange={props.handleRadioChange}
+        clearAnswers={props.clearAnswers}
         key={`question_${i}`}
       />
     );
