@@ -59,6 +59,20 @@ const QuizNew = (props) => {
     setForms({ ...forms, [name]: value, ...answerObj });
   };
 
+  const resetQuestionForm = (ques) => {
+    let questionForm = {};
+    questionForm[`questionType_${ques}`] = "one answer";
+    questionForm[`question_${ques}`] = "";
+    questionForm[`answer_string_${ques}`] = "";
+
+    for (let i = 1; i <= 10; i++) {
+      questionForm[`q${ques}_option_${i}`] = "";
+      questionForm[`answer_question_${ques}_option_${i}`] = "";
+    }
+
+    setForms({ ...forms, ...questionForm });
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     const image_upload = document.getElementById("quizCover");
@@ -227,6 +241,7 @@ const QuizNew = (props) => {
                   },
                 });
               }
+              resetQuestionForm(clickQuestions.question_1.number);
             }}
           >
             Remove Question
