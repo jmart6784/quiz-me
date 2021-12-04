@@ -214,6 +214,27 @@ const QuizNew = (props) => {
           ""
         )}
 
+        {clickQuestions.question_1.number != 1 ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (clickQuestions.question_1.number < 50) {
+                setClickQuestions({
+                  ...clickQuestions,
+                  question_1: {
+                    isClicked: true,
+                    number: clickQuestions.question_1.number - 1,
+                  },
+                });
+              }
+            }}
+          >
+            Remove Question
+          </button>
+        ) : (
+          ""
+        )}
+
         <br />
         <br />
 
