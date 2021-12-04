@@ -1,31 +1,41 @@
 const questionData = (forms) => {
   let questions = [];
 
-  for (let i = 1; i <= 50; i++) {
+  for (let ques = 1; ques <= 50; ques++) {
+    let answer = [];
+
+    for (let i = 1; i <= 10; i++) {
+      if (forms[`answer_question_${ques}_option_${i}`] != "") {
+        answer.push(forms[`answer_question_${ques}_option_${i}`]);
+      }
+    }
+
     if (
-      forms[`question_${i}`] ||
-      forms[`question_${i}`] ||
-      forms[`q${i}_option_1`] ||
-      forms[`q${i}_option_2`]
+      forms[`question_${ques}`] ||
+      forms[`question_${ques}`] ||
+      forms[`q${ques}_option_1`] ||
+      forms[`q${ques}_option_2`] ||
+      answer.length > 0
     ) {
       questions.push({
-        question_type: forms[`questionType_${i}`],
-        question: forms[`question_${i}`],
-        option_1: forms[`q${i}_option_1`],
-        option_2: forms[`q${i}_option_2`],
-        option_3: forms[`q${i}_option_3`],
-        option_4: forms[`q${i}_option_4`],
-        option_5: forms[`q${i}_option_5`],
-        option_6: forms[`q${i}_option_6`],
-        option_7: forms[`q${i}_option_7`],
-        option_8: forms[`q${i}_option_8`],
-        option_9: forms[`q${i}_option_9`],
-        option_10: forms[`q${i}_option_10`],
+        question_type: forms[`questionType_${ques}`],
+        question: forms[`question_${ques}`],
+        option_1: forms[`q${ques}_option_1`],
+        option_2: forms[`q${ques}_option_2`],
+        option_3: forms[`q${ques}_option_3`],
+        option_4: forms[`q${ques}_option_4`],
+        option_5: forms[`q${ques}_option_5`],
+        option_6: forms[`q${ques}_option_6`],
+        option_7: forms[`q${ques}_option_7`],
+        option_8: forms[`q${ques}_option_8`],
+        option_9: forms[`q${ques}_option_9`],
+        option_10: forms[`q${ques}_option_10`],
+        answer: answer,
       });
     }
   }
 
-  return questions;
+  return JSON.stringify(questions);
 };
 
 export default questionData;

@@ -102,7 +102,7 @@ const QuizNew = (props) => {
     formData.append("quiz[description]", description);
     formData.append(
       "quiz[questions_attributes][questions]",
-      JSON.stringify(questionData(forms))
+      questionData(forms)
     );
 
     if (image_upload.files[0]) {
