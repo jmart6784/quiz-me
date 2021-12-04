@@ -11,7 +11,6 @@ const quizFormInfo = () => {
   for (let i = 1; i <= 50; i++) {
     forms[`questionType_${i}`] = "one answer";
     forms[`question_${i}`] = "";
-    forms[`answer_string_${i}`] = "";
 
     // Create question options for 1 - 10
     for (let i2 = 1; i2 <= 10; i2++) {
