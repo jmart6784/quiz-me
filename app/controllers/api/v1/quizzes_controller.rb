@@ -10,10 +10,10 @@ class Api::V1::QuizzesController < ApplicationController
   def create
     quiz = Quiz.new(name: quiz_params[:name], description: quiz_params[:description])
     quiz.user_id = current_user.id
-    
-    # questions = JSON.parse(quiz_params[:questions_attributes][:questions])
 
     if quiz.save
+      create_questions(quiz.id)
+
       render json: quiz
     else
       render json: quiz.errors, status: 422
@@ -36,6 +36,30 @@ class Api::V1::QuizzesController < ApplicationController
   def destroy
     quiz&.destroy
     render json: { message: 'Quiz deleted!' }
+  end
+
+  def create_questions(quiz_id)
+    questions = JSON.parse(quiz_params[:questions_attributes][:questions])
+
+    questions.each do |question|
+      Question.create(
+        question_type: question["question_type"],
+        question: question["question"],
+        option_1: question["option_1"],
+        option_2: question["option_2"],
+        option_3: question["option_3"],
+        option_4: question["option_4"],
+        option_5: question["option_5"],
+        option_6: question["option_6"],
+        option_7: question["option_7"],
+        option_8: question["option_8"],
+        option_9: question["option_9"],
+        option_10: question["option_10"],
+        answer: JSON.generate(question["answer"]),
+        quiz_id: quiz_id,
+        user_id: current_user.id
+      )
+    end
   end
 
 
