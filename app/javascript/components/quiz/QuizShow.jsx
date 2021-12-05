@@ -58,7 +58,7 @@ const QuizShow = (props) => {
       .then(() => props.history.push("/"))
       .catch((error) => console.log(error.message));
   };
-
+  useEffect(() => console.log(quiz), [quiz]);
   return (
     <div>
       <h1>Quiz Show</h1>
