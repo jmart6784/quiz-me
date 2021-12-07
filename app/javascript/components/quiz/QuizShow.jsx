@@ -67,7 +67,8 @@ const QuizShow = (props) => {
       <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
       <button onClick={deleteQuiz}>Delete</button>
       <p>
-        By: <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
+        Created by:{" "}
+        <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
       </p>
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
     </div>
