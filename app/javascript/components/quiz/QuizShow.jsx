@@ -58,6 +58,32 @@ const QuizShow = (props) => {
       .then(() => props.history.push("/"))
       .catch((error) => console.log(error.message));
   };
+
+  let questionsJsx = "";
+
+  if (quiz.questions) {
+    questionsJsx = quiz.questions.map((question) => {
+      let options = [];
+
+      for (let i = 1; i <= 10; i++) {
+        if (question[`option_${i}`] != "") {
+          options.push(
+            <p key={`question-${question.id}-option-${i}`}>
+              {question[`option_${i}`]}
+            </p>
+          );
+        }
+      }
+
+      return (
+        <div key={`question-${question.id}`}>
+          <p>{question.question}</p>
+          {options}
+        </div>
+      );
+    });
+  }
+
   useEffect(() => console.log(quiz), [quiz]);
   return (
     <div>
@@ -71,6 +97,7 @@ const QuizShow = (props) => {
         <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
       </p>
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
+      {questionsJsx}
     </div>
   );
 };
