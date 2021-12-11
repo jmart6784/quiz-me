@@ -60,10 +60,12 @@ const QuizShow = (props) => {
   };
 
   let questionsJsx = "";
+  let ques_num = 0;
 
   if (quiz.questions) {
     questionsJsx = quiz.questions.map((question) => {
       let options = [];
+      ques_num += 1;
 
       for (let i = 1; i <= 10; i++) {
         if (question[`option_${i}`] != "") {
@@ -77,6 +79,7 @@ const QuizShow = (props) => {
 
       return (
         <div key={`question-${question.id}`}>
+          <p>{`Question ${ques_num}`}</p>
           <p>{question.question}</p>
           {options}
         </div>
@@ -85,6 +88,7 @@ const QuizShow = (props) => {
   }
 
   useEffect(() => console.log(quiz), [quiz]);
+
   return (
     <div>
       <h1>Quiz Show</h1>
