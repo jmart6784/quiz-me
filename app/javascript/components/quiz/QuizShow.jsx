@@ -87,7 +87,7 @@ const QuizShow = (props) => {
     });
   }
 
-  useEffect(() => console.log(quiz), [quiz]);
+  useEffect(() => console.log("Quiz", quiz), [quiz]);
 
   return (
     <div>
