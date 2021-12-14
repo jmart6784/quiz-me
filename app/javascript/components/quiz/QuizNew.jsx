@@ -87,15 +87,15 @@ const QuizNew = (props) => {
       q1_option_2,
     } = forms;
 
-    if (
-      name.length == 0 ||
-      description.length == 0 ||
-      !questionType_1 ||
-      !question_1 ||
-      q1_option_1.length == 0 ||
-      q1_option_2.length == 0
-    )
-      return;
+    // if (
+    //   name.length == 0 ||
+    //   description.length == 0 ||
+    //   !questionType_1 ||
+    //   !question_1 ||
+    //   q1_option_1.length == 0 ||
+    //   q1_option_2.length == 0
+    // )
+    //   return;
 
     const formData = new FormData();
     formData.append("quiz[name]", name);

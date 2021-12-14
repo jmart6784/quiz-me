@@ -12,9 +12,9 @@ class Api::V1::QuizzesController < ApplicationController
     quiz.user_id = current_user.id
 
     if quiz.save
-      create_questions(quiz.id)
-
-      render json: quiz
+      if create_questions(quiz.id)
+        render json: quiz
+      end
     else
       render json: quiz.errors, status: 422
     end
@@ -40,9 +40,12 @@ class Api::V1::QuizzesController < ApplicationController
 
   def create_questions(quiz_id)
     questions = JSON.parse(quiz_params[:questions_attributes][:questions])
+    parent_quiz = Quiz.find(quiz_id)
+
+    questions_valid = true
 
     questions.each do |question|
-      Question.create(
+      unless Question.new(
         question_type: question["question_type"],
         question: question["question"],
         option_1: question["option_1"],
@@ -58,10 +61,36 @@ class Api::V1::QuizzesController < ApplicationController
         answer: JSON.generate(question["answer"]),
         quiz_id: quiz_id,
         user_id: current_user.id
-      )
+      ).valid?
+        questions_valid = false
+        parent_quiz.destroy
+      end
     end
-  end
 
+    if questions_valid
+      questions.each do |question|
+        Question.create(
+          question_type: question["question_type"],
+          question: question["question"],
+          option_1: question["option_1"],
+          option_2: question["option_2"],
+          option_3: question["option_3"],
+          option_4: question["option_4"],
+          option_5: question["option_5"],
+          option_6: question["option_6"],
+          option_7: question["option_7"],
+          option_8: question["option_8"],
+          option_9: question["option_9"],
+          option_10: question["option_10"],
+          answer: JSON.generate(question["answer"]),
+          quiz_id: quiz_id,
+          user_id: current_user.id
+        )
+      end
+    end
+
+    return questions_valid
+  end
 
   private
 
