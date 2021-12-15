@@ -52,7 +52,7 @@ const Question = (props) => {
 
   return (
     <div>
-      <h3>Question {ques}</h3>
+      <h3>Question #{ques}</h3>
 
       <div>
         <label htmlFor={`questionType_${ques}`}>
