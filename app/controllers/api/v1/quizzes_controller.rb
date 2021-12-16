@@ -44,6 +44,11 @@ class Api::V1::QuizzesController < ApplicationController
 
     questions_valid = true
 
+    if questions.length === 0
+      questions_valid = false
+      parent_quiz.destroy
+    end
+
     questions.each do |question|
       unless Question.new(
         question_type: question["question_type"],
