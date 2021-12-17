@@ -56,6 +56,20 @@ const QuizEdit = (props) => {
     setForms({ ...forms, [name]: value, ...answerObj });
   };
 
+  const resetQuestionForm = (ques) => {
+    let questionForm = {};
+    questionForm[`questionType_${ques}`] = "one answer";
+    questionForm[`question_${ques}`] = "";
+    questionForm[`answer_string_${ques}`] = "";
+
+    for (let i = 1; i <= 10; i++) {
+      questionForm[`q${ques}_option_${i}`] = "";
+      questionForm[`answer_question_${ques}_option_${i}`] = "";
+    }
+
+    setForms({ ...forms, ...questionForm });
+  };
+
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
 
