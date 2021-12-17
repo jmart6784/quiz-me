@@ -45,6 +45,17 @@ const QuizEdit = (props) => {
     setForms({ ...forms, ...answerObj });
   };
 
+  const handleQuestionType = (e, ques) => {
+    const { name, value } = e.target;
+
+    let answerObj = {};
+
+    for (let i = 1; i <= 10; i++) {
+      answerObj[`answer_question_${ques}_option_${i}`] = "";
+    }
+    setForms({ ...forms, [name]: value, ...answerObj });
+  };
+
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
 
