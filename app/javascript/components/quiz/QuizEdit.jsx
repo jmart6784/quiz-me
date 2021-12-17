@@ -85,6 +85,7 @@ const QuizEdit = (props) => {
       })
       .then((response) =>
         setForms({
+          ...forms,
           cover: response.cover.url,
           name: response.name,
           description: response.description,
@@ -184,6 +185,7 @@ const QuizEdit = (props) => {
             id="quizName"
             required
             onChange={onChange}
+            value={forms.name}
           />
         </label>
 
@@ -192,12 +194,13 @@ const QuizEdit = (props) => {
 
         <label htmlFor="quizDescription">
           <span>Description</span>
-          <input
-            type="text"
+          <textarea
             name="description"
             id="quizDescription"
             required
             onChange={onChange}
+            value={forms.description}
+            rows="5"
           />
         </label>
 
