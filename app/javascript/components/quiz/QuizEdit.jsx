@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
+import quizFormInfo from "./form_helpers/quiz_form_info";
 
 const QuizEdit = (props) => {
-  const [forms, setForms] = useState({
-    cover: "",
-    name: "",
-    description: "",
+  const [forms, setForms] = useState(quizFormInfo()[0]);
+
+  const [clickOptions, setClickOptions] = useState(quizFormInfo()[1]);
+
+  const [clickQuestions, setClickQuestions] = useState({
+    question_1: {
+      isClicked: false,
+      number: 1,
+    },
   });
+
+  const onChange = (event) => {
+    const { name, value } = event.target;
+
+    setForms({ ...forms, [name]: value });
+  };
 
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
@@ -26,12 +38,6 @@ const QuizEdit = (props) => {
       )
       .catch(() => props.history.push("/"));
   }, []);
-
-  const onChange = (event) => {
-    const { name, value } = event.target;
-
-    setForms({ ...forms, [name]: value });
-  };
 
   const onSubmit = (event) => {
     event.preventDefault();
