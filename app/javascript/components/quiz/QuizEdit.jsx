@@ -36,6 +36,15 @@ const QuizEdit = (props) => {
     });
   };
 
+  const clearAnswers = (ques) => {
+    let answerObj = {};
+
+    for (let i = 1; i <= 10; i++) {
+      answerObj[`answer_question_${ques}_option_${i}`] = "";
+    }
+    setForms({ ...forms, ...answerObj });
+  };
+
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
 
