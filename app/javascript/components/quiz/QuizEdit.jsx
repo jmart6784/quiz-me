@@ -158,6 +158,8 @@ const QuizEdit = (props) => {
     <div>
       <h1>Edit Quiz</h1>
 
+      <img src={forms.cover} alt="quiz cover image" height="200" width="325" />
+
       <form onSubmit={onSubmit}>
         <label htmlFor="quizCover">
           <span>Cover Image</span>
@@ -276,8 +278,6 @@ const QuizEdit = (props) => {
 
         <button type="submit">Edit</button>
       </form>
-
-      <img src={forms.cover} alt="quiz cover image" height="400" width="650" />
     </div>
   );
 };
