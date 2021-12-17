@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
+import Question from "./form_helpers/Question";
+import AddQuestion from "./form_helpers/AddQuestion";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -164,6 +166,7 @@ const QuizEdit = (props) => {
             accept="image/*"
             name="cover"
             id="quizCover"
+            onChange={onChange}
             onClick={(e) => (e.target.value = null)}
           />
         </label>
@@ -179,9 +182,11 @@ const QuizEdit = (props) => {
             id="quizName"
             required
             onChange={onChange}
-            value={forms.name}
           />
         </label>
+
+        <br />
+        <br />
 
         <label htmlFor="quizDescription">
           <span>Description</span>
@@ -191,9 +196,83 @@ const QuizEdit = (props) => {
             id="quizDescription"
             required
             onChange={onChange}
-            value={forms.description}
           />
         </label>
+
+        <br />
+        <br />
+
+        <Question
+          question="1"
+          clickOptions={clickOptions}
+          setClickOptions={setClickOptions}
+          forms={forms}
+          onChange={onChange}
+          handleRadioChange={handleRadioChange}
+          clearAnswers={clearAnswers}
+          handleQuestionType={handleQuestionType}
+        />
+
+        {clickQuestions.question_1.isClicked ? (
+          <AddQuestion
+            onChange={onChange}
+            number={clickQuestions.question_1.number}
+            clickOptions={clickOptions}
+            setClickOptions={setClickOptions}
+            forms={forms}
+            handleRadioChange={handleRadioChange}
+            clearAnswers={clearAnswers}
+            handleQuestionType={handleQuestionType}
+          />
+        ) : (
+          ""
+        )}
+
+        {clickQuestions.question_1.number != 50 ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (clickQuestions.question_1.number < 50) {
+                setClickQuestions({
+                  ...clickQuestions,
+                  question_1: {
+                    isClicked: true,
+                    number: clickQuestions.question_1.number + 1,
+                  },
+                });
+              }
+            }}
+          >
+            Add Question
+          </button>
+        ) : (
+          ""
+        )}
+
+        {clickQuestions.question_1.number != 1 ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (clickQuestions.question_1.number < 50) {
+                setClickQuestions({
+                  ...clickQuestions,
+                  question_1: {
+                    isClicked: true,
+                    number: clickQuestions.question_1.number - 1,
+                  },
+                });
+              }
+              resetQuestionForm(clickQuestions.question_1.number);
+            }}
+          >
+            Remove Question
+          </button>
+        ) : (
+          ""
+        )}
+
+        <br />
+        <br />
 
         <button type="submit">Edit</button>
       </form>
