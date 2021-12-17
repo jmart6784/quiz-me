@@ -19,6 +19,23 @@ const QuizEdit = (props) => {
     setForms({ ...forms, [name]: value });
   };
 
+  const handleRadioChange = (e, ques) => {
+    const { name, value } = e.target;
+    let changedRadios = {};
+
+    for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
+      if (i != parseInt(value)) {
+        changedRadios[`answer_question_${ques}_option_${i}`] = "";
+      }
+    }
+
+    setForms({
+      ...forms,
+      ...changedRadios,
+      [name]: value,
+    });
+  };
+
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
 
