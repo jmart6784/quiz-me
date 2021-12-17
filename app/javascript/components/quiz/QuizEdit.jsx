@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import quizFormInfo from "./form_helpers/quiz_form_info";
+import questionData from "./form_helpers/questionData";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -95,13 +96,34 @@ const QuizEdit = (props) => {
 
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description } = forms;
+    const {
+      cover,
+      name,
+      description,
+      questionType_1,
+      question_1,
+      q1_option_1,
+      q1_option_2,
+    } = forms;
 
-    if (name.length == 0 || description.length == 0) return;
+    if (
+      name.length == 0 ||
+      description.length == 0 ||
+      !questionType_1 ||
+      !question_1 ||
+      q1_option_1.length == 0 ||
+      q1_option_2.length == 0
+    )
+      return;
 
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
+
+    formData.append(
+      "quiz[questions_attributes][questions]",
+      questionData(forms)
+    );
 
     if (image_upload.files[0]) {
       formData.append(
