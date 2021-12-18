@@ -80,6 +80,7 @@ const Question = (props) => {
             rows="5"
             required
             onChange={props.onChange}
+            value={forms[`question_${ques}`]}
           />
         </label>
 
