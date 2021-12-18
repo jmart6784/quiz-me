@@ -83,77 +83,99 @@ const QuizEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) =>
+      .then((response) => {
+        let obj = {};
+
+        for (let i = 1; i <= response.questions.length; i++) {
+          const question = response.questions[i - 1];
+          obj[`questionType_${i}`] = question.question_type;
+          obj[`question_${i}`] = question.question;
+
+          for (let i2 = 1; i2 <= 10; i2++) {
+            obj[`q${i}_option_${i2}`] = question[`option_${i2}`];
+
+            JSON.parse(question.answer).forEach((answer) => {
+              if (parseInt(answer) == i2) {
+                obj[`answer_question_${i}_option_${i2}`] = answer;
+              }
+            });
+          }
+        }
+
         setForms({
           ...forms,
+          ...obj,
           cover: response.cover.url,
           name: response.name,
           description: response.description,
-        })
-      )
+        });
+      })
       .catch(() => props.history.push("/"));
   }, []);
 
   const onSubmit = (event) => {
     event.preventDefault();
+    console.log(forms);
 
-    const image_upload = document.getElementById("quizCover");
+    // const image_upload = document.getElementById("quizCover");
 
-    const {
-      cover,
-      name,
-      description,
-      questionType_1,
-      question_1,
-      q1_option_1,
-      q1_option_2,
-    } = forms;
+    // const {
+    //   cover,
+    //   name,
+    //   description,
+    //   questionType_1,
+    //   question_1,
+    //   q1_option_1,
+    //   q1_option_2,
+    // } = forms;
 
-    if (
-      name.length == 0 ||
-      description.length == 0 ||
-      !questionType_1 ||
-      !question_1 ||
-      q1_option_1.length == 0 ||
-      q1_option_2.length == 0
-    )
-      return;
+    // if (
+    //   name.length == 0 ||
+    //   description.length == 0 ||
+    //   !questionType_1 ||
+    //   !question_1 ||
+    //   q1_option_1.length == 0 ||
+    //   q1_option_2.length == 0
+    // )
+    //   return;
 
-    const formData = new FormData();
-    formData.append("quiz[name]", name);
-    formData.append("quiz[description]", description);
+    // const formData = new FormData();
+    // formData.append("quiz[name]", name);
+    // formData.append("quiz[description]", description);
 
-    formData.append(
-      "quiz[questions_attributes][questions]",
-      questionData(forms)
-    );
+    // formData.append(
+    //   "quiz[questions_attributes][questions]",
+    //   questionData(forms)
+    // );
 
-    if (image_upload.files[0]) {
-      formData.append(
-        "quiz[cover]",
-        image_upload.files[0],
-        image_upload.files[0].name
-      );
-    }
+    // if (image_upload.files[0]) {
+    //   formData.append(
+    //     "quiz[cover]",
+    //     image_upload.files[0],
+    //     image_upload.files[0].name
+    //   );
+    // }
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
+    // const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    fetch(`/api/v1/quizzes/update/${props.match.params.id}`, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-      },
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => props.history.push(`/quizzes/${response.id}`))
-      .catch((error) => console.log(error.message));
+    // fetch(`/api/v1/quizzes/update/${props.match.params.id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "X-CSRF-Token": token,
+    //   },
+    //   body: formData,
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     }
+    //     throw new Error("Network response was not ok.");
+    //   })
+    //   .then((response) => props.history.push(`/quizzes/${response.id}`))
+    //   .catch((error) => console.log(error.message));
   };
+
+  // useEffect(console.log(forms), [forms]);
 
   return (
     <div>
