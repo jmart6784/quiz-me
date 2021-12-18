@@ -61,6 +61,7 @@ const Question = (props) => {
             name={`questionType_${ques}`}
             onChange={(e) => props.handleQuestionType(e, ques)}
             required
+            value={forms[`questionType_${ques}`]}
           >
             <option value="one answer">Muliple choice (one answer)</option>
             <option value="multiple answers">
