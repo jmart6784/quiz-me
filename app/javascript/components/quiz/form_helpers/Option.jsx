@@ -3,6 +3,7 @@ import React from "react";
 const Option = (props) => {
   let ques = props.question;
   let num = props.option;
+  let forms = props.forms;
 
   let optionJsx;
 
@@ -14,6 +15,7 @@ const Option = (props) => {
           name={`q${ques}_option_${num}`}
           rows="5"
           onChange={props.onChange}
+          value={forms[`q${ques}_option_${num}`]}
         />
       </label>
     );
@@ -26,6 +28,7 @@ const Option = (props) => {
           rows="5"
           required
           onChange={props.onChange}
+          value={forms[`q${ques}_option_${num}`]}
         />
       </label>
     );

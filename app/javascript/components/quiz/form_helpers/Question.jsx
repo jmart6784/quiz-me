@@ -87,12 +87,22 @@ const Question = (props) => {
         <br />
         <br />
 
-        <Option question={ques} option="1" onChange={props.onChange} />
+        <Option
+          question={ques}
+          option="1"
+          onChange={props.onChange}
+          forms={forms}
+        />
 
         <br />
         <br />
 
-        <Option question={ques} option="2" onChange={props.onChange} />
+        <Option
+          question={ques}
+          option="2"
+          onChange={props.onChange}
+          forms={forms}
+        />
 
         {clickOptions[`question_${ques}`].isClicked ? (
           <AddOptions
