@@ -175,7 +175,7 @@ const QuizEdit = (props) => {
     //   .catch((error) => console.log(error.message));
   };
 
-  // useEffect(console.log("forms", forms), [forms]);
+  useEffect(() => console.log(forms), [forms]);
 
   return (
     <div>
