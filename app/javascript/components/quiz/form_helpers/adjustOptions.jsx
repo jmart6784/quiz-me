@@ -10,11 +10,19 @@ const adjustOptions = (forms, clickOptions) => {
       }
     }
 
-    clickOptions[`question_${i}`] = {
-      isClicked: false,
-      start: optionCount,
-      question: i,
-    };
+    if (optionCount >= 0 && optionCount <= 2) {
+      clickOptions[`question_${i}`] = {
+        isClicked: false,
+        start: 2,
+        question: i,
+      };
+    } else {
+      clickOptions[`question_${i}`] = {
+        isClicked: true,
+        start: optionCount,
+        question: i,
+      };
+    }
 
     optionCount = 0;
   }

@@ -3,6 +3,7 @@ import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
 import Question from "./form_helpers/Question";
 import AddQuestion from "./form_helpers/AddQuestion";
+import adjustOptions from "./form_helpers/adjustOptions";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -102,13 +103,17 @@ const QuizEdit = (props) => {
           }
         }
 
-        setForms({
+        let updatedForms = {
           ...forms,
           ...obj,
           cover: response.cover.url,
           name: response.name,
           description: response.description,
-        });
+        };
+
+        setForms(updatedForms);
+
+        setClickOptions(adjustOptions(updatedForms, clickOptions));
       })
       .catch(() => props.history.push("/"));
   }, []);
