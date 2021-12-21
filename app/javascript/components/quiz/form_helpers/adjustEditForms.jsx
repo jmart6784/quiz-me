@@ -1,4 +1,4 @@
-const adjustOptions = (forms, clickOptions) => {
+const adjustEditForms = (forms, clickOptions) => {
   let obj = {};
 
   let optionCount = 0;
@@ -30,4 +30,4 @@ const adjustOptions = (forms, clickOptions) => {
   return clickOptions;
 };
 
-export default adjustOptions;
+export default adjustEditForms;

@@ -3,7 +3,7 @@ import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
 import Question from "./form_helpers/Question";
 import AddQuestion from "./form_helpers/AddQuestion";
-import adjustOptions from "./form_helpers/adjustOptions";
+import adjustEditForms from "./form_helpers/adjustEditForms";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState(quizFormInfo()[0]);
@@ -113,7 +113,16 @@ const QuizEdit = (props) => {
 
         setForms(updatedForms);
 
-        setClickOptions(adjustOptions(updatedForms, clickOptions));
+        setClickOptions(adjustEditForms(updatedForms, clickOptions));
+
+        if (response.questions.length > 1) {
+          setClickQuestions({
+            question_1: {
+              isClicked: true,
+              number: response.questions.length,
+            },
+          });
+        }
       })
       .catch(() => props.history.push("/"));
   }, []);
