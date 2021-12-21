@@ -109,6 +109,7 @@ const Question = (props) => {
             onChange={props.onChange}
             start={clickOptions[`question_${ques}`].start}
             question={clickOptions[`question_${ques}`].question}
+            forms={forms}
           />
         ) : (
           ""

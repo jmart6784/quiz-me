@@ -12,6 +12,7 @@ const AddOptions = (props) => {
         option={i}
         onChange={props.onChange}
         key={`q${props.question}_option_${i}`}
+        forms={props.forms}
       />
     );
   }
