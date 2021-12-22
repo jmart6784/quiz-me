@@ -1,6 +1,4 @@
 const adjustEditForms = (forms, clickOptions) => {
-  let obj = {};
-
   let optionCount = 0;
 
   for (let i = 1; i <= 50; i++) {
