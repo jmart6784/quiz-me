@@ -149,7 +149,7 @@ const Question = (props) => {
                 },
               });
             }
-            props.clearAnswers(ques);
+            props.clearAnswers(ques, clickOptions[`question_${ques}`].start);
           }}
         >
           Remove Option

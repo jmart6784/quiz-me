@@ -14,7 +14,6 @@ const AddQuestion = (props) => {
         onChange={props.onChange}
         handleRadioChange={props.handleRadioChange}
         clearAnswers={props.clearAnswers}
-        resetOption={props.resetOption}
         handleQuestionType={props.handleQuestionType}
         key={`question_${i}`}
       />

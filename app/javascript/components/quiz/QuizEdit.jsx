@@ -40,8 +40,10 @@ const QuizEdit = (props) => {
     });
   };
 
-  const clearAnswers = (ques) => {
+  const clearAnswers = (ques, option) => {
     let answerObj = {};
+
+    answerObj[`q${ques}_option_${option}`] = "";
 
     for (let i = 1; i <= 10; i++) {
       answerObj[`answer_question_${ques}_option_${i}`] = "";
@@ -73,8 +75,6 @@ const QuizEdit = (props) => {
 
     setForms({ ...forms, ...questionForm });
   };
-
-  const resetOption = (ques, option) => {};
 
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
@@ -253,7 +253,6 @@ const QuizEdit = (props) => {
           onChange={onChange}
           handleRadioChange={handleRadioChange}
           clearAnswers={clearAnswers}
-          resetOption={resetOption}
           handleQuestionType={handleQuestionType}
         />
 
@@ -266,7 +265,6 @@ const QuizEdit = (props) => {
             forms={forms}
             handleRadioChange={handleRadioChange}
             clearAnswers={clearAnswers}
-            resetOption={resetOption}
             handleQuestionType={handleQuestionType}
           />
         ) : (
