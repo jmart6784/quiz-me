@@ -74,6 +74,8 @@ const QuizEdit = (props) => {
     setForms({ ...forms, ...questionForm });
   };
 
+  const resetOption = (ques, option) => {};
+
   useEffect(() => {
     const url = `/api/v1/quizzes/show/${props.match.params.id}`;
 
@@ -251,6 +253,7 @@ const QuizEdit = (props) => {
           onChange={onChange}
           handleRadioChange={handleRadioChange}
           clearAnswers={clearAnswers}
+          resetOption={resetOption}
           handleQuestionType={handleQuestionType}
         />
 
@@ -263,6 +266,7 @@ const QuizEdit = (props) => {
             forms={forms}
             handleRadioChange={handleRadioChange}
             clearAnswers={clearAnswers}
+            resetOption={resetOption}
             handleQuestionType={handleQuestionType}
           />
         ) : (
