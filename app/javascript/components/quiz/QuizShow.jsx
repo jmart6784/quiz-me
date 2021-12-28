@@ -79,7 +79,7 @@ const QuizShow = (props) => {
 
       return (
         <div key={`question-#${question.id}`}>
-          <p>{`Question ${ques_num}`}</p>
+          <p>{`Question #${ques_num}`}</p>
           <p>{question.question}</p>
           {options}
         </div>
