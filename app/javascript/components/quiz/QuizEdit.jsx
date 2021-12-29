@@ -44,10 +44,8 @@ const QuizEdit = (props) => {
     let answerObj = {};
 
     answerObj[`q${ques}_option_${option}`] = "";
+    answerObj[`answer_question_${ques}_option_${option}`] = "";
 
-    for (let i = 1; i <= 10; i++) {
-      answerObj[`answer_question_${ques}_option_${i}`] = "";
-    }
     setForms({ ...forms, ...answerObj });
   };
 
