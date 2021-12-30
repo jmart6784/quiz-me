@@ -12,7 +12,7 @@ class Api::V1::QuizzesController < ApplicationController
     quiz.user_id = current_user.id
 
     if quiz.save
-      if handle_questions(quiz.id, "create")
+      if create_questions(quiz.id)
         render json: quiz
       end
     else
@@ -38,7 +38,7 @@ class Api::V1::QuizzesController < ApplicationController
     render json: { message: 'Quiz deleted!' }
   end
 
-  def handle_questions(quiz_id, action)
+  def create_questions(quiz_id)
     questions = JSON.parse(quiz_params[:questions_attributes][:questions])
     parent_quiz = Quiz.find(quiz_id)
 
