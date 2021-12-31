@@ -97,6 +97,10 @@ class Api::V1::QuizzesController < ApplicationController
     return questions_valid
   end
 
+  def update_questions(quiz_id)
+    
+  end
+
   private
 
   def quiz_params
