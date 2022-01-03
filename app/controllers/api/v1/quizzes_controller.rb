@@ -98,7 +98,7 @@ class Api::V1::QuizzesController < ApplicationController
   end
 
   def update_questions(quiz_id)
-    # questions = JSON.parse(quiz_params[:questions_attributes][:questions])
+    questions = JSON.parse(quiz_params[:questions_attributes][:questions])
   end
 
   private
