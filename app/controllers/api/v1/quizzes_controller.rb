@@ -99,7 +99,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def update_questions(quiz_id)
     questions = JSON.parse(quiz_params[:questions_attributes][:questions])
-    parent_quiz = Quiz.find(quiz_id)
+    # parent_quiz = Quiz.find(quiz_id)
   end
 
   private
