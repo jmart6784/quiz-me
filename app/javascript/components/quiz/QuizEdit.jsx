@@ -65,6 +65,7 @@ const QuizEdit = (props) => {
     questionForm[`questionType_${ques}`] = "one answer";
     questionForm[`question_${ques}`] = "";
     questionForm[`answer_string_${ques}`] = "";
+    questionForm[`question_${ques}_id`] = "";
 
     for (let i = 1; i <= 10; i++) {
       questionForm[`q${ques}_option_${i}`] = "";
