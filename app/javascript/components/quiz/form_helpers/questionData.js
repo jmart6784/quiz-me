@@ -18,6 +18,7 @@ const questionData = (forms) => {
       answer.length > 0
     ) {
       questions.push({
+        id: forms[`question_${ques}_id`],
         question_type: forms[`questionType_${ques}`],
         question: forms[`question_${ques}`],
         option_1: forms[`q${ques}_option_1`],
