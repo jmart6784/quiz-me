@@ -91,6 +91,7 @@ const QuizEdit = (props) => {
           const question = response.questions[i - 1];
           obj[`questionType_${i}`] = question.question_type;
           obj[`question_${i}`] = question.question;
+          obj[`question_${i}_id`] = question.id;
 
           for (let i2 = 1; i2 <= 10; i2++) {
             obj[`q${i}_option_${i2}`] = question[`option_${i2}`];
