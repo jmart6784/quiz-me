@@ -9,6 +9,15 @@ class Api::V1::QuestionsController < ApplicationController
 
   private
 
+  def question_params
+    params.require(:question).permit(
+      :question_type, :question, :option_1, 
+      :option_2, :option_3, :option_4, 
+      :option_5, :option_6, :option_7, 
+      :option_8, :option_9, :option_10, :answer
+    )
+  end
+
   def question
     @question ||= Question.find(params[:id])
   end
