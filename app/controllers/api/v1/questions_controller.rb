@@ -1,4 +1,7 @@
 class Api::V1::QuestionsController < ApplicationController
+  before_action :authenticate_user!, only: [ :update, :destroy ]
+  before_action :set_question, only: [:update, :destroy]
+
   def update
     
   end
