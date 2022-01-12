@@ -21,4 +21,10 @@ class Api::V1::QuestionsController < ApplicationController
   def question
     @question ||= Question.find(params[:id])
   end
+
+  def set_question
+    unless question.user === current_user
+      render json: {message: "Action not permitted"}, status: 401
+    end
+  end
 end
