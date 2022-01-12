@@ -3,7 +3,11 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :set_question, only: [:update, :destroy]
 
   def update
-    
+    if question.update(question_params)
+      render json: {message: 'Question edited'}
+    else
+      render json: {message: 'Unable to edit question'}
+    end
   end
   
   def destroy
