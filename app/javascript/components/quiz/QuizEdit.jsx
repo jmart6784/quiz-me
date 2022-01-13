@@ -30,6 +30,7 @@ const QuizEdit = (props) => {
           cover: response.cover.url,
           name: response.name,
           description: response.description,
+          questions: response.questions,
         })
       )
       .catch(() => props.history.push("/"));
