@@ -131,8 +131,6 @@ const QuizNew = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  useEffect(() => console.log(forms), [forms]);
-
   return (
     <div>
       <h1>New Quiz</h1>
