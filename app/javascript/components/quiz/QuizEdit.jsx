@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import quizFormInfo from "./form_helpers/quiz_form_info";
-import questionData from "./form_helpers/questionData";
 
 const QuizEdit = (props) => {
-  const [forms, setForms] = useState(quizFormInfo()[0]);
+  const [forms, setForms] = useState({
+    cover: "",
+    name: "",
+    description: "",
+    questions: [],
+  });
 
   const onChange = (event) => {
     const { name, value } = event.target;
