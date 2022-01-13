@@ -79,6 +79,25 @@ const QuizEdit = (props) => {
 
   useEffect(() => console.log(forms), [forms]);
 
+  let questionsJsx = (
+    <div>
+      <h3>No questions</h3>
+    </div>
+  );
+
+  let numberLabel = 0;
+  if (forms.questions.length > 0) {
+    questionsJsx = forms.questions.map((question) => {
+      numberLabel += 1;
+      return (
+        <div key={question.id}>
+          <h3>Question {numberLabel}</h3>
+          <p>{question.question}</p>
+        </div>
+      );
+    });
+  }
+
   return (
     <div>
       <h1>Edit Quiz</h1>
@@ -133,6 +152,8 @@ const QuizEdit = (props) => {
 
         <button type="submit">Edit</button>
       </form>
+
+      <div>{questionsJsx}</div>
     </div>
   );
 };
