@@ -86,13 +86,16 @@ const QuizEdit = (props) => {
   );
 
   let numberLabel = 0;
+
   if (forms.questions.length > 0) {
     questionsJsx = forms.questions.map((question) => {
       numberLabel += 1;
+
       return (
         <div key={question.id}>
           <h3>Question {numberLabel}</h3>
           <p>{question.question}</p>
+          <p>Answer: {question.answer}</p>
         </div>
       );
     });
