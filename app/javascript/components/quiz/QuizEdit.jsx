@@ -110,9 +110,7 @@ const QuizEdit = (props) => {
           <p>{question.question}</p>
           {optionsJsx}
           <p>
-            {answers.length > 1
-              ? "Answers: " + answers.join(", ")
-              : "Answer: " + answers.join(", ")}
+            {`Answer${answers.length > 1 ? "s" : ""}: ` + answers.join(", ")}
           </p>
         </div>
       );
