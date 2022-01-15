@@ -91,10 +91,24 @@ const QuizEdit = (props) => {
     questionsJsx = forms.questions.map((question) => {
       numberLabel += 1;
 
+      let optionsJsx = [];
+
+      for (let i = 1; i <= 10; i++) {
+        if (question[`option_${i}`] != "") {
+          optionsJsx.push(
+            <p key={`ques_${question.id}_option_${i}`}>
+              <strong>Option {i} </strong>
+              {question[`option_${i}`]}
+            </p>
+          );
+        }
+      }
+
       return (
         <div key={question.id}>
           <h3>Question {numberLabel}</h3>
           <p>{question.question}</p>
+          {optionsJsx}
           <p>Answer: {question.answer}</p>
         </div>
       );
