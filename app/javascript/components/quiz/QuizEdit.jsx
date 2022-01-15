@@ -103,13 +103,17 @@ const QuizEdit = (props) => {
           );
         }
       }
-
+      let answers = JSON.parse(question.answer);
       return (
         <div key={question.id}>
           <h3>Question {numberLabel}</h3>
           <p>{question.question}</p>
           {optionsJsx}
-          <p>Answer: {question.answer}</p>
+          <p>
+            {answers.length > 1
+              ? "Answers: " + answers.join(", ")
+              : "Answer: " + answers.join(", ")}
+          </p>
         </div>
       );
     });
