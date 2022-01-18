@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState({
@@ -112,6 +113,8 @@ const QuizEdit = (props) => {
           <p>
             {`Answer${answers.length > 1 ? "s" : ""}: ` + answers.join(", ")}
           </p>
+
+          <Link to={`/question/edit/${question.id}`}>Edit</Link>
         </div>
       );
     });
