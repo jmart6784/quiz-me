@@ -18,6 +18,14 @@ const QuestionEdit = (props) => {
     answer: "[]",
   });
 
+  // const [clickOptions, setClickOptions] = useState({
+  //   question_1: {
+  //     isClicked: false,
+  //     start: 2,
+  //     question: 1,
+  //   },
+  // });
+
   useEffect(() => {
     const url = `/api/v1/question/show/${props.match.params.id}`;
 
@@ -32,9 +40,32 @@ const QuestionEdit = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div>
       <h1>Question Edit</h1>
+
+      <form onSubmit={onSubmit}>
+        <label>
+          <span>Type</span>
+          <select
+            name="questionType"
+            onChange={(e) => props.handleQuestionType(e, ques)}
+            required
+            value={question["questionType"]}
+          >
+            <option value="one answer">Muliple choice (one answer)</option>
+            <option value="multiple answers">
+              Select all (multiple answers)
+            </option>
+          </select>
+        </label>
+
+        <button type="submit">Edit</button>
+      </form>
     </div>
   );
 };
