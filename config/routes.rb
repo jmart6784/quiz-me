@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       delete '/quizzes/destroy/:id', to: 'quizzes#destroy'
       put '/quizzes/update/:id', to: 'quizzes#update'
 
+      get '/question/show/:id', to: 'questions#show'
       put '/questions/update/:id', to: 'questions#update'
       delete '/questions/destroy/:id', to: 'questions#destroy'
 
