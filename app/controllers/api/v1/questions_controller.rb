@@ -2,6 +2,14 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [ :update, :destroy ]
   before_action :set_question, only: [:update, :destroy]
 
+  def show
+    if question
+      render json: question
+    else
+      render json: question.errors
+    end    
+  end
+
   def update
     if question.update(question_params)
       render json: {message: 'Question edited'}
