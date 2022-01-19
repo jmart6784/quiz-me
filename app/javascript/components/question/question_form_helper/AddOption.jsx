@@ -1,5 +1,4 @@
 import React from "react";
-import Question from "../../quiz/form_helpers/Question";
 
 const AddOption = (props) => {
   let optionsJsx = [];
