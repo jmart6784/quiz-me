@@ -53,7 +53,25 @@ const QuestionEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setQuestion(response))
+      .then((response) => {
+        setQuestion(response);
+
+        let start = 0;
+        let clicked = false;
+
+        for (let i = 1; i <= 10; i++) {
+          if (response[`option_${i}`] != "") {
+            start += 1;
+          }
+        }
+
+        start > 2 ? (clicked = !clicked) : "";
+
+        setClickOptions({
+          isClicked: clicked,
+          start: start,
+        });
+      })
       .catch(() => props.history.push("/"));
   }, []);
 
