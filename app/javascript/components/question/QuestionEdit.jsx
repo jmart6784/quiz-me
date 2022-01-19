@@ -142,6 +142,24 @@ const QuestionEdit = (props) => {
           Add Option
         </button>
 
+        {clickOptions["start"] != 2 ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (clickOptions["start"] != 2) {
+                setClickOptions({
+                  isClicked: true,
+                  start: clickOptions["start"] - 1,
+                });
+              }
+            }}
+          >
+            Remove Option
+          </button>
+        ) : (
+          ""
+        )}
+
         <br />
         <br />
 
