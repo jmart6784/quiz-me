@@ -38,6 +38,12 @@ const QuestionEdit = (props) => {
     setQuestion({ ...question, [name]: value });
   };
 
+  const onChange = (event) => {
+    const { name, value } = event.target;
+
+    setQuestion({ ...question, [name]: value });
+  };
+
   useEffect(() => {
     const url = `/api/v1/question/show/${props.match.params.id}`;
 
@@ -74,6 +80,20 @@ const QuestionEdit = (props) => {
               Select all (multiple answers)
             </option>
           </select>
+        </label>
+
+        <br />
+        <br />
+
+        <label>
+          <span>Question</span>
+          <textarea
+            name="question"
+            rows="5"
+            required
+            onChange={onChange}
+            value={question["question"]}
+          />
         </label>
 
         <button type="submit">Edit</button>
