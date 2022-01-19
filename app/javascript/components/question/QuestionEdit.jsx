@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddOption from "./question_form_helper/AddOption";
 
 const QuestionEdit = (props) => {
   const [question, setQuestion] = useState({
@@ -19,11 +20,9 @@ const QuestionEdit = (props) => {
   });
 
   const [clickOptions, setClickOptions] = useState({
-    question_1: {
-      isClicked: false,
-      start: 2,
-      question: 1,
-    },
+    isClicked: false,
+    start: 2,
+    question: 1,
   });
 
   const handleQuestionType = (e, ques) => {
@@ -61,23 +60,6 @@ const QuestionEdit = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
   };
-
-  let optionsJsx = [];
-
-  for (let i = 1; i <= 10; i++) {
-    optionsJsx.push(
-      <label key={`question_${question.id}_option_${i}`}>
-        <span>Option {i}</span>
-        <textarea
-          name={`option_${i}`}
-          rows="5"
-          required
-          onChange={onChange}
-          value={question[`option_${i}`]}
-        />
-      </label>
-    );
-  }
 
   useEffect(() => console.log(question), [question]);
 
@@ -118,12 +100,11 @@ const QuestionEdit = (props) => {
         <br />
         <br />
 
-        {optionsJsx}
-
-        <br />
-        <br />
-
-        {answerOptions()}
+        <AddOption
+          onChange={onChange}
+          start={clickOptions["start"]}
+          question={question}
+        />
 
         <button type="submit">Edit</button>
       </form>
