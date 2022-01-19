@@ -26,6 +26,18 @@ const QuestionEdit = (props) => {
   //   },
   // });
 
+  const handleQuestionType = (e, ques) => {
+    const { name, value } = e.target;
+
+    // let answerObj = {};
+
+    // for (let i = 1; i <= 10; i++) {
+    //   answerObj[`answer_question_${ques}_option_${i}`] = "";
+    // }
+    // setQuestion({ ...forms, [name]: value, ...answerObj });
+    setQuestion({ ...question, [name]: value });
+  };
+
   useEffect(() => {
     const url = `/api/v1/question/show/${props.match.params.id}`;
 
@@ -52,10 +64,10 @@ const QuestionEdit = (props) => {
         <label>
           <span>Type</span>
           <select
-            name="questionType"
-            onChange={(e) => props.handleQuestionType(e, ques)}
+            name="question_type"
+            onChange={(e) => handleQuestionType(e, 1)}
             required
-            value={question["questionType"]}
+            value={question["question_type"]}
           >
             <option value="one answer">Muliple choice (one answer)</option>
             <option value="multiple answers">
