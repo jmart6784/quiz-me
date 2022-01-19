@@ -18,13 +18,13 @@ const QuestionEdit = (props) => {
     answer: "[]",
   });
 
-  // const [clickOptions, setClickOptions] = useState({
-  //   question_1: {
-  //     isClicked: false,
-  //     start: 2,
-  //     question: 1,
-  //   },
-  // });
+  const [clickOptions, setClickOptions] = useState({
+    question_1: {
+      isClicked: false,
+      start: 2,
+      question: 1,
+    },
+  });
 
   const handleQuestionType = (e, ques) => {
     const { name, value } = e.target;
@@ -119,6 +119,11 @@ const QuestionEdit = (props) => {
         <br />
 
         {optionsJsx}
+
+        <br />
+        <br />
+
+        {answerOptions()}
 
         <button type="submit">Edit</button>
       </form>
