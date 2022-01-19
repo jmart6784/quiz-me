@@ -62,6 +62,25 @@ const QuestionEdit = (props) => {
     event.preventDefault();
   };
 
+  let optionsJsx = [];
+
+  for (let i = 1; i <= 10; i++) {
+    optionsJsx.push(
+      <label key={`question_${question.id}_option_${i}`}>
+        <span>Option {i}</span>
+        <textarea
+          name={`option_${i}`}
+          rows="5"
+          required
+          onChange={onChange}
+          value={question[`option_${i}`]}
+        />
+      </label>
+    );
+  }
+
+  useEffect(() => console.log(question), [question]);
+
   return (
     <div>
       <h1>Question Edit</h1>
@@ -95,6 +114,11 @@ const QuestionEdit = (props) => {
             value={question["question"]}
           />
         </label>
+
+        <br />
+        <br />
+
+        {optionsJsx}
 
         <button type="submit">Edit</button>
       </form>
