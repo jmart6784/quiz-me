@@ -124,6 +124,27 @@ const QuestionEdit = (props) => {
           question={question}
         />
 
+        <br />
+        <br />
+
+        <button
+          disabled={!(clickOptions["start"] < 10)}
+          type="button"
+          onClick={() => {
+            if (clickOptions["start"] < 10) {
+              setClickOptions({
+                isClicked: true,
+                start: clickOptions["start"] + 1,
+              });
+            }
+          }}
+        >
+          Add Option
+        </button>
+
+        <br />
+        <br />
+
         <button type="submit">Edit</button>
       </form>
     </div>
