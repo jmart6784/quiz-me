@@ -25,6 +25,42 @@ const QuestionEdit = (props) => {
     question: 1,
   });
 
+  let answerOptions = () => {
+    let ary = [];
+
+    if (question["question_type"] === "one answer") {
+      for (let i = 1; i <= clickOptions["start"]; i++) {
+        ary.push(
+          <div key={`answer_option_${i}`}>
+            <input
+              type="radio"
+              name={`answer_option_${i}`}
+              value={`${i}`}
+              onChange={(e) => handleRadioChange(e)}
+            />
+            <label>{`Option ${i}`}</label>
+          </div>
+        );
+      }
+    } else {
+      for (let i = 1; i <= clickOptions["start"]; i++) {
+        ary.push(
+          <div key={`answer_option_${i}`}>
+            <input
+              type="checkbox"
+              name={`answer_option_${i}`}
+              value={`${i}`}
+              onChange={props.onChange}
+            />
+            <label>{`Option ${i}`}</label>
+          </div>
+        );
+      }
+    }
+
+    return ary;
+  };
+
   const handleQuestionType = (e, ques) => {
     const { name, value } = e.target;
 
@@ -159,6 +195,11 @@ const QuestionEdit = (props) => {
         ) : (
           ""
         )}
+
+        <br />
+        <br />
+
+        {answerOptions()}
 
         <br />
         <br />
