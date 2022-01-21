@@ -25,8 +25,28 @@ const QuestionEdit = (props) => {
     question: 1,
   });
 
+  const handleAnswers = (option) => {
+    let answer = JSON.parse(question["answer"]);
+
+    if (question["question_type"] === "one answer") {
+      answer = [];
+      answer.push(option.toString());
+    } else {
+      if (answer.includes(option.toString())) {
+        let index = answer.indexOf(option.toString());
+        if (index !== -1) {
+          answer.splice(index, 1);
+        }
+      } else {
+        answer.push(option.toString());
+      }
+    }
+    setQuestion({ ...question, answer: JSON.stringify([...new Set(answer)]) });
+  };
+
   let answerOptions = () => {
     let ary = [];
+    let answers = JSON.parse(question["answer"]);
 
     if (question["question_type"] === "one answer") {
       for (let i = 1; i <= clickOptions["start"]; i++) {
@@ -36,7 +56,8 @@ const QuestionEdit = (props) => {
               type="radio"
               name={`answer_option_${i}`}
               value={`${i}`}
-              onChange={(e) => handleRadioChange(e)}
+              onChange={() => handleAnswers(i)}
+              checked={answers.includes(i.toString())}
             />
             <label>{`Option ${i}`}</label>
           </div>
@@ -50,7 +71,8 @@ const QuestionEdit = (props) => {
               type="checkbox"
               name={`answer_option_${i}`}
               value={`${i}`}
-              onChange={props.onChange}
+              onChange={() => handleAnswers(i)}
+              checked={answers.includes(i.toString())}
             />
             <label>{`Option ${i}`}</label>
           </div>
