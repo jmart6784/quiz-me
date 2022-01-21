@@ -12,7 +12,7 @@ class Api::V1::QuestionsController < ApplicationController
 
   def update
     if question.update(question_params)
-      render json: {message: 'Question edited'}
+      render json: {id: question.quiz.id, message: 'Question edited'}
     else
       render json: {message: 'Unable to edit question'}
     end
