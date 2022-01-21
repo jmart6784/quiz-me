@@ -96,7 +96,7 @@ const QuestionEdit = (props) => {
   };
 
   useEffect(() => {
-    const url = `/api/v1/question/show/${props.match.params.id}`;
+    const url = `/api/v1/questions/show/${props.match.params.id}`;
 
     fetch(url)
       .then((response) => {
