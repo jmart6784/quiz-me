@@ -39,7 +39,6 @@ const QuizEdit = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(forms);
 
     const image_upload = document.getElementById("quizCover");
 
