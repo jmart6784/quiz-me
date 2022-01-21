@@ -83,16 +83,10 @@ const QuestionEdit = (props) => {
     return ary;
   };
 
-  const handleQuestionType = (e, ques) => {
+  const handleQuestionType = (e) => {
     const { name, value } = e.target;
 
-    // let answerObj = {};
-
-    // for (let i = 1; i <= 10; i++) {
-    //   answerObj[`answer_question_${ques}_option_${i}`] = "";
-    // }
-    // setQuestion({ ...forms, [name]: value, ...answerObj });
-    setQuestion({ ...question, [name]: value });
+    setQuestion({ ...question, [name]: value, answer: "[]" });
   };
 
   const onChange = (event) => {
@@ -148,7 +142,7 @@ const QuestionEdit = (props) => {
           <span>Type</span>
           <select
             name="question_type"
-            onChange={(e) => handleQuestionType(e, 1)}
+            onChange={(e) => handleQuestionType(e)}
             required
             value={question["question_type"]}
           >
