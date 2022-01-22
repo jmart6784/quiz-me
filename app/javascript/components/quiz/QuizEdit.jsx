@@ -77,6 +77,27 @@ const QuizEdit = (props) => {
       .catch((error) => console.log(error.message));
   };
 
+  const deleteQuestion = (id) => {
+    const url = `/api/v1/questions/destroy/${id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(() => window.location.reload())
+      .catch((error) => console.log(error.message));
+  };
+
   useEffect(() => console.log(forms), [forms]);
 
   let questionsJsx = (
@@ -114,6 +135,9 @@ const QuizEdit = (props) => {
           </p>
 
           <Link to={`/question/edit/${question.id}`}>Edit</Link>
+          <button type="button" onClick={() => deleteQuestion(question.id)}>
+            Delete
+          </button>
         </div>
       );
     });
