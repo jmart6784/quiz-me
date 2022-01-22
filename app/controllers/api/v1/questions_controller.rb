@@ -23,7 +23,7 @@ class Api::V1::QuestionsController < ApplicationController
       question&.destroy
       render json: { message: 'Question deleted' }
     else
-      render json: {message: 'Cannot delete: quizzes must have at least one question'}
+      render json: {message: 'Error: Quizzes must have at least one question'}
     end
   end
 
