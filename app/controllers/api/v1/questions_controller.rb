@@ -19,8 +19,12 @@ class Api::V1::QuestionsController < ApplicationController
   end
   
   def destroy
-    question&.destroy
-    render json: { message: 'Question deleted' }
+    if question.quiz.questions.count > 1
+      question&.destroy
+      render json: { message: 'Question deleted' }
+    else
+      render json: {message: 'Cannot delete: quizzes must have at least one question'}
+    end
   end
 
   private
