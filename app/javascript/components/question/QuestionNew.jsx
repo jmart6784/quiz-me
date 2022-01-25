@@ -228,7 +228,7 @@ const QuestionNew = (props) => {
         <br />
         <br />
 
-        <button type="submit">Edit</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );
