@@ -3,8 +3,12 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :set_question, only: [:update, :destroy]
 
   def create
+    quiz_id = question_params[:quiz_id].to_i
     question = Question.new(question_params)
     question.user_id = current_user.id
+    question.quiz_id = quiz_id
+
+    return if current_user != Quiz.find(quiz_id).user 
 
     if question.quiz.questions.count < 50
       if question.save
