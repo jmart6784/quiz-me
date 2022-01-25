@@ -8,9 +8,9 @@ class Api::V1::QuestionsController < ApplicationController
 
     if question.quiz.questions.count < 50
       if question.save
-        render json: quiz
+        render json: question
       else
-        render json: quiz.errors, status: 422
+        render json: question.errors, status: 422
       end
     else
       render json: { message: "Error: Quiz cannot have more than 50 questions" }
