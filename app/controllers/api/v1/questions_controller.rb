@@ -6,7 +6,7 @@ class Api::V1::QuestionsController < ApplicationController
     question = Question.new(question_params)
     question.user_id = current_user.id
 
-    if question.save
+    if question.quiz.questions.count < 50 && question.save
       render json: quiz
     else
       render json: quiz.errors, status: 422
