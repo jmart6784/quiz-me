@@ -1,6 +1,10 @@
 class Api::V1::QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: [ :update, :destroy ]
+  before_action :authenticate_user!, only: [ :create, :update, :destroy ]
   before_action :set_question, only: [:update, :destroy]
+
+  def create
+    
+  end
 
   def show
     if question
