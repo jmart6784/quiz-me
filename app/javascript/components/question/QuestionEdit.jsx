@@ -238,6 +238,10 @@ const QuestionEdit = (props) => {
                   isClicked: true,
                   start: clickOptions["start"] - 1,
                 });
+                setQuestion({
+                  ...question,
+                  [`option_${clickOptions["start"]}`]: "",
+                });
               }
             }}
           >
