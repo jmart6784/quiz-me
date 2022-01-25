@@ -51,6 +51,20 @@ const QuestionNew = () => {
             </option>
           </select>
         </label>
+
+        <br />
+        <br />
+
+        <label>
+          <span>Question</span>
+          <textarea
+            name="question"
+            rows="5"
+            required
+            onChange={onChange}
+            value={question["question"]}
+          />
+        </label>
       </form>
     </div>
   );
