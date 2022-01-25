@@ -48,7 +48,7 @@ const Index = () => {
           <Route path="/users" exact component={UserIndex} />
           <Route path="/users/:id" exact component={UserShow} />
           <Route path="/question/edit/:id" exact component={QuestionEdit} />
-          <Route path="/question/new" exact component={QuestionNew} />
+          <Route path="/question/new/:id" exact component={QuestionNew} />
         </Switch>
       </Router>
     </UserContext.Provider>
