@@ -24,6 +24,12 @@ const QuestionNew = () => {
     setQuestion({ ...question, [name]: value, answer: "[]" });
   };
 
+  const onChange = (event) => {
+    const { name, value } = event.target;
+
+    setQuestion({ ...question, [name]: value });
+  };
+
   useEffect(() => console.log(question), [question]);
 
   return (
