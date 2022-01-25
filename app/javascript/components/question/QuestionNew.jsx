@@ -56,6 +56,45 @@ const QuestionNew = () => {
     setQuestion({ ...question, answer: JSON.stringify([...new Set(answer)]) });
   };
 
+  let answerOptions = () => {
+    let ary = [];
+    let answers = JSON.parse(question["answer"]);
+
+    if (question["question_type"] === "one answer") {
+      for (let i = 1; i <= clickOptions["start"]; i++) {
+        ary.push(
+          <div key={`answer_option_${i}`}>
+            <input
+              type="radio"
+              name={`answer_option_${i}`}
+              value={`${i}`}
+              onChange={() => handleAnswers(i)}
+              checked={answers.includes(i.toString())}
+            />
+            <label>{`Option ${i}`}</label>
+          </div>
+        );
+      }
+    } else {
+      for (let i = 1; i <= clickOptions["start"]; i++) {
+        ary.push(
+          <div key={`answer_option_${i}`}>
+            <input
+              type="checkbox"
+              name={`answer_option_${i}`}
+              value={`${i}`}
+              onChange={() => handleAnswers(i)}
+              checked={answers.includes(i.toString())}
+            />
+            <label>{`Option ${i}`}</label>
+          </div>
+        );
+      }
+    }
+
+    return ary;
+  };
+
   useEffect(() => console.log(question), [question]);
 
   return (
@@ -140,6 +179,11 @@ const QuestionNew = () => {
         ) : (
           ""
         )}
+
+        <br />
+        <br />
+
+        {answerOptions()}
       </form>
     </div>
   );
