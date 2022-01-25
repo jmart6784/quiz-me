@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const QuestionNew = () => {
   const [question, setQuestion] = useState({
     id: "",
-    question_type: "",
+    question_type: "one answer",
     question: "",
     option_1: "",
     option_2: "",
@@ -18,6 +18,14 @@ const QuestionNew = () => {
     answer: "[]",
   });
 
+  const handleQuestionType = (e) => {
+    const { name, value } = e.target;
+
+    setQuestion({ ...question, [name]: value, answer: "[]" });
+  };
+
+  useEffect(() => console.log(question), [question]);
+
   return (
     <div>
       <h1>New Question</h1>
@@ -27,6 +35,7 @@ const QuestionNew = () => {
           <span>Type</span>
           <select
             name="question_type"
+            onChange={(e) => handleQuestionType(e)}
             required
             value={question["question_type"]}
           >
