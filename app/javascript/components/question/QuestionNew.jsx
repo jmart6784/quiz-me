@@ -99,6 +99,28 @@ const QuestionNew = () => {
         >
           Add Option
         </button>
+
+        {clickOptions["start"] != 2 ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (clickOptions["start"] != 2) {
+                setClickOptions({
+                  isClicked: true,
+                  start: clickOptions["start"] - 1,
+                });
+                setQuestion({
+                  ...question,
+                  [`option_${clickOptions["start"]}`]: "",
+                });
+              }
+            }}
+          >
+            Remove Option
+          </button>
+        ) : (
+          ""
+        )}
       </form>
     </div>
   );
