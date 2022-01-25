@@ -3,7 +3,14 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :set_question, only: [:update, :destroy]
 
   def create
-    
+    question = Question.new(question_params)
+    question.user_id = current_user.id
+
+    if question.save
+      render json: quiz
+    else
+      render json: quiz.errors, status: 422
+    end
   end
 
   def show
