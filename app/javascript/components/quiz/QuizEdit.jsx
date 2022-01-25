@@ -98,8 +98,6 @@ const QuizEdit = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  useEffect(() => console.log(forms), [forms]);
-
   let questionsJsx = (
     <div>
       <h3>No questions</h3>
