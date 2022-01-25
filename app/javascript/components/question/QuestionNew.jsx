@@ -37,6 +37,25 @@ const QuestionNew = () => {
     setQuestion({ ...question, [name]: value });
   };
 
+  const handleAnswers = (option) => {
+    let answer = JSON.parse(question["answer"]);
+
+    if (question["question_type"] === "one answer") {
+      answer = [];
+      answer.push(option.toString());
+    } else {
+      if (answer.includes(option.toString())) {
+        let index = answer.indexOf(option.toString());
+        if (index !== -1) {
+          answer.splice(index, 1);
+        }
+      } else {
+        answer.push(option.toString());
+      }
+    }
+    setQuestion({ ...question, answer: JSON.stringify([...new Set(answer)]) });
+  };
+
   useEffect(() => console.log(question), [question]);
 
   return (
