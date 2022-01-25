@@ -95,13 +95,50 @@ const QuestionNew = () => {
     return ary;
   };
 
-  useEffect(() => console.log(question), [question]);
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      !question["question_type"] ||
+      question["question"].length == 0 ||
+      question["option_1"].length == 0 ||
+      question["option_1"].length == 0 ||
+      question["answer"] === "[]"
+    )
+      return;
+
+    const formData = new FormData();
+    formData.append("question[question_type]", question["question_type"]);
+    formData.append("question[question]", question["question"]);
+    for (let i = 1; i <= 10; i++) {
+      formData.append(`question[option_${i}]`, question[`option_${i}`]);
+    }
+    formData.append("question[answer]", question["answer"]);
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(`/api/v1/questions/create`, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => props.history.push(`/quizzes/edit/${response.id}`))
+      .catch((error) => console.log(error.message));
+  };
 
   return (
     <div>
       <h1>New Question</h1>
 
-      <form>
+      <form onSubmit={onSubmit}>
         <label>
           <span>Type</span>
           <select
@@ -184,6 +221,11 @@ const QuestionNew = () => {
         <br />
 
         {answerOptions()}
+
+        <br />
+        <br />
+
+        <button type="submit">Edit</button>
       </form>
     </div>
   );
