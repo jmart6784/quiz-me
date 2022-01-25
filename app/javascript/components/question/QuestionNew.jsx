@@ -114,6 +114,7 @@ const QuestionNew = () => {
       formData.append(`question[option_${i}]`, question[`option_${i}`]);
     }
     formData.append("question[answer]", question["answer"]);
+    formData.append("question[quiz_id]", props.match.params.id);
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
