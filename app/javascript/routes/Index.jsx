@@ -9,6 +9,7 @@ import QuizEdit from "../components/quiz/QuizEdit";
 import UserIndex from "../components/user/UserIndex";
 import UserShow from "../components/user/UserShow";
 import QuestionEdit from "../components/question/QuestionEdit";
+import QuestionNew from "../components/question/QuestionNew";
 
 const Index = () => {
   const [user, setUser] = useState({});
@@ -47,6 +48,7 @@ const Index = () => {
           <Route path="/users" exact component={UserIndex} />
           <Route path="/users/:id" exact component={UserShow} />
           <Route path="/question/edit/:id" exact component={QuestionEdit} />
+          <Route path="/question/new" exact component={QuestionNew} />
         </Switch>
       </Router>
     </UserContext.Provider>
