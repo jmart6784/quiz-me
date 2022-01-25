@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddOption from "./question_form_helper/AddOption";
 
-const QuestionNew = () => {
+const QuestionNew = (props) => {
   const [question, setQuestion] = useState({
     id: "",
     question_type: "one answer",
