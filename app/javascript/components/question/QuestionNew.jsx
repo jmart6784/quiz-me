@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddOption from "./question_form_helper/AddOption";
 
 const QuestionNew = () => {
   const [question, setQuestion] = useState({
@@ -16,6 +17,12 @@ const QuestionNew = () => {
     option_9: "",
     option_10: "",
     answer: "[]",
+  });
+
+  const [clickOptions, setClickOptions] = useState({
+    isClicked: false,
+    start: 2,
+    question: 1,
   });
 
   const handleQuestionType = (e) => {
