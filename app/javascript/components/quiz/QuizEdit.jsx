@@ -198,6 +198,8 @@ const QuizEdit = (props) => {
         <button type="submit">Edit</button>
       </form>
 
+      <Link to="/question/new">New Question</Link>
+
       <div>{questionsJsx}</div>
     </div>
   );
