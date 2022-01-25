@@ -72,6 +72,15 @@ const QuestionNew = () => {
             value={question["question"]}
           />
         </label>
+
+        <br />
+        <br />
+
+        <AddOption
+          onChange={onChange}
+          start={clickOptions["start"]}
+          question={question}
+        />
       </form>
     </div>
   );
