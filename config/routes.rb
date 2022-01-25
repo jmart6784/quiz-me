@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       put '/quizzes/update/:id', to: 'quizzes#update'
 
       get '/questions/show/:id', to: 'questions#show'
+      post '/questions/create', to: 'questions#create'
       put '/questions/update/:id', to: 'questions#update'
       delete '/questions/destroy/:id', to: 'questions#destroy'
 
