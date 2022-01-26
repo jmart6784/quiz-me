@@ -195,6 +195,11 @@ const QuizEdit = (props) => {
 
         <button type="submit">Edit</button>
       </form>
+
+      <p>{`Questions ${forms.questions.length}/50`}</p>
+
+      <br />
+
       {forms.questions.length < 50 ? (
         <Link to={`/question/new/${props.match.params.id}`}>New Question</Link>
       ) : (
