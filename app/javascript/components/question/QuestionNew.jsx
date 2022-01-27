@@ -131,9 +131,7 @@ const QuestionNew = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) =>
-        props.history.push(`/quizzes/edit/${props.match.params.id}`)
-      )
+      .then(() => props.history.push(`/quizzes/edit/${props.match.params.id}`))
       .catch((error) => console.log(error.message));
   };
 
