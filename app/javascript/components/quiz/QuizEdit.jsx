@@ -125,7 +125,7 @@ const QuizEdit = (props) => {
       let answers = JSON.parse(question.answer);
       return (
         <div key={question.id}>
-          <h3>Question {numberLabel}</h3>
+          <h3>Question #{numberLabel}</h3>
           <p>{question.question}</p>
           {optionsJsx}
           <p>
