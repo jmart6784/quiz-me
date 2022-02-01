@@ -6,4 +6,22 @@ class User < ApplicationRecord
 
   has_many :quizzes
   has_many :questions
+
+  has_one_attached :avatar
+
+  after_create :set_default_avatar
+
+  def set_default_avatar
+    unless self.avatar.attached?
+      self.avatar.attach(
+        io: File.open(
+          Rails.root.join(
+            'app', 'assets', 'images', 'default_avatar.png'
+          )
+        ), 
+        filename: 'default_avatar.png', 
+        content_type: 'image/png'
+      )
+    end
+  end
 end
