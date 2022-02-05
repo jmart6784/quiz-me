@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 const UserShow = (props) => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({
+    id: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    username: "",
+    bio: "",
+  });
 
   useEffect(() => {
     const {
