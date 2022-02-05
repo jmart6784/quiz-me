@@ -8,6 +8,7 @@ const UserShow = (props) => {
     last_name: "",
     username: "",
     bio: "",
+    avatar: { url: "" },
   });
 
   useEffect(() => {
@@ -33,6 +34,12 @@ const UserShow = (props) => {
   return (
     <div>
       <h1>User Show</h1>
+      <img
+        src={user.avatar.url}
+        height="150"
+        width={"150"}
+        alt="User profile picture"
+      />
       <p>{user.username}</p>
       <p>{`${user.first_name} ${user.last_name}`}</p>
     </div>
