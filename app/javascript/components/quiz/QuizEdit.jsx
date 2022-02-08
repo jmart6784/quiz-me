@@ -42,13 +42,17 @@ const QuizEdit = (props) => {
 
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description } = forms;
+    const { cover, name, description, questions } = forms;
 
     if (name.length == 0 || description.length == 0) return;
 
     const formData = new FormData();
     formData.append("quiz[name]", name);
     formData.append("quiz[description]", description);
+    formData.append(
+      "quiz[questions_attributes][questions]",
+      JSON.stringify(questions)
+    );
 
     if (image_upload.files[0]) {
       formData.append(
