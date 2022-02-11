@@ -32,11 +32,10 @@ class Api::V1::QuizzesController < ApplicationController
     quiz.name = quiz_params[:name]
     quiz.description = quiz_params[:description]
 
-    if quiz.valid? && update_questions(quiz.id)
-      quiz.save
+    if quiz.save
       render json: {id: quiz.id, message: 'Quiz edited!'}
     else
-      render json: {id: quiz.id, message: 'Quiz edited!'}, status: 422
+      render json: {id: quiz.id, message: 'Error: Cannot edit quiz'}, status: 422
     end
   end
 
@@ -98,59 +97,6 @@ class Api::V1::QuizzesController < ApplicationController
           quiz_id: quiz_id,
           user_id: current_user.id
         )
-      end
-    end
-
-    return questions_valid
-  end
-
-  def update_questions(quiz_id)
-    quiz_questions = Quiz.find(quiz_id).questions
-    questions = JSON.parse(quiz_params[:questions_attributes][:questions])
-
-    questions_valid = true
-
-    questions_valid = false unless questions.length > 0 && questions.length < 51
-
-    quiz_questions.each do |q_ques|
-      questions.each do |question|
-        q_ques.question_type = question["question_type"]
-        q_ques.question = question["question"]
-        q_ques.option_1 = question["option_1"]
-        q_ques.option_2 = question["option_2"]
-        q_ques.option_3 = question["option_3"]
-        q_ques.option_4 = question["option_4"]
-        q_ques.option_5 = question["option_5"]
-        q_ques.option_6 = question["option_6"]
-        q_ques.option_7 = question["option_7"]
-        q_ques.option_8 = question["option_8"]
-        q_ques.option_9 = question["option_9"]
-        q_ques.option_10 = question["option_10"]
-        q_ques.answer = JSON.generate(question["answer"])
-
-        questions_valid = false unless q_ques.valid?
-      end
-    end
-
-    if questions_valid
-      quiz_questions.each do |q_ques|
-        questions.each do |question|
-          q_ques.update(
-            question_type: question["question_type"],
-            question: question["question"],
-            option_1: question["option_1"],
-            option_2: question["option_2"],
-            option_3: question["option_3"],
-            option_4: question["option_4"],
-            option_5: question["option_5"],
-            option_6: question["option_6"],
-            option_7: question["option_7"],
-            option_8: question["option_8"],
-            option_9: question["option_9"],
-            option_10: question["option_10"],
-            answer: JSON.generate(question["answer"])
-          )
-        end
       end
     end
 
