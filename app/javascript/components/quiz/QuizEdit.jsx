@@ -98,7 +98,15 @@ const QuizEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(() => window.location.reload())
+      .then(() => {
+        let quesAry = forms.questions.filter((question) => {
+          if (question.id != id) {
+            return question;
+          }
+        });
+
+        setForms({ ...forms, questions: quesAry });
+      })
       .catch((error) => console.log(error.message));
   };
 
