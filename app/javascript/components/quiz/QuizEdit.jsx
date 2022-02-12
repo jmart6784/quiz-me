@@ -140,7 +140,9 @@ const QuizEdit = (props) => {
           <h3>Question #{numberLabel}</h3>
           <p>{question.question}</p>
           {optionsJsx}
-          <p>{`Answer${answers.length > 1 ? "s" : ""}: ` + answers}</p>
+          <p>
+            {`Answer${answers.length > 1 ? "s" : ""}: ` + answers.join(", ")}
+          </p>
 
           <Link to={`/question/edit/${question.id}`}>Edit</Link>
 
