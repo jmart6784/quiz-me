@@ -53,6 +53,7 @@ const QuestionNew = (props) => {
         answer.push(option.toString());
       }
     }
+    answer = answer.sort();
     setQuestion({ ...question, answer: JSON.stringify([...new Set(answer)]) });
   };
 
