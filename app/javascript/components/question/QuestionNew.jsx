@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddOption from "./question_form_helper/AddOption";
 
 const QuestionNew = (props) => {
@@ -53,8 +53,10 @@ const QuestionNew = (props) => {
         answer.push(option.toString());
       }
     }
-    answer = answer.sort();
-    setQuestion({ ...question, answer: JSON.stringify([...new Set(answer)]) });
+    setQuestion({
+      ...question,
+      answer: JSON.stringify([...new Set(answer.sort())]),
+    });
   };
 
   let answerOptions = () => {

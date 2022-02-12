@@ -41,7 +41,10 @@ const QuestionEdit = (props) => {
         answer.push(option.toString());
       }
     }
-    setQuestion({ ...question, answer: JSON.stringify([...new Set(answer)]) });
+    setQuestion({
+      ...question,
+      answer: JSON.stringify([...new Set(answer.sort())]),
+    });
   };
 
   let answerOptions = () => {
