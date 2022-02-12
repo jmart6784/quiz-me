@@ -143,9 +143,14 @@ const QuizEdit = (props) => {
           <p>{`Answer${answers.length > 1 ? "s" : ""}: ` + answers}</p>
 
           <Link to={`/question/edit/${question.id}`}>Edit</Link>
-          <button type="button" onClick={() => deleteQuestion(question.id)}>
-            Delete
-          </button>
+
+          {numberLabel === 1 ? (
+            ""
+          ) : (
+            <button type="button" onClick={() => deleteQuestion(question.id)}>
+              Delete
+            </button>
+          )}
         </div>
       );
     });
