@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddOption from "./question_form_helper/AddOption";
 
 const QuestionNew = (props) => {
