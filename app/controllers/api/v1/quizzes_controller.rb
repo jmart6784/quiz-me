@@ -29,10 +29,7 @@ class Api::V1::QuizzesController < ApplicationController
   end
 
   def update
-    quiz.name = quiz_params[:name]
-    quiz.description = quiz_params[:description]
-
-    if quiz.save
+    if quiz.update(quiz_params.except(:questions_attributes))
       render json: {id: quiz.id, message: 'Quiz edited!'}
     else
       render json: {id: quiz.id, message: 'Error: Cannot edit quiz'}, status: 422
