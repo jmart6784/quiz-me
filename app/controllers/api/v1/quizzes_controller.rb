@@ -8,7 +8,7 @@ class Api::V1::QuizzesController < ApplicationController
   end
 
   def create
-    quiz = Quiz.new(name: quiz_params[:name], description: quiz_params[:description])
+    quiz = Quiz.new(quiz_params.except(:questions_attributes))
     quiz.user_id = current_user.id
 
     if quiz.save
