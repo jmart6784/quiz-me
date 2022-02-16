@@ -53,51 +53,21 @@ class Api::V1::QuizzesController < ApplicationController
     end
 
     questions.each do |question|
-      unless Question.new(
-        question_type: question["question_type"],
-        question: question["question"],
-        option_1: question["option_1"],
-        option_2: question["option_2"],
-        option_3: question["option_3"],
-        option_4: question["option_4"],
-        option_5: question["option_5"],
-        option_6: question["option_6"],
-        option_7: question["option_7"],
-        option_8: question["option_8"],
-        option_9: question["option_9"],
-        option_10: question["option_10"],
-        answer: JSON.generate(question["answer"]),
-        quiz_id: quiz_id,
-        user_id: current_user.id
-      ).valid?
+      question["answer"] = JSON.generate(question["answer"])
+      question["quiz_id"] = quiz_id
+      question["user_id"] = current_user.id
+
+      ques = Question.new(question)
+
+      unless ques.valid?
         questions_valid = false
         parent_quiz.destroy
       end
     end
 
-    if questions_valid
-      questions.each do |question|
-        Question.create(
-          question_type: question["question_type"],
-          question: question["question"],
-          option_1: question["option_1"],
-          option_2: question["option_2"],
-          option_3: question["option_3"],
-          option_4: question["option_4"],
-          option_5: question["option_5"],
-          option_6: question["option_6"],
-          option_7: question["option_7"],
-          option_8: question["option_8"],
-          option_9: question["option_9"],
-          option_10: question["option_10"],
-          answer: JSON.generate(question["answer"]),
-          quiz_id: quiz_id,
-          user_id: current_user.id
-        )
-      end
-    end
+    questions.each { |question| Question.create(question) } if questions_valid
 
-    return questions_valid
+    questions_valid
   end
 
   private
