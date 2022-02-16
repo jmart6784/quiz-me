@@ -39,6 +39,12 @@ const QuizNew = (props) => {
     });
   };
 
+  const handleCheckbox = (e) => {
+    let { name, value } = e.target;
+
+    setForms({ ...forms, [name]: forms[name] === "" ? value : "" });
+  };
+
   const clearAnswers = (ques, option) => {
     let answerObj = {};
 
@@ -186,6 +192,7 @@ const QuizNew = (props) => {
           forms={forms}
           onChange={onChange}
           handleRadioChange={handleRadioChange}
+          handleCheckbox={handleCheckbox}
           clearAnswers={clearAnswers}
           handleQuestionType={handleQuestionType}
         />
@@ -198,6 +205,7 @@ const QuizNew = (props) => {
             setClickOptions={setClickOptions}
             forms={forms}
             handleRadioChange={handleRadioChange}
+            handleCheckbox={handleCheckbox}
             clearAnswers={clearAnswers}
             handleQuestionType={handleQuestionType}
           />

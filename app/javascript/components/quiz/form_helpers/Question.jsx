@@ -36,7 +36,7 @@ const Question = (props) => {
               type="checkbox"
               name={`answer_question_${ques}_option_${i}`}
               value={`${i}`}
-              onChange={props.onChange}
+              onChange={(e) => props.handleCheckbox(e)}
               checked={!!forms[`answer_question_${ques}_option_${i}`]}
             />
             <label
