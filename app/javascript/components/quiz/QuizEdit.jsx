@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const QuizEdit = (props) => {
   const [forms, setForms] = useState({
     cover: "",
-    inputImage: "",
     name: "",
     description: "",
     questions: [],
@@ -163,7 +162,7 @@ const QuizEdit = (props) => {
     if (e.target.files && e.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (e) => {
-        setForms({ ...forms, ["inputImage"]: e.target.result });
+        setForms({ ...forms, ["cover"]: e.target.result });
       };
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -173,12 +172,7 @@ const QuizEdit = (props) => {
     <div>
       <h1>Edit Quiz</h1>
 
-      <img
-        src={forms.inputImage === "" ? forms.cover : forms.inputImage}
-        alt="quiz cover image"
-        height="200"
-        width="325"
-      />
+      <img src={forms.cover} alt="quiz cover image" height="200" width="325" />
 
       <form onSubmit={onSubmit}>
         <label htmlFor="quizCover">
