@@ -14,7 +14,7 @@ class Question < ApplicationRecord
   before_destroy :one_question_minimum, prepend: true
 
   def check_question_count
-    Quiz.find(self.quiz_id).questions.count < 50 ? true : false
+    throw :abort unless Quiz.find(self.quiz_id).questions.count < 50
   end
 
   def one_question_minimum
