@@ -45,6 +45,16 @@ const QuizNew = (props) => {
     setForms({ ...forms, [name]: forms[name] === "" ? value : "" });
   };
 
+  const chooseImage = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        setForms({ ...forms, ["cover"]: e.target.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
   const clearAnswers = (ques, option) => {
     let answerObj = {};
 
@@ -142,6 +152,21 @@ const QuizNew = (props) => {
       <h1>New Quiz</h1>
 
       <form onSubmit={onSubmit}>
+        {forms.cover != "" ? (
+          <div>
+            <img
+              src={forms.cover}
+              alt="quiz cover image"
+              height="200"
+              width="325"
+            />
+
+            <br />
+          </div>
+        ) : (
+          ""
+        )}
+
         <label htmlFor="quizCover">
           <span>Cover Image</span>
           <input
@@ -149,7 +174,7 @@ const QuizNew = (props) => {
             accept="image/*"
             name="cover"
             id="quizCover"
-            onChange={onChange}
+            onChange={(e) => chooseImage(e)}
             onClick={(e) => (e.target.value = null)}
           />
         </label>
