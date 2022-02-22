@@ -65,6 +65,7 @@ const QuizShow = (props) => {
   if (quiz.questions) {
     questionsJsx = quiz.questions.map((question) => {
       let options = [];
+      let answers = JSON.parse(question.answer);
       ques_num += 1;
 
       for (let i = 1; i <= 10; i++) {
@@ -82,6 +83,9 @@ const QuizShow = (props) => {
           <p>{`Question #${ques_num}`}</p>
           <p>{question.question}</p>
           {options}
+          <p>
+            {`Answer${answers.length > 1 ? "s" : ""}: ` + answers.join(", ")}
+          </p>
         </div>
       );
     });
