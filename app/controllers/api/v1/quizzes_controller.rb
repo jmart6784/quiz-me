@@ -74,7 +74,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def quiz_params
     params.require(:quiz).permit(
-      :name, :description, :cover, questions_attributes: [:questions]
+      :name, :description, :cover, :time, questions_attributes: [:questions]
     )
   end
 
