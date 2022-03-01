@@ -97,6 +97,9 @@ const QuizNew = (props) => {
       cover,
       name,
       description,
+      hours,
+      minutes,
+      seconds,
       questionType_1,
       question_1,
       q1_option_1,
@@ -119,6 +122,10 @@ const QuizNew = (props) => {
     formData.append(
       "quiz[questions_attributes][questions]",
       questionData(forms)
+    );
+    formData.append(
+      "quiz[time]",
+      parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds)
     );
 
     if (image_upload.files[0]) {
