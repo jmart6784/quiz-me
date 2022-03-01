@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddQuestion from "./form_helpers/AddQuestion";
 import quizFormInfo from "./form_helpers/quiz_form_info";
 import questionData from "./form_helpers/questionData";
@@ -205,6 +205,40 @@ const QuizNew = (props) => {
             required
             onChange={onChange}
           />
+        </label>
+
+        <br />
+        <br />
+
+        <label>
+          <span>Time</span>
+          <input
+            type="number"
+            name="hours"
+            id="quizHours"
+            onChange={onChange}
+          />
+          Hours
+        </label>
+
+        <label>
+          <input
+            type="number"
+            name="minutes"
+            id="quizMinutes"
+            onChange={onChange}
+          />
+          Minutes
+        </label>
+
+        <label>
+          <input
+            type="number"
+            name="seconds"
+            id="quizSeconds"
+            onChange={onChange}
+          />
+          Seconds
         </label>
 
         <br />
