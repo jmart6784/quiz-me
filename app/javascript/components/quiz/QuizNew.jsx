@@ -22,6 +22,18 @@ const QuizNew = (props) => {
     setForms({ ...forms, [name]: value });
   };
 
+  const limitNumbers = (event) => {
+    const { name, value } = event.target;
+
+    if ((name === "hours" && parseInt(value) <= 24) || value == "") {
+      setForms({ ...forms, [name]: value });
+    } else if ((name === "minutes" && parseInt(value) <= 59) || value == "") {
+      setForms({ ...forms, [name]: value });
+    } else if ((name === "seconds" && parseInt(value) <= 59) || value == "") {
+      setForms({ ...forms, [name]: value });
+    }
+  };
+
   const handleRadioChange = (e, ques) => {
     const { name, value } = e.target;
     let changedRadios = {};
@@ -223,7 +235,8 @@ const QuizNew = (props) => {
             type="number"
             name="hours"
             id="quizHours"
-            onChange={onChange}
+            onChange={limitNumbers}
+            value={forms["hours"]}
           />
           Hours
         </label>
@@ -233,7 +246,8 @@ const QuizNew = (props) => {
             type="number"
             name="minutes"
             id="quizMinutes"
-            onChange={onChange}
+            onChange={limitNumbers}
+            value={forms["minutes"]}
           />
           Minutes
         </label>
@@ -243,7 +257,8 @@ const QuizNew = (props) => {
             type="number"
             name="seconds"
             id="quizSeconds"
-            onChange={onChange}
+            onChange={limitNumbers}
+            value={forms["seconds"]}
           />
           Seconds
         </label>
