@@ -11,13 +11,8 @@ class Question < ApplicationRecord
     length: {minimum: 1, maximum: 300}, allow_blank: true, allow_nil: true
 
   before_create :check_question_count
-  before_destroy :one_question_minimum, prepend: true
 
   def check_question_count
     throw :abort unless Quiz.find(self.quiz_id).questions.count < 50
-  end
-
-  def one_question_minimum
-    throw :abort if Quiz.find(self.quiz_id).questions.count === 1
   end
 end
