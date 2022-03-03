@@ -7,12 +7,27 @@ const QuizEdit = (props) => {
     name: "",
     description: "",
     questions: [],
+    hours: "0",
+    minutes: "0",
+    seconds: "0",
   });
 
   const onChange = (event) => {
     const { name, value } = event.target;
 
     setForms({ ...forms, [name]: value });
+  };
+
+  const limitNumbers = (event) => {
+    const { name, value } = event.target;
+
+    if ((name === "hours" && parseInt(value) <= 24) || value == "") {
+      setForms({ ...forms, [name]: value });
+    } else if ((name === "minutes" && parseInt(value) <= 59) || value == "") {
+      setForms({ ...forms, [name]: value });
+    } else if ((name === "seconds" && parseInt(value) <= 59) || value == "") {
+      setForms({ ...forms, [name]: value });
+    }
   };
 
   useEffect(() => {
@@ -42,7 +57,8 @@ const QuizEdit = (props) => {
 
     const image_upload = document.getElementById("quizCover");
 
-    const { cover, name, description, questions } = forms;
+    const { cover, name, description, hours, minutes, seconds, questions } =
+      forms;
 
     if (name.length == 0 || description.length == 0) return;
 
@@ -52,6 +68,10 @@ const QuizEdit = (props) => {
     formData.append(
       "quiz[questions_attributes][questions]",
       JSON.stringify(questions)
+    );
+    formData.append(
+      "quiz[time]",
+      parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds)
     );
 
     if (image_upload.files[0]) {
@@ -215,6 +235,43 @@ const QuizEdit = (props) => {
             value={forms.description}
             rows="5"
           />
+        </label>
+
+        <br />
+        <br />
+
+        <label>
+          <span>Time</span>
+          <input
+            type="number"
+            name="hours"
+            id="quizHours"
+            onChange={limitNumbers}
+            value={forms["hours"]}
+          />
+          Hours
+        </label>
+
+        <label>
+          <input
+            type="number"
+            name="minutes"
+            id="quizMinutes"
+            onChange={limitNumbers}
+            value={forms["minutes"]}
+          />
+          Minutes
+        </label>
+
+        <label>
+          <input
+            type="number"
+            name="seconds"
+            id="quizSeconds"
+            onChange={limitNumbers}
+            value={forms["seconds"]}
+          />
+          Seconds
         </label>
 
         <br />
