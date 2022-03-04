@@ -294,9 +294,6 @@ const QuizNew = (props) => {
           ""
         )}
 
-        <br />
-        <br />
-
         <Question
           question="1"
           clickOptions={clickOptions}
