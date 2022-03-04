@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import secondsToTime from "./form_helpers/secondsToTime";
 
 const QuizEdit = (props) => {
   const [forms, setForms] = useState({
@@ -40,15 +41,20 @@ const QuizEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) =>
+      .then((response) => {
+        let time = secondsToTime(parseInt(response.time));
+
         setForms({
           ...forms,
           cover: response.cover.url,
           name: response.name,
           description: response.description,
           questions: response.questions,
-        })
-      )
+          hours: time.hours,
+          minutes: time.minutes,
+          seconds: time.seconds,
+        });
+      })
       .catch(() => props.history.push("/"));
   }, []);
 
