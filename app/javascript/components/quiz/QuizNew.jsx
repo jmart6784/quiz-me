@@ -230,38 +230,69 @@ const QuizNew = (props) => {
         <br />
 
         <label>
-          <span>Time</span>
           <input
-            type="number"
-            name="hours"
-            id="quizHours"
-            onChange={limitNumbers}
-            value={forms["hours"]}
+            type="checkbox"
+            name={`isTimed`}
+            value={forms["isTimed"]}
+            onChange={(e) =>
+              setForms({
+                ...forms,
+                isTimed: !forms["isTimed"],
+                hours: "0",
+                minutes: "0",
+                seconds: "0",
+              })
+            }
+            checked={forms["isTimed"]}
           />
-          Hours
+          Timed?
         </label>
 
-        <label>
-          <input
-            type="number"
-            name="minutes"
-            id="quizMinutes"
-            onChange={limitNumbers}
-            value={forms["minutes"]}
-          />
-          Minutes
-        </label>
+        <br />
+        <br />
 
-        <label>
-          <input
-            type="number"
-            name="seconds"
-            id="quizSeconds"
-            onChange={limitNumbers}
-            value={forms["seconds"]}
-          />
-          Seconds
-        </label>
+        {forms["isTimed"] ? (
+          <div>
+            <label>
+              <span>Time</span>
+              <input
+                type="number"
+                name="hours"
+                id="quizHours"
+                onChange={limitNumbers}
+                value={forms["hours"]}
+              />
+              Hours
+            </label>
+
+            <label>
+              <input
+                type="number"
+                name="minutes"
+                id="quizMinutes"
+                onChange={limitNumbers}
+                value={forms["minutes"]}
+              />
+              Minutes
+            </label>
+
+            <label>
+              <input
+                type="number"
+                name="seconds"
+                id="quizSeconds"
+                onChange={limitNumbers}
+                value={forms["seconds"]}
+              />
+              Seconds
+            </label>
+
+            <br />
+            <br />
+          </div>
+        ) : (
+          ""
+        )}
 
         <br />
         <br />

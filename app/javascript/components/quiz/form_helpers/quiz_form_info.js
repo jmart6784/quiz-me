@@ -5,6 +5,7 @@ const quizFormInfo = () => {
     cover: "",
     name: "",
     description: "",
+    isTimed: false,
     hours: 0,
     minutes: 0,
     seconds: 0,
