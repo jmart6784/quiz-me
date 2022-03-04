@@ -8,6 +8,7 @@ const QuizEdit = (props) => {
     name: "",
     description: "",
     questions: [],
+    isTimed: false,
     hours: "0",
     minutes: "0",
     seconds: "0",
@@ -50,6 +51,7 @@ const QuizEdit = (props) => {
           name: response.name,
           description: response.description,
           questions: response.questions,
+          isTimed: parseInt(response.time) > 0,
           hours: time.hours,
           minutes: time.minutes,
           seconds: time.seconds,
@@ -247,41 +249,69 @@ const QuizEdit = (props) => {
         <br />
 
         <label>
-          <span>Time</span>
           <input
-            type="number"
-            name="hours"
-            id="quizHours"
-            onChange={limitNumbers}
-            value={forms["hours"]}
+            type="checkbox"
+            name={`isTimed`}
+            value={forms["isTimed"]}
+            onChange={(e) =>
+              setForms({
+                ...forms,
+                isTimed: !forms["isTimed"],
+                hours: "0",
+                minutes: "0",
+                seconds: "0",
+              })
+            }
+            checked={forms["isTimed"]}
           />
-          Hours
-        </label>
-
-        <label>
-          <input
-            type="number"
-            name="minutes"
-            id="quizMinutes"
-            onChange={limitNumbers}
-            value={forms["minutes"]}
-          />
-          Minutes
-        </label>
-
-        <label>
-          <input
-            type="number"
-            name="seconds"
-            id="quizSeconds"
-            onChange={limitNumbers}
-            value={forms["seconds"]}
-          />
-          Seconds
+          Timed?
         </label>
 
         <br />
         <br />
+
+        {forms["isTimed"] ? (
+          <div>
+            <label>
+              <span>Time</span>
+              <input
+                type="number"
+                name="hours"
+                id="quizHours"
+                onChange={limitNumbers}
+                value={forms["hours"]}
+              />
+              Hours
+            </label>
+
+            <label>
+              <input
+                type="number"
+                name="minutes"
+                id="quizMinutes"
+                onChange={limitNumbers}
+                value={forms["minutes"]}
+              />
+              Minutes
+            </label>
+
+            <label>
+              <input
+                type="number"
+                name="seconds"
+                id="quizSeconds"
+                onChange={limitNumbers}
+                value={forms["seconds"]}
+              />
+              Seconds
+            </label>
+
+            <br />
+            <br />
+          </div>
+        ) : (
+          ""
+        )}
 
         <button type="submit">Edit</button>
       </form>
