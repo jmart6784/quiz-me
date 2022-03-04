@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import secondsToTime from "./form_helpers/secondsToTime";
 
 const QuizShow = (props) => {
   const [quiz, setQuiz] = useState({
     id: "",
     name: "",
     description: "",
+    hours: "0",
+    minutes: "0",
+    seconds: "0",
     cover: { url: "" },
     user: {
       id: "",
@@ -29,7 +33,12 @@ const QuizShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setQuiz(response))
+      .then((response) => {
+        let { hours, minutes, seconds } = secondsToTime(
+          parseInt(response.time)
+        );
+        setQuiz({ ...response, hours, minutes, seconds });
+      })
       .catch(() => props.history.push("/"));
   }, []);
 
@@ -98,6 +107,7 @@ const QuizShow = (props) => {
       <h1>Quiz Show</h1>
       <h3>Name: {quiz.name}</h3>
       <p>Description: {quiz.description}</p>
+      <p>Time: {`${quiz.hours}:${quiz.minutes}:${quiz.seconds}`}</p>
       <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
       <button onClick={deleteQuiz}>Delete</button>
       <p>
