@@ -4,31 +4,30 @@ const Option = (props) => {
   let ques = props.question;
   let num = props.option;
   let forms = props.forms;
-
   let optionJsx;
 
   if (num > 2) {
     optionJsx = (
-      <label htmlFor={`q${ques}_option_${num}`}>
+      <label>
         <span>Option {num}</span>
         <textarea
-          name={`q${ques}_option_${num}`}
+          name={`option_${num}`}
           rows="5"
-          onChange={props.onChange}
-          value={forms[`q${ques}_option_${num}`]}
+          onChange={(e) => props.onQuestionChange(e, ques)}
+          value={forms["questions"][ques][`option_${num}`]}
         />
       </label>
     );
   } else {
     optionJsx = (
-      <label htmlFor={`q${ques}_option_${num}`}>
+      <label>
         <span>Option {num}</span>
         <textarea
-          name={`q${ques}_option_${num}`}
+          name={`option_${num}`}
           rows="5"
           required
-          onChange={props.onChange}
-          value={forms[`q${ques}_option_${num}`]}
+          onChange={(e) => props.onQuestionChange(e, ques)}
+          value={forms["questions"][ques][`option_${num}`]}
         />
       </label>
     );

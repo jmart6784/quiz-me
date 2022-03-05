@@ -9,19 +9,23 @@ const quizFormInfo = () => {
     hours: 0,
     minutes: 0,
     seconds: 0,
+    questions: [],
   };
 
   // create questions state info 1 - 50
   for (let i = 1; i <= 50; i++) {
-    forms[`questionType_${i}`] = "one answer";
-    forms[`question_${i}`] = "";
-    forms[`question_${i}_id`] = "";
+    let question = {};
+
+    question["questionType"] = "one answer";
+    question["question"] = "";
+    question["id"] = "";
 
     // Create question options for 1 - 10
     for (let i2 = 1; i2 <= 10; i2++) {
-      forms[`q${i}_option_${i2}`] = "";
-      forms[`answer_question_${i}_option_${i2}`] = "";
+      question[`option_${i2}`] = "";
+      question["answer"] = [];
     }
+    forms["questions"].push(question);
   }
 
   info.push(forms);

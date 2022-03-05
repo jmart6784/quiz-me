@@ -22,6 +22,14 @@ const QuizNew = (props) => {
     setForms({ ...forms, [name]: value });
   };
 
+  const onQuestionChange = (e, ques) => {
+    const { name, value } = e.target;
+    let questions = forms["questions"];
+    questions[ques] = { ...questions[ques], [name]: value };
+
+    setForms({ ...forms, questions: questions });
+  };
+
   const limitNumbers = (event) => {
     const { name, value } = event.target;
 
@@ -35,26 +43,20 @@ const QuizNew = (props) => {
   };
 
   const handleRadioChange = (e, ques) => {
-    const { name, value } = e.target;
-    let changedRadios = {};
+    let questions = forms["questions"];
+    questions[ques] = { ...questions[ques], answer: [e.target.value] };
 
-    for (let i = 1; i <= clickOptions[`question_${ques}`].start; i++) {
-      if (i != parseInt(value)) {
-        changedRadios[`answer_question_${ques}_option_${i}`] = "";
-      }
-    }
-
-    setForms({
-      ...forms,
-      ...changedRadios,
-      [name]: value,
-    });
+    setForms({ ...forms, questions: questions });
   };
 
-  const handleCheckbox = (e) => {
-    let { name, value } = e.target;
+  const handleCheckbox = (e, ques) => {
+    let questions = forms["questions"];
+    let question = questions[ques];
 
-    setForms({ ...forms, [name]: forms[name] === "" ? value : "" });
+    question["answer"].push(e.target.value);
+    question["answer"] = [...new Set(question["answer"].sort())];
+
+    setForms({ ...forms, questions: questions });
   };
 
   const chooseImage = (e) => {
@@ -78,13 +80,15 @@ const QuizNew = (props) => {
 
   const handleQuestionType = (e, ques) => {
     const { name, value } = e.target;
+    let questions = forms["questions"];
 
-    let answerObj = {};
+    questions[ques] = {
+      ...questions[ques],
+      [name]: value === "one answer" ? "one answer" : "multiple answers",
+      answer: [],
+    };
 
-    for (let i = 1; i <= 10; i++) {
-      answerObj[`answer_question_${ques}_option_${i}`] = "";
-    }
-    setForms({ ...forms, [name]: value, ...answerObj });
+    setForms({ ...forms, questions: questions });
   };
 
   const resetQuestionForm = (ques) => {
@@ -300,6 +304,7 @@ const QuizNew = (props) => {
           setClickOptions={setClickOptions}
           forms={forms}
           onChange={onChange}
+          onQuestionChange={onQuestionChange}
           handleRadioChange={handleRadioChange}
           handleCheckbox={handleCheckbox}
           clearAnswers={clearAnswers}
@@ -309,6 +314,7 @@ const QuizNew = (props) => {
         {clickQuestions.question_1.isClicked ? (
           <AddQuestion
             onChange={onChange}
+            onQuestionChange={onQuestionChange}
             number={clickQuestions.question_1.number}
             clickOptions={clickOptions}
             setClickOptions={setClickOptions}
