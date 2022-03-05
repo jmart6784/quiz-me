@@ -374,7 +374,7 @@ const QuizNew = (props) => {
         <br />
         <br />
 
-        <button type="submit">Create</button>
+        <button type="submit">Create Quiz</button>
       </form>
     </div>
   );
