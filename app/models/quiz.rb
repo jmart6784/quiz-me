@@ -8,7 +8,10 @@ class Quiz < ApplicationRecord
   validate :cover_type
   validates :name, presence: true, length: {minimum: 1, maximum: 50}
   validates :description, presence: true, length: {minimum: 1, maximum: 1000}
-  validates :time, numericality: { less_than_or_equal_to: 86400 }
+  validates :time, numericality: { 
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 86400 
+  }
 
   before_create :set_default_cover
 
