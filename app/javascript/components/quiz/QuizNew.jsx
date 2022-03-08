@@ -54,7 +54,7 @@ const QuizNew = (props) => {
     let question = questions[ques];
 
     question["answer"].push(e.target.value);
-    question["answer"] = [...new Set(question["answer"].sort())];
+    question["answer"] = [...new Set(question["answer"].sort((a, b) => a - b))];
 
     setForms({ ...forms, questions: questions });
   };
