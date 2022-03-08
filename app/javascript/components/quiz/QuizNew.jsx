@@ -52,8 +52,14 @@ const QuizNew = (props) => {
   const handleCheckbox = (e, ques) => {
     let questions = forms["questions"];
     let question = questions[ques];
+    let value = e.target.value;
 
-    question["answer"].push(e.target.value);
+    if (question["answer"].includes(value)) {
+      question["answer"] = question["answer"].filter((v) => v !== value);
+    } else {
+      question["answer"].push(value);
+    }
+
     question["answer"] = [...new Set(question["answer"].sort((a, b) => a - b))];
 
     setForms({ ...forms, questions: questions });
