@@ -32,13 +32,16 @@ const QuizNew = (props) => {
 
   const limitNumbers = (event) => {
     const { name, value } = event.target;
+    let val = parseInt(value);
 
-    if ((name === "hours" && parseInt(value) <= 24) || value == "") {
-      setForms({ ...forms, [name]: value });
-    } else if ((name === "minutes" && parseInt(value) <= 59) || value == "") {
-      setForms({ ...forms, [name]: value });
-    } else if ((name === "seconds" && parseInt(value) <= 59) || value == "") {
-      setForms({ ...forms, [name]: value });
+    if (val >= 0) {
+      if (name === "hours" && val <= 24) {
+        setForms({ ...forms, [name]: value });
+      } else if (name === "minutes" && val <= 59) {
+        setForms({ ...forms, [name]: value });
+      } else if (name === "seconds" && val <= 59) {
+        setForms({ ...forms, [name]: value });
+      }
     }
   };
 
