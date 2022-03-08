@@ -32,7 +32,19 @@ const QuizNew = (props) => {
 
   const limitNumbers = (event) => {
     const { name, value } = event.target;
+    let hours = parseInt(forms["hours"]);
+    let minutes = parseInt(forms["minutes"]);
+    let seconds = parseInt(forms["seconds"]);
     let val = parseInt(value);
+    let newTotal = hours * 3600 + minutes * 60 + val;
+
+    if (name == "hours") {
+      newTotal = val * 3600 + minutes * 60 + seconds;
+    } else if (name == "minutes") {
+      newTotal = hours * 3600 + val * 60 + seconds;
+    }
+
+    if (newTotal > 86400) return;
 
     if (val >= 0) {
       if (name === "hours" && val <= 24) {
@@ -302,6 +314,11 @@ const QuizNew = (props) => {
 
             <br />
             <br />
+
+            <p>
+              Total time (max: 24h 0m 0s):{" "}
+              {`${forms["hours"]}h ${forms["minutes"]}m ${forms["seconds"]}s`}
+            </p>
           </div>
         ) : (
           ""
