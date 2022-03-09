@@ -16,7 +16,7 @@ const quizFormInfo = () => {
   for (let i = 1; i <= 50; i++) {
     let question = {};
 
-    question["questionType"] = "one answer";
+    question["question_type"] = "one answer";
     question["question"] = "";
     question["id"] = "";
 

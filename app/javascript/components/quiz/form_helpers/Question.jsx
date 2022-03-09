@@ -11,7 +11,7 @@ const Question = (props) => {
   let answerOptions = () => {
     let ary = [];
 
-    if (forms["questions"][ques]["questionType"] === "one answer") {
+    if (forms["questions"][ques]["question_type"] === "one answer") {
       for (let i = 1; i <= clickOptions[`question_${ques + 1}`].start; i++) {
         ary.push(
           <div key={`answer_question_${ques + 1}_option_${i}`}>
@@ -56,10 +56,10 @@ const Question = (props) => {
         <label>
           <span>Type</span>
           <select
-            name="questionType"
+            name="question_type"
             onChange={(e) => props.handleQuestionType(e, ques)}
             required
-            value={forms["questions"][ques][`questionType`]}
+            value={forms["questions"][ques][`question_type`]}
           >
             <option value="one answer">Muliple choice (one answer)</option>
             <option value="multiple answers">
