@@ -133,8 +133,6 @@ const QuestionEdit = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    console.log("sub", question);
-
     if (
       !question["question_type"] ||
       question["question"].length == 0 ||
