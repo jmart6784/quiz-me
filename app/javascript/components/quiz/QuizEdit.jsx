@@ -23,12 +23,28 @@ const QuizEdit = (props) => {
   const limitNumbers = (event) => {
     const { name, value } = event.target;
 
-    if ((name === "hours" && parseInt(value) <= 24) || value == "") {
-      setForms({ ...forms, [name]: value });
-    } else if ((name === "minutes" && parseInt(value) <= 59) || value == "") {
-      setForms({ ...forms, [name]: value });
-    } else if ((name === "seconds" && parseInt(value) <= 59) || value == "") {
-      setForms({ ...forms, [name]: value });
+    let hours = parseInt(forms["hours"]);
+    let minutes = parseInt(forms["minutes"]);
+    let seconds = parseInt(forms["seconds"]);
+    let val = parseInt(value);
+    let newTotal = hours * 3600 + minutes * 60 + val;
+
+    if (name == "hours") {
+      newTotal = val * 3600 + minutes * 60 + seconds;
+    } else if (name == "minutes") {
+      newTotal = hours * 3600 + val * 60 + seconds;
+    }
+
+    if (newTotal > 86400) return;
+
+    if (val >= 0) {
+      if (name === "hours" && val <= 24) {
+        setForms({ ...forms, [name]: value });
+      } else if (name === "minutes" && val <= 59) {
+        setForms({ ...forms, [name]: value });
+      } else if (name === "seconds" && val <= 59) {
+        setForms({ ...forms, [name]: value });
+      }
     }
   };
 
@@ -308,6 +324,11 @@ const QuizEdit = (props) => {
 
             <br />
             <br />
+
+            <p>
+              Total time (max: 24h 0m 0s):{" "}
+              {`${forms["hours"]}h ${forms["minutes"]}m ${forms["seconds"]}s`}
+            </p>
           </div>
         ) : (
           ""
