@@ -326,7 +326,7 @@ const QuizEdit = (props) => {
             <br />
 
             <p>
-              Total time (max: 24h 0m 0s):{" "}
+              Max: 24h 0m 0s:{" "}
               {`${forms["hours"]}h ${forms["minutes"]}m ${forms["seconds"]}s`}
             </p>
           </div>
