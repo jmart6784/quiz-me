@@ -107,7 +107,12 @@ const QuizShow = (props) => {
       <h1>Quiz Show</h1>
       <h3>Name: {quiz.name}</h3>
       <p>Description: {quiz.description}</p>
-      <p>Time: {`${quiz.hours}:${quiz.minutes}:${quiz.seconds}`}</p>
+      {
+        quiz.time > 0 ?
+          <p>Time: {`${quiz.hours}:${quiz.minutes}:${quiz.seconds}`}</p>
+          :
+          <p>Not timed</p>
+      }
       <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
       <button onClick={deleteQuiz}>Delete</button>
       <p>
