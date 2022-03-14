@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import secondsToTime from "./form_helpers/secondsToTime";
 
 const QuizIndex = (props) => {
   const [quizzes, setQuizzes] = useState([]);
@@ -42,6 +43,16 @@ const QuizIndex = (props) => {
     <div key={quiz.id}>
       <p>Name: {quiz.name}</p>
       <p>Description: {quiz.description}</p>
+      {quiz.time > 0 ? (
+        <p>
+          Time:{" "}
+          {`${secondsToTime(quiz.time).hours}:${
+            secondsToTime(quiz.time).minutes
+          }:${secondsToTime(quiz.time).seconds}`}
+        </p>
+      ) : (
+        <p>Not Timed</p>
+      )}
       <Link to={`/quizzes/${quiz.id}`}>Show</Link>
       <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
       <button onClick={() => deleteQuiz(quiz.id)}>Delete</button>
