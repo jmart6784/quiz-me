@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_010029) do
+ActiveRecord::Schema.define(version: 2022_03_16_042653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 2022_02_24_010029) do
     t.string "answer", null: false
     t.integer "quiz_id", null: false
     t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quiz_results", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "completed_at"
+    t.boolean "finished"
+    t.integer "user_id"
+    t.integer "quiz_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
