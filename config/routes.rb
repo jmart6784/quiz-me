@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       get '/users/user_info', to: 'users#user_info'
       get '/users/index', to: 'users#index'
       get '/users/show/:id', to: 'users#show'
+
+      post '/quiz_results/create', to: 'quiz_results#create'
     end
   end
 end
