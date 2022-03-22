@@ -19,6 +19,14 @@ class Api::V1::QuizResultsController < ApplicationController
     quiz_result ? render json: quiz_result : render json: quiz_result.errors
   end
   
+  def update
+    if quiz_result.update(quiz_result_params)
+      render json: {id: quiz_result.id, message: "Results updated"}
+    else
+      render json: {id: quiz_result.id, message: 'Error: Cannot update results'}, status: 422
+    end
+  end
+
   private
 
   def quiz_result_params
