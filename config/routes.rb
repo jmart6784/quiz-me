@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get '/quiz_results/show/:id', to: 'quiz_results#show'
       post '/quiz_results/create', to: 'quiz_results#create'
       put '/quiz_results/update/:id', to: 'quiz_results#update'
+      delete '/quiz_results/destroy/:id', to: 'quiz_results#destroy'
     end
   end
 end
