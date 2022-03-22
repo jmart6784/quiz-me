@@ -1,4 +1,6 @@
 class Api::V1::QuizResultsController < ApplicationController
+  before_action :set_quiz_result, only: [:update, :destroy]
+
   def index
     quiz_results = QuizResult.all.order(created_at: :desc)
     render json: quiz_results, status: 200
@@ -42,5 +44,13 @@ class Api::V1::QuizResultsController < ApplicationController
 
   def quiz_result
     @quiz_result ||= QuizResult.find(params[:id])
+  end
+
+  def set_quiz_result
+    return if quiz_result.user_id.nil?
+
+    unless quiz_result.user === current_user
+      render json: {}, status: 401
+    end
   end
 end
