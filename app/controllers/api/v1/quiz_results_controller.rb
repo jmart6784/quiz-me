@@ -14,6 +14,10 @@ class Api::V1::QuizResultsController < ApplicationController
       render json: quiz_result.errors, status: 422
     end
   end
+
+  def show
+    quiz_result ? render json: quiz_result : render json: quiz_result.errors
+  end
   
   private
 
