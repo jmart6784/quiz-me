@@ -27,6 +27,11 @@ class Api::V1::QuizResultsController < ApplicationController
     end
   end
 
+  def destroy
+    quiz_result&.destroy
+    render json: { message: 'Results deleted' }
+  end
+
   private
 
   def quiz_result_params
