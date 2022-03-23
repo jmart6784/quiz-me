@@ -10,6 +10,7 @@ class Quiz < ApplicationRecord
   validates :name, presence: true, length: {minimum: 1, maximum: 50}
   validates :description, presence: true, length: {minimum: 1, maximum: 1000}
   validates :time, numericality: { 
+    only_integer: true,
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 86400 
   }
