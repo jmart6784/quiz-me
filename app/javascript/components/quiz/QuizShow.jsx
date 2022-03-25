@@ -119,6 +119,8 @@ const QuizShow = (props) => {
         Created by:{" "}
         <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
       </p>
+      <Link to={`/quiz_start/${quiz.id}`}>Start Quiz</Link>
+      <br />
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
       {questionsJsx}
     </div>
