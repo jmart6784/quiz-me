@@ -7,18 +7,40 @@ class Api::V1::QuizResultsController < ApplicationController
   end
 
   def create
-    quiz_result = QuizResult.new(quiz_result_params)
-    quiz_result.user_id = current_user.id
+    quiz = Quiz.find(quiz_result_params[:quiz_id])
 
-    if quiz_result.save
-      render json: quiz_result
+    on_going_quiz = QuizResult.where(user_id: current_user.id, quiz_id: quiz.id)
+
+    quiz_result = QuizResult.new(
+      start: DateTime.now,
+      end: DateTime.now + quiz.time.seconds,
+      quiz_id: quiz_result_params[:quiz_id],
+      user_id: current_user.id
+    )
+
+    if on_going_quiz.empty?
+      if quiz_result.save
+        render json: quiz_result
+      else
+        render json: quiz_result.errors, status: 422
+      end
     else
-      render json: quiz_result.errors, status: 422
+      if on_going_quiz.last.end < DateTime.now
+        if quiz_result.save
+          render json: quiz_result
+        else
+          render json: quiz_result.errors, status: 422
+        end
+      end
     end
   end
 
   def show
-    quiz_result ? render json: quiz_result : render json: quiz_result.errors
+    if quiz_result
+      render json: quiz_result
+    else
+      render json: quiz_result.errors
+    end
   end
   
   def update

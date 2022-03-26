@@ -102,6 +102,27 @@ const QuizShow = (props) => {
     });
   }
 
+  const startQuiz = () => {
+    const formData = new FormData();
+    formData.append("quiz_result[quiz_id]", quiz.id);
+
+    fetch("/api/v1/quiz_results/create", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token":  document.querySelector('meta[name="csrf-token"]').content,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          props.history.push(`/quiz_start/${quiz.id}`);
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => props.history.push('/'))
+      .catch((error) => console.log(error.message));
+  };
+
   return (
     <div>
       <h1>Quiz Show</h1>
@@ -119,7 +140,7 @@ const QuizShow = (props) => {
         Created by:{" "}
         <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
       </p>
-      <Link to={`/quiz_start/${quiz.id}`}>Start Quiz</Link>
+      <button onClick={startQuiz}>Start Quiz</button>
       <br />
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
       {questionsJsx}

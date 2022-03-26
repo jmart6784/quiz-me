@@ -38,8 +38,6 @@ const QuizStart = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
-  useEffect(() => console.log("quizzzzz", quiz), [quiz]);
-
   return <div>Quiz Start</div>
 };
 
