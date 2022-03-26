@@ -38,7 +38,11 @@ const QuizStart = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
-  return <div>Quiz Start</div>
+  return (
+    <div>
+      <h1>Quiz Start</h1>
+    </div>
+  )
 };
 
 export default QuizStart;
