@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import UserContext from "../context/UserContext";
 import secondsToTime from "./form_helpers/secondsToTime";
 
 const QuizStart = (props) => {
+  const [user, setUser] = useContext(UserContext);
+
   const [quiz, setQuiz] = useState({
     id: "",
     name: "",
