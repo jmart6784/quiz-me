@@ -115,11 +115,13 @@ const QuizShow = (props) => {
     })
       .then((response) => {
         if (response.ok) {
-          props.history.push(`/quiz_start/${quiz.id}`);
+          return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => props.history.push('/'))
+      .then((response) => {
+        props.history.push(`/quiz_start/${response.id}`)
+      })
       .catch((error) => console.log(error.message));
   };
 

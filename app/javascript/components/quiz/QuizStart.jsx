@@ -20,7 +20,7 @@ const QuizStart = (props) => {
   });
 
   useEffect(() => {
-    const url = `/api/v1/quizzes/show/${props.match.params.id}`;
+    const url = `/api/v1/quiz_results/show/${props.match.params.id}`;
 
     fetch(url)
       .then((response) => {
@@ -30,10 +30,11 @@ const QuizStart = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => {
-        let { hours, minutes, seconds } = secondsToTime(
-          parseInt(response.time)
-        );
-        setQuiz({ ...response, hours, minutes, seconds });
+        console.log("QUIZ START", response)
+        // let { hours, minutes, seconds } = secondsToTime(
+        //   parseInt(response.time)
+        // );
+        // setQuiz({ ...response, hours, minutes, seconds });
       })
       .catch(() => props.history.push("/"));
   }, []);
