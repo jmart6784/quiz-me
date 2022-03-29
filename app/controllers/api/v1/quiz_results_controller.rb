@@ -59,9 +59,7 @@ class Api::V1::QuizResultsController < ApplicationController
   private
 
   def quiz_result_params
-    params.require(:quiz_result).permit(
-      :start, :end, :completed_at, :finished, :quiz_id
-    )
+    params.require(:quiz_result).permit(:quiz_id)
   end
 
   def quiz_result
