@@ -82,6 +82,11 @@ const QuizStart = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
+  let start = new Date(quizResult["start"])
+  let end = new Date(quizResult["end"])
+
+  let seconds = Math.round((end.getTime() - start.getTime()) / 1000);
+
   return (
     <div>
       <h1>Quiz Start</h1>
