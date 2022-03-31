@@ -28,6 +28,7 @@ const QuizStart = (props) => {
     finished: false,
     quiz_id: "",
     user_id: "",
+    time: 0,
     quiz: {
       id: "",
       name: "",
@@ -76,18 +77,18 @@ const QuizStart = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => {
-        setQuizResult({ ...response });
+        let current = new Date();
+        let end = new Date(quizResult["end"]);
+        let seconds = Math.round((end.getTime() - current.getTime()) / 1000)
+
+        setQuizResult({
+          ...response,
+          time: seconds > 0 ? seconds : 0,
+        });
         getQuiz(response.quiz_id);
       })
       .catch(() => props.history.push("/"));
   }, []);
-
-  let current = new Date();
-  let start = new Date(quizResult["start"]);
-  let end = new Date(quizResult["end"]);
-
-  let seconds = Math.round((end.getTime() - current.getTime()) / 1000);
-  let timeLeft = seconds > 0 ? seconds : 0;
 
   return (
     <div>
