@@ -78,8 +78,8 @@ const QuizStart = (props) => {
       })
       .then((response) => {
         let current = new Date();
-        let end = new Date(quizResult["end"]);
-        let seconds = Math.round((end.getTime() - current.getTime()) / 1000)
+        let end = new Date(response.end);
+        let seconds = Math.round((end.getTime() - current.getTime()) / 1000);
 
         setQuizResult({
           ...response,
@@ -89,6 +89,18 @@ const QuizStart = (props) => {
       })
       .catch(() => props.history.push("/"));
   }, []);
+
+  useEffect(() => {
+    const quizTimer = setInterval(() => {
+      setQuizResult(prevState => (
+        { ...prevState, time: prevState["time"] - 1 }
+      ));
+    }, 1000);
+
+    return () => clearInterval(quizTimer);
+  }, []);
+
+  useEffect(() => console.log("QUIZ TIME: ", quizResult['time']), [quizResult]);
 
   return (
     <div>
