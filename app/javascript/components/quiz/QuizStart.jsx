@@ -102,9 +102,15 @@ const QuizStart = (props) => {
 
   useEffect(() => console.log("QUIZ TIME: ", quizResult['time']), [quizResult]);
 
+  let timeLeft = secondsToTime(quizResult["time"]);
+  let hours = timeLeft.hours > 0 ? timeLeft.hours : "00";
+  let minutes = timeLeft.minutes > 0 ? timeLeft.minutes : "00";
+  let seconds = timeLeft.seconds > 0 ? timeLeft.seconds : "00";
+
   return (
     <div>
       <h1>Quiz Start</h1>
+      <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
     </div>
   )
 };
