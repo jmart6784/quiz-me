@@ -93,7 +93,9 @@ const QuizStart = (props) => {
   useEffect(() => {
     const quizTimer = setInterval(() => {
       setQuizResult(prevState => (
-        { ...prevState, time: prevState["time"] - 1 }
+        prevState["time"] > 0 ?
+          { ...prevState, time: prevState["time"] - 1 }
+        : prevState
       ));
     }, 1000);
 
