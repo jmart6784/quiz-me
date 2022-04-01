@@ -15,7 +15,7 @@ const QuizStart = (props) => {
       id: "",
       username: "",
     },
-    questions: [],
+    questions: [{id: "", question_type: "one answer", question: "", option_1: "", option_2: "", option_3: "", option_4: "", option_5: "", option_6: "", option_7: "", option_8: "", option_9: "", option_10: "", answer: "", quiz_id: "", user_id: ""}],
   });
 
   const [quizResult, setQuizResult] = useState({
@@ -107,10 +107,26 @@ const QuizStart = (props) => {
   let minutes = timeLeft.minutes <= 9 ? `0${timeLeft.minutes}` : timeLeft.minutes;
   let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
 
+  let question = quiz["questions"][0];
+  let options = [];
+
+  for (let i = 1; i <= 10; i++) {
+    if (question[`option_${i}`] != "") { 
+      options.push(<p key={`option_${i}`}>{question[`option_${i}`]}</p>);
+    }
+  }
+
   return (
     <div>
       <h1>Quiz Start</h1>
       <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
+      
+      <div>
+        <h3>Question #</h3>
+        <p>{question.question}</p>
+        
+        <div>{options}</div>
+      </div>
     </div>
   )
 };
