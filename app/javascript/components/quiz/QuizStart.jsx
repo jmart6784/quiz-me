@@ -9,9 +9,7 @@ const QuizStart = (props) => {
     id: "",
     name: "",
     description: "",
-    hours: "0",
-    minutes: "0",
-    seconds: "0",
+    time: 0,
     cover: { url: "" },
     user: {
       id: "",
@@ -57,12 +55,7 @@ const QuizStart = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => {
-        let { hours, minutes, seconds } = secondsToTime(
-          parseInt(response.time)
-        );
-        setQuiz({ ...response, hours, minutes, seconds });
-      })
+      .then((response) => setQuiz(response))
       .catch(() => props.history.push("/"));
   };
 
@@ -107,7 +100,7 @@ const QuizStart = (props) => {
     return () => clearInterval(quizTimer);
   }, [quizResult]);
 
-  // useEffect(() => console.log("QUIZ TIME: ", quizResult['time']), [quizResult]);
+  // useEffect(() => console.log("QUIZ TIME: ", quiz), [quiz]);
 
   let timeLeft = secondsToTime(quizResult["time"]);
   let hours = timeLeft.hours <= 9 ? `0${timeLeft.hours}` : timeLeft.hours;
