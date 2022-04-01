@@ -91,18 +91,23 @@ const QuizStart = (props) => {
   }, []);
 
   useEffect(() => {
+
     const quizTimer = setInterval(() => {
-      setQuizResult(prevState => (
-        prevState["time"] > 0 ?
-          { ...prevState, time: prevState["time"] - 1 }
-        : prevState
-      ));
+      if (quizResult["time"] > 0) {
+        setQuizResult(prevState => (
+          prevState["time"] > 0 ?
+            { ...prevState, time: prevState["time"] - 1 }
+          : prevState
+        ));
+      } else {
+        clearInterval(quizTimer);
+      }
     }, 1000);
 
     return () => clearInterval(quizTimer);
-  }, []);
+  }, [quizResult]);
 
-  useEffect(() => console.log("QUIZ TIME: ", quizResult['time']), [quizResult]);
+  // useEffect(() => console.log("QUIZ TIME: ", quizResult['time']), [quizResult]);
 
   let timeLeft = secondsToTime(quizResult["time"]);
   let hours = timeLeft.hours <= 9 ? `0${timeLeft.hours}` : timeLeft.hours;
