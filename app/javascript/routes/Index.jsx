@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+
 import UserContext from "../components/context/UserContext";
+import UserIndex from "../components/user/UserIndex";
+import UserShow from "../components/user/UserShow";
 import Nav from "../components/layouts/Nav";
+
 import QuizIndex from "../components/quiz/QuizIndex";
 import QuizShow from "../components/quiz/QuizShow";
 import QuizNew from "../components/quiz/QuizNew";
 import QuizEdit from "../components/quiz/QuizEdit";
-import QuizStart from "../components/quiz/QuizStart";
-import UserIndex from "../components/user/UserIndex";
-import UserShow from "../components/user/UserShow";
+
 import QuestionEdit from "../components/question/QuestionEdit";
 import QuestionNew from "../components/question/QuestionNew";
+
+import QuizStart from "../components/quiz_result/QuizStart";
 
 const Index = () => {
   const [user, setUser] = useState({});
