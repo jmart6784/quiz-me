@@ -1,49 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import UserContext from "../context/UserContext";
 import secondsToTime from "../quiz/form_helpers/secondsToTime";
+import quizStartObjects from "./quiz_start_helper/quizStartObjects";
 
 const QuizStart = (props) => {
   const [user, setUser] = useContext(UserContext);
 
-  const [quiz, setQuiz] = useState({
-    id: "",
-    name: "",
-    description: "",
-    time: 0,
-    cover: { url: "" },
-    user: {
-      id: "",
-      username: "",
-    },
-    questions: [{id: "", question_type: "one answer", question: "", option_1: "", option_2: "", option_3: "", option_4: "", option_5: "", option_6: "", option_7: "", option_8: "", option_9: "", option_10: "", answer: "", quiz_id: "", user_id: ""}],
-  });
+  const [quiz, setQuiz] = useState(quizStartObjects()[0]);
 
-  const [quizResult, setQuizResult] = useState({
-    id: "",
-    start: "",
-    end: "",
-    completed_at: "",
-    finished: false,
-    quiz_id: "",
-    user_id: "",
-    time: 0,
-    quiz: {
-      id: "",
-      name: "",
-      description: "",
-      cover: { url: "" },
-      time: 0,
-    },
-    user: {
-      id: "",
-      avatar: { url: "" },
-      bio: "",
-      email: "",
-      first_name: "",
-      last_name: "",
-      username: "",
-    }
-  });
+  const [quizResult, setQuizResult] = useState(quizStartObjects()[1]);
 
   const getQuiz = (id) => {
     const url = `/api/v1/quizzes/show/${id}`;
