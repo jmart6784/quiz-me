@@ -75,7 +75,7 @@ const QuizStart = (props) => {
 
   return (
     <div>
-      <h1>Quiz Start</h1>
+      <h1>Quiz name: {quiz.name}</h1>
       <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
       
       <div>
