@@ -50,7 +50,6 @@ const QuizStart = (props) => {
   }, []);
 
   useEffect(() => {
-
     const quizTimer = setInterval(() => {
       if (quizResult["time"] > 0) {
         setQuizResult(prevState => (
@@ -66,7 +65,10 @@ const QuizStart = (props) => {
     return () => clearInterval(quizTimer);
   }, [quizResult]);
 
-  // useEffect(() => console.log("QUIZ TIME: ", quiz), [quiz]);
+  const submitQuestion = (e, question) => {
+    console.log("e", e);
+    console.log(question);
+  };
 
   let timeLeft = secondsToTime(quizResult["time"]);
   let hours = timeLeft.hours <= 9 ? `0${timeLeft.hours}` : timeLeft.hours;
@@ -82,7 +84,7 @@ const QuizStart = (props) => {
         <h3>Question #</h3>
         <p>Question: {quiz["questions"][0]["question"]}</p>
 
-        <Options question={quiz["questions"][0]} />
+        <Options question={quiz["questions"][0]} submitQuestion={submitQuestion} />
       </div>
     </div>
   )
