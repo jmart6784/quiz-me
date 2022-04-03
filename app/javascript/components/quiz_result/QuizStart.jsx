@@ -49,6 +49,16 @@ const QuizStart = (props) => {
         getQuiz(response.quiz_id);
       })
       .catch(() => props.history.push("/"));
+    
+    fetch(`/api/v1/question_results/quiz_question_results/${props.match.params.id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setQuestionResults(response))
+      .catch(() => props.history.push("/"));
   }, []);
 
   useEffect(() => {
