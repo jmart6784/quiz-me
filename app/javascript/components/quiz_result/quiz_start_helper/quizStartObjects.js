@@ -58,6 +58,19 @@ const quizStartObjects = () => {
     },
   };
 
+  const questionResultObjects = [
+    {
+      id: "",
+      correct: false,
+      answer: "[]",
+      user_answer: "[]",
+      question_id: "",
+      quiz_id: "",
+      quiz_result_id: "",
+      user_id: "",
+    },
+  ];
+
   return [quizObject, quizResultObject];
 };
 

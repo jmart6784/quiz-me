@@ -7,9 +7,11 @@ import Options from "./quiz_start_helper/Options";
 const QuizStart = (props) => {
   const [user, setUser] = useContext(UserContext);
 
-  const [quiz, setQuiz] = useState(quizStartObjects()[0]);
+  const quizObjects = quizStartObjects();
 
-  const [quizResult, setQuizResult] = useState(quizStartObjects()[1]);
+  const [quiz, setQuiz] = useState(quizObjects[0]);
+  const [quizResult, setQuizResult] = useState(quizObjects[1]);
+  const [questionResults, setQuestionResults] = useState(quizObjects[2]);
 
   const getQuiz = (id) => {
     const url = `/api/v1/quizzes/show/${id}`;
@@ -68,6 +70,29 @@ const QuizStart = (props) => {
   const submitQuestion = (e, question) => {
     console.log("e", e);
     console.log(question);
+
+    // const formData = new FormData();
+    // formData.append(
+    //   "question_result[correct]",
+
+    // );
+
+    // const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    // fetch("/api/v1/question_results/create", {
+    //   method: "POST",
+    //   headers: {
+    //     "X-CSRF-Token": token,
+    //   },
+    //   body: formData,
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     }
+    //     throw new Error("Network response was not ok.");
+    //   })
+    //   .catch((error) => console.log(error.message));
   };
 
   let timeLeft = secondsToTime(quizResult["time"]);
