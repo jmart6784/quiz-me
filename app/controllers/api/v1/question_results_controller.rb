@@ -32,7 +32,8 @@ class Api::V1::QuestionResultsController < ApplicationController
   end
 
   def destroy
-    
+    question_result&.destroy
+    render json: { message: 'Question Result deleted' }
   end
 
   private
