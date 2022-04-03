@@ -5,7 +5,11 @@ class Api::V1::QuestionResultsController < ApplicationController
   end
 
   def show
-    
+    if question_result
+      render json: question_result
+    else
+      render json: question_result.errors
+    end
   end
 
   def create
