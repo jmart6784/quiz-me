@@ -26,4 +26,10 @@ class Api::V1::QuestionResultsController < ApplicationController
   def destroy
     
   end
+
+  private
+
+  def question_result
+    @question_result ||= QuestionResult.find(params[:id])
+  end
 end
