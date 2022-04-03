@@ -71,7 +71,7 @@ const quizStartObjects = () => {
     },
   ];
 
-  return [quizObject, quizResultObject];
+  return [quizObject, quizResultObject, questionResultObjects];
 };
 
 export default quizStartObjects;
