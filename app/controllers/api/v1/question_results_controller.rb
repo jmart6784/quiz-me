@@ -36,6 +36,18 @@ class Api::V1::QuestionResultsController < ApplicationController
     render json: { message: 'Question Result deleted' }
   end
 
+  def quiz_question_results
+    quiz_result = QuizResult.find(params[:quiz_result_id])
+
+    question_results = QuestionResult.where(
+      user_id: current_user.id,
+      quiz_id: quiz_result.quiz_id,
+      quiz_result_id: quiz_result.id,
+    )
+
+    render json: question_results
+  end
+
   private
 
   def question_result_params
