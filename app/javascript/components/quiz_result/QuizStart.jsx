@@ -12,6 +12,7 @@ const QuizStart = (props) => {
   const [quiz, setQuiz] = useState(quizObjects[0]);
   const [quizResult, setQuizResult] = useState(quizObjects[1]);
   const [questionResults, setQuestionResults] = useState(quizObjects[2]);
+  const [page, setPage] = useState(1);
 
   const getQuiz = (id) => {
     const url = `/api/v1/quizzes/show/${id}`;
@@ -114,12 +115,31 @@ const QuizStart = (props) => {
     <div>
       <h1>Quiz name: {quiz.name}</h1>
       <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
+      <p>{`${page}/${quiz.questions.length}`}</p>
       
       <div>
-        <h3>Question #</h3>
+        <h3>Question #{page}</h3>
         <p>Question: {quiz["questions"][0]["question"]}</p>
 
-        <Options question={quiz["questions"][0]} submitQuestion={submitQuestion} />
+        <Options
+          question={quiz["questions"][0]}
+          submitQuestion={submitQuestion}
+          questionResults={questionResults} 
+        />
+        <br />
+        <button
+          onClick={() => {
+            page > 1 ? setPage(prevState => prevState - 1) : ""
+          }}
+          disabled={page === 1}
+        >Previous</button>
+
+        <button
+          onClick={() => { 
+            quiz.questions.length >= page ? setPage(prevState => prevState + 1) : ""
+          }}
+          disabled={page === quiz.questions.length}
+        >Next</button>
       </div>
     </div>
   )
