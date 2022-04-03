@@ -24,7 +24,11 @@ class Api::V1::QuestionResultsController < ApplicationController
   end
 
   def update
-    
+    if question_result.update(question_result_params)
+      render json: {id: question_result.id, message: "Question results updated"}
+    else
+      render json: {id: question_result.id, message: 'Error: Cannot update question results'}, status: 422
+    end
   end
 
   def destroy
