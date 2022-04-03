@@ -29,6 +29,10 @@ class Api::V1::QuestionResultsController < ApplicationController
 
   private
 
+  def question_result_params
+    params.require(:question_result).permit(:correct, :answer, :question_id, :quiz_id, :quiz_result_id)
+  end
+
   def question_result
     @question_result ||= QuestionResult.find(params[:id])
   end
