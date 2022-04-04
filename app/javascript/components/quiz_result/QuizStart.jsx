@@ -58,7 +58,17 @@ const QuizStart = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setQuestionResults(response))
+      .then((response) => response.length === 0 ?
+        setQuestionResults([{
+          id: "",
+          correct: false,
+          answer: "[]",
+          user_answer: "[]",
+          question_id: "",
+          quiz_id: "",
+          quiz_result_id: "",
+          user_id: "",
+        }]) : setQuestionResults(response))
       .catch(() => props.history.push("/"));
   }, []);
 
@@ -99,7 +109,7 @@ const QuizStart = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => console.log("RES", response))
+      .then((response) => setQuestionResults(response))
       .catch((error) => console.log(error.message));
   };
 
@@ -122,7 +132,7 @@ const QuizStart = (props) => {
         <Options
           question={question}
           submitQuestion={submitQuestion}
-          questionResults={questionResults} 
+          questionResult={questionResults[page - 1]}
         />
         <br />
         <button

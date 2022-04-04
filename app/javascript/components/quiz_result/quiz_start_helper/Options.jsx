@@ -2,9 +2,17 @@ import React from "react";
 
 const Options = (props) => {
   let question = props.question;
+  let questionResult = props.questionResult === undefined ? {
+    id: "",
+    correct: false,
+    answer: "[]",
+    user_answer: "[]",
+    question_id: "",
+    quiz_id: "",
+    quiz_result_id: "",
+    user_id: "",
+  } : props.questionResult
   let options = [];
-
-  // checked={forms["questions"][ques]["answer"].includes(i.toString())}
 
   for (let i = 1; i <= 10; i++) {
     if (question[`option_${i}`] != "") {
@@ -15,6 +23,7 @@ const Options = (props) => {
               type="radio"
               value={`${i}`}
               onChange={(e) => props.submitQuestion(e, question)}
+              checked={JSON.parse(questionResult["user_answer"]).includes(i.toString())}
             />
             <label>{question[`option_${i}`]}</label>
           </div>
@@ -26,6 +35,7 @@ const Options = (props) => {
               type="checkbox"
               value={`${i}`}
               onChange={(e) => props.submitQuestion(e, question)}
+              checked={JSON.parse(questionResult["user_answer"]).includes(i.toString())}
             />
             <label>{question[`option_${i}`]}</label>
           </div>
