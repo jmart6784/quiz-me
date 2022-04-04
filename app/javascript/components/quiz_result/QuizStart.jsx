@@ -82,6 +82,7 @@ const QuizStart = (props) => {
         ));
       } else {
         clearInterval(quizTimer);
+        props.history.push(`/quizzes/${quiz.id}`)
       }
     }, 1000);
 
