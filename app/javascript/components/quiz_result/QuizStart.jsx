@@ -79,7 +79,6 @@ const QuizStart = (props) => {
   }, [quizResult]);
 
   const submitQuestion = (e, question) => {
-    console.log("e", e);
     console.log(question);
 
     // const formData = new FormData();
@@ -110,6 +109,7 @@ const QuizStart = (props) => {
   let hours = timeLeft.hours <= 9 ? `0${timeLeft.hours}` : timeLeft.hours;
   let minutes = timeLeft.minutes <= 9 ? `0${timeLeft.minutes}` : timeLeft.minutes;
   let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
+  let question = quiz["questions"][page - 1];
 
   return (
     <div>
@@ -119,10 +119,10 @@ const QuizStart = (props) => {
       
       <div>
         <h3>Question #{page}</h3>
-        <p>Question: {quiz["questions"][0]["question"]}</p>
+        <p>Question: {question["question"]}</p>
 
         <Options
-          question={quiz["questions"][0]}
+          question={question}
           submitQuestion={submitQuestion}
           questionResults={questionResults} 
         />

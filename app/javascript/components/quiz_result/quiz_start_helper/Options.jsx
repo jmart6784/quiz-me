@@ -13,18 +13,18 @@ const Options = (props) => {
           <div key={`option_${i}`}>
             <input
               type="radio"
-              value={`${i}`} key={`option_${i}`} 
+              value={`${i}`}
               onChange={(e) => props.submitQuestion(e, question)}
             />
             <label>{question[`option_${i}`]}</label>
           </div>
         );
-      } else if (question["type"] === "multiple answers") {
+      } else if (question["question_type"] === "multiple answers") {
         options.push(
-          <div>
+          <div key={`option_${i}`}>
             <input
               type="checkbox"
-              value={`${i}`} key={`option_${i}`} 
+              value={`${i}`}
               onChange={(e) => props.submitQuestion(e, question)}
             />
             <label>{question[`option_${i}`]}</label>
