@@ -79,30 +79,28 @@ const QuizStart = (props) => {
   }, [quizResult]);
 
   const submitQuestion = (e, question) => {
-    console.log(question);
+    const formData = new FormData();
+    formData.append("question_result[question_id]", question["id"]);
+    formData.append("question_result[user_answer]", JSON.stringify([e.target.value]));
+    formData.append("question_result[quiz_result_id]", props.match.params.id);
 
-    // const formData = new FormData();
-    // formData.append(
-    //   "question_result[correct]",
+    const token = document.querySelector('meta[name="csrf-token"]').content;
 
-    // );
-
-    // const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    // fetch("/api/v1/question_results/create", {
-    //   method: "POST",
-    //   headers: {
-    //     "X-CSRF-Token": token,
-    //   },
-    //   body: formData,
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       return response.json();
-    //     }
-    //     throw new Error("Network response was not ok.");
-    //   })
-    //   .catch((error) => console.log(error.message));
+    fetch("/api/v1/question_results/create", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => console.log("RES", response))
+      .catch((error) => console.log(error.message));
   };
 
   let timeLeft = secondsToTime(quizResult["time"]);
