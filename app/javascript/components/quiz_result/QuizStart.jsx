@@ -82,7 +82,20 @@ const QuizStart = (props) => {
         ));
       } else {
         clearInterval(quizTimer);
-        props.history.push(`/quizzes/${quiz.id}`)
+        fetch(`/api/v1/quiz_results/update/${props.match.params.id}`, {
+          method: "PUT",
+          headers: {
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+          }
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then(() => props.history.push(`/quizzes/${quiz.id}`))
+          .catch((error) => console.log(error.message));
       }
     }, 1000);
 
@@ -95,12 +108,10 @@ const QuizStart = (props) => {
     formData.append("question_result[user_answer]", JSON.stringify([e.target.value]));
     formData.append("question_result[quiz_result_id]", props.match.params.id);
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
     fetch("/api/v1/question_results/create", {
       method: "POST",
       headers: {
-        "X-CSRF-Token": token,
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
       },
       body: formData,
     })

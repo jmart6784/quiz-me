@@ -44,7 +44,13 @@ class Api::V1::QuizResultsController < ApplicationController
   end
   
   def update
-    if quiz_result.update(quiz_result_params)
+    finished = quiz_result.quiz.questions.length === QuestionResult.where(
+      user_id: current_user.id,
+      quiz_result_id: quiz_result.id,
+      quiz_id: quiz_result.quiz_id
+    ).length
+
+    if quiz_result.update(completed_at: DateTime.now, finished: finished)
       render json: {id: quiz_result.id, message: "Results updated"}
     else
       render json: {id: quiz_result.id, message: 'Error: Cannot update results'}, status: 422
@@ -59,7 +65,7 @@ class Api::V1::QuizResultsController < ApplicationController
   private
 
   def quiz_result_params
-    params.require(:quiz_result).permit(:quiz_id)
+    params.require(:quiz_result).permit(:quiz_id, :completed_at)
   end
 
   def quiz_result
