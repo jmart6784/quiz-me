@@ -17,16 +17,10 @@ const QuizShow = (props) => {
     },
   });
 
+  const [quizResults, setQuizResults] = useState([]);
+
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-
-    const url = `/api/v1/quizzes/show/${id}`;
-
-    fetch(url)
+    fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
       .then((response) => {
         if (response.ok) {
           return response.json();

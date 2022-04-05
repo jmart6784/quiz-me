@@ -64,6 +64,10 @@ class Api::V1::QuizResultsController < ApplicationController
     render json: { message: 'Results deleted' }
   end
 
+  def quiz_results_by_quiz_id
+        
+  end
+
   private
 
   def quiz_result_params
