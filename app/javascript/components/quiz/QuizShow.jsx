@@ -36,6 +36,18 @@ const QuizShow = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
+  useEffect(() => {
+    fetch(`/api/v1/quiz_results/quiz_results_by_quiz_id/${props.match.params.id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => console.log("QR!: ", response))
+      .catch(() => props.history.push("/"));
+  }, []);
+
   const deleteQuiz = () => {
     const {
       match: {

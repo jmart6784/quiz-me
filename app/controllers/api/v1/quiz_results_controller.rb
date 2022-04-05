@@ -65,7 +65,11 @@ class Api::V1::QuizResultsController < ApplicationController
   end
 
   def quiz_results_by_quiz_id
-        
+    unless Quiz.find_by(id: params[:quiz_id].to_i).nil?
+      render json: QuizResult.where(quiz_id: params[:quiz_id].to_i, user_id: current_user.id)
+    else
+      render json: [], status: 404
+    end
   end
 
   private
