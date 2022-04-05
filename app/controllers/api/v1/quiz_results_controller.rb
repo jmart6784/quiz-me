@@ -31,6 +31,8 @@ class Api::V1::QuizResultsController < ApplicationController
         else
           render json: quiz_result.errors, status: 422
         end
+      else
+        render json: on_going_quiz.last
       end
     end
   end
