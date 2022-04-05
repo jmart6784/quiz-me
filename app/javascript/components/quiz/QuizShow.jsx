@@ -44,7 +44,7 @@ const QuizShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => console.log("QR!: ", response))
+      .then((response) => setQuizResults(response))
       .catch(() => props.history.push("/"));
   }, []);
 
