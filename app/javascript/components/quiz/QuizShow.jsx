@@ -74,39 +74,23 @@ const QuizShow = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  let questionsJsx = "";
-  let ques_num = 0;
+  let quizResultsJsx = <p>No Results Yet.</p>;
 
-  if (quiz.questions) {
-    questionsJsx = quiz.questions.map((question) => {
-      let options = [];
-      let answers = JSON.parse(question.answer);
-      ques_num += 1;
+  quizResultsJsx = quizResults.map((result) => {
+    let d = new Date(result.completed_at)
+    let date = d.toLocaleDateString('en-us',{day: 'numeric'})
+    let month = d.toLocaleDateString('en-us',{month: 'long'})
+    let year = d.toLocaleDateString('en-us',{year: 'numeric'})
+    let formattedDate = `${month} ${date}, ${year}`
 
-      for (let i = 1; i <= 10; i++) {
-        if (question[`option_${i}`] != "") {
-          options.push(
-            <p key={`question-${question.id}-option-${i}`}>
-              {question[`option_${i}`]}
-            </p>
-          );
-        }
-      }
-
-      return (
-        <div key={`question-#${question.id}`}>
-          <p>
-            <strong>{`Question #${ques_num}`}</strong>
-          </p>
-          <p>{question.question}</p>
-          {options}
-          <p>
-            {`Answer${answers.length > 1 ? "s" : ""}: ` + answers.join(", ")}
-          </p>
-        </div>
-      );
-    });
-  }
+    return (
+      <div key={`result-#${result.id}`}>
+        <h3>Quiz Result</h3>
+        <p>Quiz name: {result.quiz.name}</p>
+        <p>{formattedDate}</p>
+      </div>
+    );
+  });
 
   const startQuiz = () => {
     const formData = new FormData();
@@ -151,7 +135,7 @@ const QuizShow = (props) => {
       <button onClick={startQuiz}>Start Quiz</button>
       <br />
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
-      {questionsJsx}
+      {quizResultsJsx}
     </div>
   );
 };
