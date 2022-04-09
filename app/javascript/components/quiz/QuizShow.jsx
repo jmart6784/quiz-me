@@ -115,6 +115,8 @@ const QuizShow = (props) => {
       .catch((error) => console.log(error.message));
   };
 
+  useEffect(() => console.log(quizResults), [quizResults]);
+
   return (
     <div>
       <h1>Quiz Show</h1>
