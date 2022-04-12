@@ -88,6 +88,7 @@ const QuizShow = (props) => {
         <h3>Quiz Result</h3>
         <p>Quiz name: {result.quiz.name}</p>
         <p>{formattedDate}</p>
+        <Link to={`/quiz_result/${result.id}`}>Show</Link>
       </div>
     );
   });
