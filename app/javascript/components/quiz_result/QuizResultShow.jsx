@@ -1,33 +1,8 @@
 import React, { useEffect, useState } from "react";
+import quizStartObjects from "./quiz_start_helper/quizStartObjects";
 
 const QuizResultShow = (props) => {
-  const [quizResult, setQuizResult] = useState({
-    id: "",
-    start: "",
-    end: "",
-    completed_at: "",
-    finished: false,
-    user_id: "",
-    quiz_id: "",
-    created_at: "",
-    updated_at: "",
-    quiz: {
-      cover: {url: ''},
-      description: "",
-      id: "",
-      name: "",
-      time: "",
-    },
-    user: {
-      avatar: {url: ""},
-      id: "",
-      email: "",
-      username: "",
-      first_name: "",
-      last_name: "",
-      bio: ""
-    }
-  });
+  const [quizResult, setQuizResult] = useState(quizStartObjects()[1]);
 
   useEffect(() => {
     fetch(`/api/v1/quiz_results/show/${props.match.params.id}`)
