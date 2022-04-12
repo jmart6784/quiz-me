@@ -15,6 +15,7 @@ import QuestionEdit from "../components/question/QuestionEdit";
 import QuestionNew from "../components/question/QuestionNew";
 
 import QuizStart from "../components/quiz_result/QuizStart";
+import QuizResultShow from "../components/quiz_result/QuizResultShow";
 
 const Index = () => {
   const [user, setUser] = useState({});
@@ -50,9 +51,13 @@ const Index = () => {
           <Route path="/quizzes/new" exact component={QuizNew} />
           <Route path="/quizzes/edit/:id" exact component={QuizEdit} />
           <Route path="/quizzes/:id" exact component={QuizShow} />
+
           <Route path="/quiz_start/:id" exact component={QuizStart} />
+          <Route path="/quiz_result/:id" exact component={QuizResultShow} />
+
           <Route path="/users" exact component={UserIndex} />
           <Route path="/users/:id" exact component={UserShow} />
+
           <Route path="/question/edit/:id" exact component={QuestionEdit} />
           <Route path="/question/new/:id" exact component={QuestionNew} />
         </Switch>
