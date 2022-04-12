@@ -10,7 +10,23 @@ const QuizResultShow = (props) => {
     user_id: "",
     quiz_id: "",
     created_at: "",
-    updated_at: ""
+    updated_at: "",
+    quiz: {
+      cover: {url: ''},
+      description: "",
+      id: "",
+      name: "",
+      time: "",
+    },
+    user: {
+      avatar: {url: ""},
+      id: "",
+      email: "",
+      username: "",
+      first_name: "",
+      last_name: "",
+      bio: ""
+    }
   });
 
   useEffect(() => {
@@ -27,7 +43,15 @@ const QuizResultShow = (props) => {
 
   useEffect(() => console.log(quizResult), [quizResult]);
 
-  return <div><h1>QUIZ RESULT SHOW</h1></div>
+  return (
+    <div>
+      <h1>QUIZ RESULT SHOW</h1>
+      
+      <div>
+        <p>Quiz name: {quizResult.quiz.name}</p>
+      </div>
+    </div>
+  );
 }
 
 export default QuizResultShow;
