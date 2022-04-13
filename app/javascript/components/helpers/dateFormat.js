@@ -1,18 +1,18 @@
 const dateFormat = (
   date,
-  month = "numeric",
-  day = "long",
-  year = "numeric",
+  m = "numeric",
+  d = "long",
+  y = "numeric",
   space1 = " ",
   space2 = ", "
 ) => {
   let d = new Date(date);
-  let date = d.toLocaleDateString("en-us", { day: day });
-  let month = d.toLocaleDateString("en-us", { month: month });
-  let year = d.toLocaleDateString("en-us", { year: year });
-  let formattedDate = `${month} ${date}, ${year}`;
+  let day = d.toLocaleDateString("en-us", { day: d });
+  let month = d.toLocaleDateString("en-us", { month: m });
+  let year = d.toLocaleDateString("en-us", { year: y });
+  let formattedDate = `${month}${space1}${day}${space2}${year}`;
 
-  return formattedDate;
+  return [formattedDate, { date: d, month, day, year }];
 };
 
 export default dateFormat;
