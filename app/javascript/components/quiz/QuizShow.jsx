@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import secondsToTime from "./form_helpers/secondsToTime";
+import QuizResultCard from "../quiz_result/components/QuizResultCard";
 
 const QuizShow = (props) => {
   const [quiz, setQuiz] = useState({
@@ -76,22 +77,7 @@ const QuizShow = (props) => {
 
   let quizResultsJsx = <p>No Results Yet.</p>;
 
-  quizResultsJsx = quizResults.map((result) => {
-    let d = new Date(result.completed_at)
-    let date = d.toLocaleDateString('en-us',{day: 'numeric'})
-    let month = d.toLocaleDateString('en-us',{month: 'long'})
-    let year = d.toLocaleDateString('en-us',{year: 'numeric'})
-    let formattedDate = `${month} ${date}, ${year}`
-
-    return (
-      <div key={`result-#${result.id}`}>
-        <h3>Quiz Result</h3>
-        <p>Quiz name: {result.quiz.name}</p>
-        <p>{formattedDate}</p>
-        <Link to={`/quiz_result/${result.id}`}>Show</Link>
-      </div>
-    );
-  });
+  quizResultsJsx = quizResults.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
 
   const startQuiz = () => {
     const formData = new FormData();
