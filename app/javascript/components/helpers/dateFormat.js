@@ -6,7 +6,6 @@ const dateFormat = (
   space1 = " ",
   space2 = ", "
 ) => {
-  console.log(m, d, y, date, space1, space2);
   let dt = new Date(date);
   let day = dt.toLocaleDateString("en-us", { day: d });
   let month = dt.toLocaleDateString("en-us", { month: m });
