@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import quizStartObjects from "./quiz_start_helper/quizStartObjects";
+import QuizResultCard from "./components/QuizResultCard";
 
 const QuizResultShow = (props) => {
   const [quizResult, setQuizResult] = useState(quizStartObjects()[1]);
@@ -22,9 +23,7 @@ const QuizResultShow = (props) => {
     <div>
       <h1>QUIZ RESULT SHOW</h1>
       
-      <div>
-        <p>Quiz name: {quizResult.quiz.name}</p>
-      </div>
+      <QuizResultCard quizResult={quizResult} />
     </div>
   );
 }
