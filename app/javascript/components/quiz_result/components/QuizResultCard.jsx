@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import dateFormat from "../../helpers/dateFormat";
 
 const QuizResultCard = (props) => {
@@ -6,11 +6,15 @@ const QuizResultCard = (props) => {
 
   let questionResults = <p>No Questions submitted</p>;
 
+  let correctScore = 0;
+
   if (result.question_results.question_results.length > 0) {
     let count = 0;
 
     questionResults = result.question_results.question_results.map(r => {
       count += 1;
+      r.correct ? correctScore += 1 : ""
+
       let answer = JSON.parse(r.answer);
       let userAnswer = JSON.parse(r.user_answer);
       let question = result.question_results.questions.find(q => q.id === r.question_id);
@@ -54,6 +58,7 @@ const QuizResultCard = (props) => {
       }
 
       {questionResults}
+      <p>Score: {`${correctScore}/${result.quiz.questions.length}`}</p>
       <br />
     </div>
   );
