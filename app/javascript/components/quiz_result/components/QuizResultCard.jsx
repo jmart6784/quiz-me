@@ -47,12 +47,14 @@ const QuizResultCard = (props) => {
     });
   }
 
+  let dateTime = dateFormat(result.completed_at);
+
   return (
     <div>
       <p>Quiz name: {result.quiz.name}</p>
       {
         result.finished ?
-          <p>Completed: {dateFormat(result.completed_at)[0]}</p>
+          <p>Completed: {`${dateTime[0]} ${dateTime[1].time}`}</p>
         :
           <p>Not Complete</p>
       }
