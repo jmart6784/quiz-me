@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import secondsToTime from "./form_helpers/secondsToTime";
 import QuizResultCard from "../quiz_result/components/QuizResultCard";
+import UserContext from "../context/UserContext";
 
 const QuizShow = (props) => {
+  const [user, setUser] = useContext(UserContext);
+
   const [quiz, setQuiz] = useState({
     id: "",
     name: "",
@@ -37,18 +40,19 @@ const QuizShow = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
-  useEffect(() => {
-    fetch(`/api/v1/quiz_results/quiz_results_by_quiz_id/${props.match.params.id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => setQuizResults(response))
-      .catch(() => props.history.push("/"));
-  }, []);
-
+  if (user.current_user) {
+    useEffect(() => {
+      fetch(`/api/v1/quiz_results/quiz_results_by_quiz_id/${props.match.params.id}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((response) => setQuizResults(response))
+        .catch(() => props.history.push("/"));
+    }, []);
+  }
   const deleteQuiz = () => {
     const {
       match: {
@@ -75,9 +79,13 @@ const QuizShow = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  let quizResultsJsx = <p>No Results Yet.</p>;
+  let quizResultsJsx = <div><p>Sign in to save results</p></div>;
 
-  quizResultsJsx = quizResults.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
+  if (user.current_user) { 
+    quizResultsJsx = <p>No Results Yet.</p>;
+
+    quizResultsJsx = quizResults.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
+  }
 
   const startQuiz = () => {
     const formData = new FormData();
@@ -113,8 +121,13 @@ const QuizShow = (props) => {
           :
           <p>Not timed</p>
       }
-      <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
-      <button onClick={deleteQuiz}>Delete</button>
+      {user.current_user ? 
+        <div>
+          <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
+          <button onClick={deleteQuiz}>Delete</button>
+        </div>
+        : ""
+      }
       <p>
         Created by:{" "}
         <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
