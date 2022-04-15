@@ -59,7 +59,7 @@ const Index = () => {
           <Route path="/question/new/:id" exact component={QuestionNew} />
 
           <Route path="/quiz_start/:id" exact component={QuizStart} />
-          <Route path="/au_quiz_start" exact component={UnAuthQuizStart} />
+          <Route path="/ua_quiz_start/:id" exact component={UnAuthQuizStart} />
         </Switch>
       </Router>
     </UserContext.Provider>
