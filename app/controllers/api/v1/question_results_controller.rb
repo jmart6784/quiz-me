@@ -1,4 +1,5 @@
 class Api::V1::QuestionResultsController < ApplicationController
+  before_action :authenticate_user!, only: [ :create, :update, :destroy, :quiz_question_results ]
   before_action :set_question_result, only: [:update, :destroy]
 
   def index
