@@ -11,9 +11,9 @@ const dateFormat = (
   let month = dt.toLocaleDateString("en-us", { month: m });
   let year = dt.toLocaleDateString("en-us", { year: y });
   let time = dt.toLocaleTimeString("en-US");
-  let formattedDate = `${month}${space1}${day}${space2}${year} ${time}`;
+  let formattedDate = `${month}${space1}${day}${space2}${year}`;
 
-  return [formattedDate, { date: dt, month, day, year }];
+  return [formattedDate, { date: dt, time, month, day, year }];
 };
 
 export default dateFormat;
