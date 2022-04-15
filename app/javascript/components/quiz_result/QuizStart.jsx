@@ -128,6 +128,33 @@ const QuizStart = (props) => {
   let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
   let question = quiz["questions"][page - 1];
 
+  useEffect(() => console.log(questionResults), [questionResults]);
+  let btnLogic = (
+    <div>
+      <label>Answer all questions before submitting</label>
+      <button disabled={true}>Submit</button>
+    </div>
+  );
+
+  if (questionResults.length === quiz.questions.length && questionResults[0]['id'] != '') {
+    btnLogic = <button onClick={() => { 
+      fetch(`/api/v1/quiz_results/update/${props.match.params.id}`, {
+        method: "PUT",
+        headers: {
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        }
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then(() => props.history.push(`/quizzes/${quiz.id}`))
+        .catch((error) => console.log(error.message));
+    }}>Submit</button>
+  }
+
   return (
     <div>
       <h1>Quiz name: {quiz.name}</h1>
@@ -157,6 +184,8 @@ const QuizStart = (props) => {
           }}
           disabled={page === quiz.questions.length}
         >Next</button>
+
+        {btnLogic}
       </div>
     </div>
   )
