@@ -1,39 +1,12 @@
 import React, { useEffect, useState } from "react";
 import UaOptions from "./quiz_start_helper/UaOptions";
+import quizStartObjects from "./quiz_start_helper/quizStartObjects";
 
 const UnAuthQuizStart = (props) => {
-  const [quiz, setQuiz] = useState({
-    id: "",
-    name: "",
-    description: "",
-    time: 0,
-    cover: { url: "" },
-    user: {
-      id: "",
-      username: "",
-    },
-    questions: [
-      {
-        id: "",
-        question_type: "one answer",
-        question: "",
-        option_1: "",
-        option_2: "",
-        option_3: "",
-        option_4: "",
-        option_5: "",
-        option_6: "",
-        option_7: "",
-        option_8: "",
-        option_9: "",
-        option_10: "",
-        answer: "[]",
-        quiz_id: "",
-        user_id: ""
-      }
-    ],
-  });
+  const quizObjects = quizStartObjects();
 
+  const [quiz, setQuiz] = useState(quizObjects[0]);
+  const [questionResults, setQuestionResults] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -48,6 +21,10 @@ const UnAuthQuizStart = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
+  const submitQuestion = (question, answer) => { 
+    
+  };
+
   let question = quiz["questions"][page - 1];
 
   useEffect(() => console.log(quiz), [quiz]);
@@ -61,7 +38,8 @@ const UnAuthQuizStart = (props) => {
         <h3>Question #{page}</h3>
         <p>Question: {question["question"]}</p>
 
-        <UaOptions question={question} />
+        <UaOptions question={question} submitQuestion={submitQuestion} />
+
         <br />
         <button
           onClick={() => {
