@@ -47,9 +47,18 @@ const UnAuthQuizStart = (props) => {
       questionResult['user_answer'] = JSON.stringify([answer]);
     } else if (question["question_type"] === "multiple answers") { 
       let userAnswer = JSON.parse(questionResult['user_answer'])
-      userAnswer.push(answer);
-      userAnswer = JSON.stringify([...new Set(user_answer.sort((a, b) => a - b))]);
-      questionResult['user_answer'] = userAnswer;
+
+      if (userAnswer.includes(answer)) {
+        let index = userAnswer.indexOf(answer);
+        if (index !== -1) {
+          userAnswer.splice(index, 1);
+          questionResult['user_answer'] = JSON.stringify(userAnswer);
+        }
+      } else { 
+        userAnswer.push(answer);
+        userAnswer = JSON.stringify([...new Set(userAnswer.sort((a, b) => a - b))]);
+        questionResult['user_answer'] = userAnswer;
+      }
     }
     questionResult['correct'] = questionResult['answer'] === questionResult['user_answer'];
 
@@ -58,6 +67,8 @@ const UnAuthQuizStart = (props) => {
 
   let question = quiz["questions"][page - 1];
 
+  // useEffect(() => console.log("EFFECT: ", questionResults), [questionResults]);
+  
   return (
     <div>
       <h1>Unauthorized Quiz start</h1>
