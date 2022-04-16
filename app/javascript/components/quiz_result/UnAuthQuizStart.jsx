@@ -11,7 +11,10 @@ const UnAuthQuizStart = (props) => {
       id: "",
       username: "",
     },
+    questions: [],
   });
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
@@ -30,6 +33,7 @@ const UnAuthQuizStart = (props) => {
   return (
     <div>
       <h1>Unauthorized Quiz start</h1>
+      <p>{`${page}/${quiz.questions.length}`}</p>
     </div>
   );
 };
