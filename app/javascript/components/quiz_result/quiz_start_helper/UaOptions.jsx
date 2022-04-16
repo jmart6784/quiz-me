@@ -1,11 +1,50 @@
 import React from "react";
 
-const UaOptions = () => {
-  return (
-    <div>
-      <p>Ua Options</p>
-    </div>
-  );
+const UaOptions = (props) => {
+  let question = props.question;
+  let options = [];
+  let questionResult = props.questionResult === undefined ? {
+    id: "",
+    correct: false,
+    answer: "[]",
+    user_answer: "[]",
+    question_id: "",
+    quiz_id: "",
+    quiz_result_id: "",
+    user_id: "",
+  } : props.questionResult
+
+  for (let i = 1; i <= 10; i++) {
+    if (question[`option_${i}`] != "") {
+      if (question["question_type"] === "one answer") {
+        options.push(
+          <div key={`option_${i}`}>
+            <input
+              type="radio"
+              value={`${i}`}
+              onChange={(e) => props.submitQuestion(e, question)}
+              checked={JSON.parse(questionResult["user_answer"]).includes(i.toString())}
+            />
+            <label>{question[`option_${i}`]}</label>
+          </div>
+        );
+      } else if (question["question_type"] === "multiple answers") {
+        options.push(
+          <div key={`option_${i}`}>
+            <input
+              type="checkbox"
+              value={`${i}`}
+              onChange={(e) => props.submitQuestion(e, question)}
+              checked={JSON.parse(questionResult["user_answer"]).includes(i.toString())}
+            />
+            <label>{question[`option_${i}`]}</label>
+          </div>
+        );
+      }
+    }
+  }
+
+  return <div>{options}</div>;
 };
 
 export default UaOptions;

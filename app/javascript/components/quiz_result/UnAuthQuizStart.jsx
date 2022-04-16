@@ -21,13 +21,42 @@ const UnAuthQuizStart = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
-  const submitQuestion = (question, answer) => { 
-    
+  const submitQuestion = (e, question) => {
+    let answer = e.target.value;
+    let questionResult = {
+      id: "",
+      correct: "",
+      answer: question['answer'],
+      user_answer: "[]",
+      question_id: question.id,
+      quiz_id: props.match.params.id,
+      quiz_result_id: "",
+      user_id: ""
+    };
+
+    if (questionResults.length > 0) {
+      for (let i = 0; i < questionResults.length; i++) {
+        const qr = questionResults[i];
+        if (qr.question_id === question.id) {
+          questionResult = qr;
+        }
+      }
+    }
+
+    if (question["question_type"] === "one answer") {
+      questionResult['user_answer'] = JSON.stringify([answer]);
+    } else if (question["question_type"] === "multiple answers") { 
+      let userAnswer = JSON.parse(questionResult['user_answer'])
+      userAnswer.push(answer);
+      userAnswer = JSON.stringify([...new Set(user_answer.sort((a, b) => a - b))]);
+      questionResult['user_answer'] = userAnswer;
+    }
+    questionResult['correct'] = questionResult['answer'] === questionResult['user_answer'];
+
+    setQuestionResults([...new Set([...questionResults, questionResult])]);
   };
 
   let question = quiz["questions"][page - 1];
-
-  useEffect(() => console.log(quiz), [quiz]);
 
   return (
     <div>
@@ -38,7 +67,11 @@ const UnAuthQuizStart = (props) => {
         <h3>Question #{page}</h3>
         <p>Question: {question["question"]}</p>
 
-        <UaOptions question={question} submitQuestion={submitQuestion} />
+        <UaOptions
+          question={question}
+          questionResult={questionResults[page - 1]}
+          submitQuestion={submitQuestion} 
+        />
 
         <br />
         <button
