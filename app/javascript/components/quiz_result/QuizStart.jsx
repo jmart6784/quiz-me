@@ -128,7 +128,6 @@ const QuizStart = (props) => {
   let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
   let question = quiz["questions"][page - 1];
 
-  useEffect(() => console.log(questionResults), [questionResults]);
   let btnLogic = (
     <div>
       <label>Answer all questions before submitting</label>
