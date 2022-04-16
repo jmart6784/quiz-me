@@ -5,9 +5,7 @@ const UnAuthQuizStart = (props) => {
     id: "",
     name: "",
     description: "",
-    hours: "0",
-    minutes: "0",
-    seconds: "0",
+    time: 0,
     cover: { url: "" },
     user: {
       id: "",
@@ -15,11 +13,23 @@ const UnAuthQuizStart = (props) => {
     },
   });
 
+  useEffect(() => {
+    fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setQuiz(response))
+      .catch(() => props.history.push("/"));
+  }, []);
+
   useEffect(() => console.log(quiz), [quiz]);
 
   return (
     <div>
-      <h1>Unauthoized Quiz start</h1>
+      <h1>Unauthorized Quiz start</h1>
     </div>
   );
 };
