@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UaOptions from "./quiz_start_helper/UaOptions";
 import quizStartObjects from "./quiz_start_helper/quizStartObjects";
+import secondsToTime from "../quiz/form_helpers/secondsToTime";
 
 const UnAuthQuizStart = (props) => {
   const quizObjects = quizStartObjects();
@@ -20,6 +21,22 @@ const UnAuthQuizStart = (props) => {
       .then((response) => setQuiz(response))
       .catch(() => props.history.push("/"));
   }, []);
+
+  useEffect(() => {
+    const quizTimer = setInterval(() => {
+      if (quiz["time"] > 0) {
+        setQuiz(prevState => (
+          prevState["time"] > 0 ?
+            { ...prevState, time: prevState["time"] - 1 }
+          : prevState
+        ));
+      } else {
+        clearInterval(quizTimer);
+      }
+    }, 1000);
+
+    return () => clearInterval(quizTimer);
+  }, [quiz]);
 
   const submitQuestion = (e, question) => {
     let answer = e.target.value;
@@ -68,11 +85,16 @@ const UnAuthQuizStart = (props) => {
     setQuestionResults(finalResult);
   };
 
+  let timeLeft = secondsToTime(quiz["time"]);
+  let hours = timeLeft.hours <= 9 ? `0${timeLeft.hours}` : timeLeft.hours;
+  let minutes = timeLeft.minutes <= 9 ? `0${timeLeft.minutes}` : timeLeft.minutes;
+  let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
   let question = quiz["questions"][page - 1];
   
   return (
     <div>
       <h1>Unauthorized Quiz start</h1>
+      <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
       <p>Question {`${page}/${quiz.questions.length}`}</p>
 
       <div>
