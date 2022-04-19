@@ -32,6 +32,7 @@ const UnAuthQuizStart = (props) => {
         ));
       } else {
         clearInterval(quizTimer);
+        props.history.push({pathname: "/ua_quiz_result", state: questionResults});
       }
     }, 1000);
 
