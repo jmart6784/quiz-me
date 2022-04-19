@@ -16,6 +16,7 @@ import QuestionNew from "../components/question/QuestionNew";
 
 import QuizStart from "../components/quiz_result/QuizStart";
 import UnAuthQuizStart from "../components/quiz_result/UnAuthQuizStart";
+import UnAuthQuizResult from "../components/quiz_result/UnAuthQuizResult";
 
 const Index = () => {
   const [user, setUser] = useState({});
@@ -60,6 +61,7 @@ const Index = () => {
 
           <Route path="/quiz_start/:id" exact component={QuizStart} />
           <Route path="/ua_quiz_start/:id" exact component={UnAuthQuizStart} />
+          <Route path="/ua_quiz_result" exact component={UnAuthQuizResult} />
         </Switch>
       </Router>
     </UserContext.Provider>
