@@ -42,12 +42,12 @@ const UnAuthQuizStart = (props) => {
         ));
       } else {
         clearInterval(quizTimer);
-        props.history.push({pathname: "/ua_quiz_result", state: questionResults});
+        props.history.push({ pathname: "/ua_quiz_result", state: { questionResults, quizResult, quiz}});
       }
     }, 1000);
 
     return () => clearInterval(quizTimer);
-  }, [quiz]);
+  }, [quiz, questionResults, quizResult]);
 
   const submitQuestion = (e, question) => {
     let answer = e.target.value;
