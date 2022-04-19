@@ -62,12 +62,13 @@ const UnAuthQuizStart = (props) => {
     }
     questionResult['correct'] = questionResult['answer'] === questionResult['user_answer'];
 
-    setQuestionResults([...new Set([...questionResults, questionResult])]);
+    // Sort array by question id and remove repeat values by usiing Set
+    let finalResult = [...new Set([...questionResults, questionResult])].sort((a, b) => (a.question_id > b.question_id) ? 1 : -1);
+
+    setQuestionResults(finalResult);
   };
 
   let question = quiz["questions"][page - 1];
-
-  // useEffect(() => console.log("EFFECT: ", questionResults), [questionResults]);
   
   return (
     <div>
@@ -80,7 +81,7 @@ const UnAuthQuizStart = (props) => {
 
         <UaOptions
           question={question}
-          questionResult={questionResults[page - 1]}
+          questionResults={questionResults}
           submitQuestion={submitQuestion} 
         />
 
