@@ -7,6 +7,7 @@ const UnAuthQuizStart = (props) => {
   const quizObjects = quizStartObjects();
 
   const [quiz, setQuiz] = useState(quizObjects[0]);
+  const [quizResult, setQuizResult] = useState(quizObjects[1]);
   const [questionResults, setQuestionResults] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -18,7 +19,16 @@ const UnAuthQuizStart = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setQuiz(response))
+      .then((response) => {
+        let quiz = response;
+
+        let start = new Date();
+        let end = new Date(start.getTime() + parseInt(quiz.time) * 1000);
+
+        setQuizResult({...quizResult, start, end, quiz_id: quiz.id});
+        
+        setQuiz(quiz);
+      })
       .catch(() => props.history.push("/"));
   }, []);
 
