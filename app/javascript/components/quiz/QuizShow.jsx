@@ -38,10 +38,8 @@ const QuizShow = (props) => {
         setQuiz({ ...response, hours, minutes, seconds });
       })
       .catch(() => props.history.push("/"));
-  }, []);
 
-  if (user.current_user) {
-    useEffect(() => {
+    if (user.current_user) { 
       fetch(`/api/v1/quiz_results/quiz_results_by_quiz_id/${props.match.params.id}`)
         .then((response) => {
           if (response.ok) {
@@ -51,8 +49,9 @@ const QuizShow = (props) => {
         })
         .then((response) => setQuizResults(response))
         .catch(() => props.history.push("/"));
-    }, []);
-  }
+    }
+  }, []);
+
   const deleteQuiz = () => {
     const {
       match: {
