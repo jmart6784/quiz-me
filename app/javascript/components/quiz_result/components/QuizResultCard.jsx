@@ -37,7 +37,7 @@ const QuizResultCard = (props) => {
           <div>{options}</div>
           <p>{r.correct ? "Correct" : "Incorrect"}</p>
           <p>
-            Answer: {`Answer${answer.length > 1 ? "s" : ""}: ` + answer.join(", ")}
+            {`Answer${answer.length > 1 ? "s" : ""}: ` + answer.join(", ")}
           </p>
           <p>
             Your answer: {`Answer${userAnswer.length > 1 ? "s" : ""}: ` + userAnswer.join(", ")}
