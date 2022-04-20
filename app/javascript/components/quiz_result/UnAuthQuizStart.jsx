@@ -101,6 +101,19 @@ const UnAuthQuizStart = (props) => {
   let minutes = timeLeft.minutes <= 9 ? `0${timeLeft.minutes}` : timeLeft.minutes;
   let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
   let question = quiz["questions"][page - 1];
+
+  let btnLogic = (
+    <div>
+      <label>Answer all questions before submitting</label>
+      <button disabled={true}>Submit</button>
+    </div>
+  );
+
+  if (questionResults.length === quiz.questions.length && questionResults[0]['answer'] != '') {
+    btnLogic = <button onClick={() => { 
+      props.history.push({ pathname: "/ua_quiz_result", state: { questionResults, quizResult, quiz}});
+    }}>Submit</button>
+  }
   
   return (
     <div>
@@ -132,6 +145,8 @@ const UnAuthQuizStart = (props) => {
           }}
           disabled={page === quiz.questions.length}
         >Next</button>
+
+        {btnLogic}
       </div>
     </div>
   );
