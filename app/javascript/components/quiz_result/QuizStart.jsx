@@ -70,34 +70,36 @@ const QuizStart = (props) => {
   }, []);
 
   useEffect(() => {
-    const quizTimer = setInterval(() => {
-      if (quizResult["time"] > 0) {
-        setQuizResult(prevState => (
-          prevState["time"] > 0 ?
-            { ...prevState, time: prevState["time"] - 1 }
-          : prevState
-        ));
-      } else {
-        clearInterval(quizTimer);
-        fetch(`/api/v1/quiz_results/update/${props.match.params.id}`, {
-          method: "PUT",
-          headers: {
-            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
-          }
-        })
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
+    if (quiz.time > 0) {
+      const quizTimer = setInterval(() => {
+        if (quizResult["time"] > 0) {
+          setQuizResult(prevState => (
+            prevState["time"] > 0 ?
+              { ...prevState, time: prevState["time"] - 1 }
+            : prevState
+          ));
+        } else {
+          clearInterval(quizTimer);
+          fetch(`/api/v1/quiz_results/update/${props.match.params.id}`, {
+            method: "PUT",
+            headers: {
+              "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
             }
-            throw new Error("Network response was not ok.");
           })
-          .then(() => props.history.push(`/quizzes/${quiz.id}`))
-          .catch((error) => console.log(error.message));
-      }
-    }, 1000);
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              throw new Error("Network response was not ok.");
+            })
+            .then(() => props.history.push(`/quizzes/${quiz.id}`))
+            .catch((error) => console.log(error.message));
+        }
+      }, 1000);
 
-    return () => clearInterval(quizTimer);
-  }, [quizResult]);
+      return () => clearInterval(quizTimer); 
+    }
+  }, [quizResult, quiz]);
 
   const submitQuestion = (e, question) => {
     const formData = new FormData();
