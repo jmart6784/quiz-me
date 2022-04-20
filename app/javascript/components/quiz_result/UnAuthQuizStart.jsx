@@ -25,7 +25,9 @@ const UnAuthQuizStart = (props) => {
         let start = new Date();
         let end = new Date(start.getTime() + parseInt(quiz.time) * 1000);
 
-        setQuizResult({...quizResult, start, end, quiz_id: quiz.id});
+        setQuizResult({
+          ...quizResult, start, end, quiz_id: quiz.id, time: quiz.time
+        });
         
         setQuiz(quiz);
       })
@@ -33,20 +35,22 @@ const UnAuthQuizStart = (props) => {
   }, []);
 
   useEffect(() => {
-    const quizTimer = setInterval(() => {
-      if (quiz["time"] > 0) {
-        setQuiz(prevState => (
-          prevState["time"] > 0 ?
-            { ...prevState, time: prevState["time"] - 1 }
-          : prevState
-        ));
-      } else {
-        clearInterval(quizTimer);
-        props.history.push({ pathname: "/ua_quiz_result", state: { questionResults, quizResult, quiz}});
-      }
-    }, 1000);
+    if (quiz.time > 0) {
+      const quizTimer = setInterval(() => {
+        if (quizResult["time"] > 0) {
+          setQuizResult(prevState => (
+            prevState["time"] > 0 ?
+              { ...prevState, time: prevState["time"] - 1 }
+              : prevState
+          ));
+        } else {
+          clearInterval(quizTimer);
+          props.history.push({ pathname: "/ua_quiz_result", state: { questionResults, quizResult, quiz } });
+        }
+      }, 1000);
 
-    return () => clearInterval(quizTimer);
+      return () => clearInterval(quizTimer);
+    }
   }, [quiz, questionResults, quizResult]);
 
   const submitQuestion = (e, question) => {
@@ -96,7 +100,7 @@ const UnAuthQuizStart = (props) => {
     setQuestionResults(finalResult);
   };
 
-  let timeLeft = secondsToTime(quiz["time"]);
+  let timeLeft = secondsToTime(quizResult["time"]);
   let hours = timeLeft.hours <= 9 ? `0${timeLeft.hours}` : timeLeft.hours;
   let minutes = timeLeft.minutes <= 9 ? `0${timeLeft.minutes}` : timeLeft.minutes;
   let seconds = timeLeft.seconds <= 9 ? `0${timeLeft.seconds}` : timeLeft.seconds;
