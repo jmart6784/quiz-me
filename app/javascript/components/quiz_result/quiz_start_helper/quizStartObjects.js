@@ -46,6 +46,7 @@ const quizStartObjects = () => {
       description: "",
       cover: { url: "" },
       time: 0,
+      questions: [],
     },
     user: {
       id: "",
@@ -56,6 +57,7 @@ const quizStartObjects = () => {
       last_name: "",
       username: "",
     },
+    question_results: { question_results: [], questions: [] },
   };
 
   const questionResultObjects = [
