@@ -32,6 +32,10 @@ Rails.application.routes.draw do
       put '/question_results/update/:id', to: 'question_results#update'
       delete '/question_results/destroy/:id', to: 'question_results#destroy'
       get '/question_results/quiz_question_results/:quiz_result_id', to: 'question_results#quiz_question_results'
+
+      post '/ratings/create', to: 'ratings#create'
+      get '/ratings/show/:id', to: 'ratings#show'
+      put '/ratings/update/:id', to: 'ratings#update'
     end
   end
 end
