@@ -2,7 +2,14 @@ class Api::V1::RatingsController < ApplicationController
   before_action :set_rating, only: [:update]
 
   def create
-    
+    rating = Rating.new(rating_params)
+    rating.user_id = current_user.id
+
+    if rating.save
+      render json: rating
+    else
+      render json: rating.errors, status: 422
+    end
   end
 
   def show
@@ -16,7 +23,7 @@ class Api::V1::RatingsController < ApplicationController
   private
 
   def rating_params
-    params.require(:rating).permit(:value, :user_id, :quiz_id)
+    params.require(:rating).permit(:value, :quiz_id)
   end
 
   def rating
