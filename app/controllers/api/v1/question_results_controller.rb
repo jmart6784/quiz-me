@@ -48,7 +48,7 @@ class Api::V1::QuestionResultsController < ApplicationController
           user_id: current_user.id,
           quiz_id: quiz_result.quiz_id,
           quiz_result_id: quiz_result.id,
-        )
+        ).order("id ASC")
       else
         render json: {
           id: existing_ques_result.id, 
@@ -71,7 +71,7 @@ class Api::V1::QuestionResultsController < ApplicationController
           user_id: current_user.id,
           quiz_id: quiz_result.quiz_id,
           quiz_result_id: quiz_result.id,
-        )
+        ).order("id ASC")
       else
         render json: question_result.errors, status: 422
       end
