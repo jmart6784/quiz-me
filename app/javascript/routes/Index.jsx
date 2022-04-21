@@ -15,6 +15,7 @@ import QuestionEdit from "../components/question/QuestionEdit";
 import QuestionNew from "../components/question/QuestionNew";
 
 import QuizStart from "../components/quiz_result/QuizStart";
+import QuizResultShow from "../components/quiz_result/QuizResultShow";
 import UnAuthQuizStart from "../components/quiz_result/UnAuthQuizStart";
 import UnAuthQuizResult from "../components/quiz_result/UnAuthQuizResult";
 
@@ -60,6 +61,7 @@ const Index = () => {
           <Route path="/question/new/:id" exact component={QuestionNew} />
 
           <Route path="/quiz_start/:id" exact component={QuizStart} />
+          <Route path="/quiz_result/:id" exact component={QuizResultShow} />
           <Route path="/ua_quiz_start/:id" exact component={UnAuthQuizStart} />
           <Route path="/ua_quiz_result" exact component={UnAuthQuizResult} />
         </Switch>
