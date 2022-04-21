@@ -92,7 +92,7 @@ const QuizStart = (props) => {
               }
               throw new Error("Network response was not ok.");
             })
-            .then(() => props.history.push(`/quizzes/${quiz.id}`))
+            .then(() => props.history.push(`/quiz_result/${quizResult.id}`))
             .catch((error) => console.log(error.message));
         }
       }, 1000);
@@ -151,7 +151,7 @@ const QuizStart = (props) => {
           }
           throw new Error("Network response was not ok.");
         })
-        .then(() => props.history.push(`/quizzes/${quiz.id}`))
+        .then(() => props.history.push(`/quiz_result/${quizResult.id}`))
         .catch((error) => console.log(error.message));
     }}>Submit</button>
   }
