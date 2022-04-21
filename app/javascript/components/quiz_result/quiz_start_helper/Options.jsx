@@ -2,7 +2,8 @@ import React from "react";
 
 const Options = (props) => {
   let question = props.question;
-  let questionResult = props.questionResult === undefined ? {
+  let options = [];
+  let questionResult = {
     id: "",
     correct: false,
     answer: "[]",
@@ -11,8 +12,14 @@ const Options = (props) => {
     quiz_id: "",
     quiz_result_id: "",
     user_id: "",
-  } : props.questionResult
-  let options = [];
+  };
+
+  for (let i = 0; i < props.questionResults.length; i++) {
+    let qr = props.questionResults[i];
+    if (qr.question_id === question.id) {
+      questionResult = qr;
+    }
+  }
 
   for (let i = 1; i <= 10; i++) {
     if (question[`option_${i}`] != "") {

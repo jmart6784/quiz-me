@@ -169,7 +169,7 @@ const QuizStart = (props) => {
         <Options
           question={question}
           submitQuestion={submitQuestion}
-          questionResult={questionResults[page - 1]}
+          questionResults={questionResults}
         />
         <br />
         <button
