@@ -2,6 +2,7 @@ class Quiz < ApplicationRecord
   belongs_to :user
   has_many :questions, dependent: :destroy
   has_many :quiz_results, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   has_one_attached :cover
 
   accepts_nested_attributes_for :questions
