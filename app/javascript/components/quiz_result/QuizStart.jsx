@@ -120,7 +120,7 @@ const QuizStart = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setQuestionResults(response))
+      .then((response) => setQuestionResults(response.sort((a, b) => a.id > b.id ? 1 : -1)))
       .catch((error) => console.log(error.message));
   };
 
