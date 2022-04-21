@@ -17,8 +17,6 @@ const QuizResultShow = (props) => {
       .catch(() => props.history.push("/"));
   }, []);
 
-  useEffect(() => console.log(quizResult), [quizResult]);
-
   return (
     <div>
       <h1>Quiz Result Show</h1>
