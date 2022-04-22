@@ -22,6 +22,7 @@ const QuizShow = (props) => {
   });
 
   const [quizResults, setQuizResults] = useState([]);
+  const [rating, setRating] = useState(1);
 
   useEffect(() => {
     fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
@@ -86,6 +87,8 @@ const QuizShow = (props) => {
     quizResultsJsx = quizResults.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
   }
 
+  const onRateChange = (event) => setRating(parseInt(event.target.value));
+
   const startQuiz = () => {
     const formData = new FormData();
     formData.append("quiz_result[quiz_id]", quiz.id);
@@ -108,6 +111,30 @@ const QuizShow = (props) => {
       })
       .catch((error) => console.log(error.message));
   };
+
+  const submitRating = () => { 
+    const formData = new FormData();
+    formData.append("rating[value]", rating);
+    formData.append("rating[quiz_id]", props.match.params.id);
+
+    fetch("/api/v1/ratings/create", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      },
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => console.log("response rate: ", response))
+      .catch((error) => console.log(error.message));
+  };
+
+  useEffect(() => console.log(rating), [rating]);
 
   return (
     <div>
@@ -134,7 +161,13 @@ const QuizShow = (props) => {
         <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
       </p>
       <br />
+      <div>
+        <input type="number" name="rating" min="1" max="5" onChange={onRateChange} />
+        <button onClick={submitRating}>Rate</button>
+      </div>
+      <br />
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
+
       {quizResultsJsx}
     </div>
   );
