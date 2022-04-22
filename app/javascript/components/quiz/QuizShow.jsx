@@ -22,7 +22,7 @@ const QuizShow = (props) => {
   });
 
   const [quizResults, setQuizResults] = useState([]);
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState({id: "", value: "", user_id: "", quiz_id: ""});
 
   useEffect(() => {
     fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
@@ -59,7 +59,7 @@ const QuizShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => console.log(response))
+      .then((response) => setRating(response))
       .catch(() => props.history.push("/"));
   }, []);
 
@@ -97,7 +97,10 @@ const QuizShow = (props) => {
     quizResultsJsx = quizResults.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
   }
 
-  const onRateChange = (event) => setRating(parseInt(event.target.value));
+  const onRateChange = (event) => {
+    const { name, value } = event.target;
+    setRating({ ...rating, [name]: value });
+  };
 
   const startQuiz = () => {
     const formData = new FormData();
@@ -124,7 +127,7 @@ const QuizShow = (props) => {
 
   const submitRating = () => { 
     const formData = new FormData();
-    formData.append("rating[value]", rating);
+    formData.append("rating[value]", rating.value);
     formData.append("rating[quiz_id]", props.match.params.id);
 
     fetch("/api/v1/ratings/create", {
@@ -170,7 +173,14 @@ const QuizShow = (props) => {
       </p>
       <br />
       <div>
-        <input type="number" name="rating" min="1" max="5" onChange={onRateChange} />
+        <input
+          type="number"
+          name="value"
+          min="1"
+          max="5"
+          onChange={onRateChange}
+          value={rating.value}
+        />
         <button onClick={submitRating}>Rate</button>
       </div>
       <br />
