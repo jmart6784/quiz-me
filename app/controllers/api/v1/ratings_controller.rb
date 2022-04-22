@@ -1,6 +1,6 @@
 class Api::V1::RatingsController < ApplicationController
   before_action :set_rating, only: [:update]
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create, :rating_show_by_quiz]
 
   def create
     rating = Rating.find_by(user_id: current_user.id, quiz_id: rating_params[:quiz_id])
@@ -24,6 +24,10 @@ class Api::V1::RatingsController < ApplicationController
   end
 
   def show
+    
+  end
+
+  def rating_show_by_quiz
     
   end
 
