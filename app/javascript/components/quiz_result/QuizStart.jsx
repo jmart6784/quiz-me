@@ -159,7 +159,7 @@ const QuizStart = (props) => {
   return (
     <div>
       <h1>Quiz name: {quiz.name}</h1>
-      <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
+      {quiz.time > 0 ? <p>Time left: {`${hours}:${minutes}:${seconds}`}</p> : ""}
       <p>{`${page}/${quiz.questions.length}`}</p>
       
       <div>
