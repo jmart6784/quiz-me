@@ -35,7 +35,6 @@ Rails.application.routes.draw do
 
       post '/ratings/create', to: 'ratings#create'
       get '/ratings/show/:id', to: 'ratings#show'
-      put '/ratings/update/:id', to: 'ratings#update'
     end
   end
 end
