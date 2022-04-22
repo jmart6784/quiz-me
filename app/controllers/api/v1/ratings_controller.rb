@@ -39,6 +39,10 @@ class Api::V1::RatingsController < ApplicationController
     end
   end
 
+  def rating_data
+    
+  end
+
   private
 
   def rating_params

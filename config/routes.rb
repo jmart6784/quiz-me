@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       post '/ratings/create', to: 'ratings#create'
       get '/ratings/show/:id', to: 'ratings#show'
       get '/rating_show_by_quiz/:quiz_id', to: 'ratings#rating_show_by_quiz'
+      get '/rating_data/:quiz_id', to: 'ratings#rating_data'
     end
   end
 end
