@@ -52,15 +52,17 @@ const QuizShow = (props) => {
         .catch(() => props.history.push("/"));
     }
 
-    fetch(`/api/v1/rating_show_by_quiz/${props.match.params.id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => response.id ? setRating(response) : undefined)
-      .catch(() => props.history.push("/"));
+    if (user.current_user) {
+      fetch(`/api/v1/rating_show_by_quiz/${props.match.params.id}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((response) => response.id ? setRating(response) : undefined)
+        .catch(() => props.history.push("/"));
+    }
   }, []);
 
   const deleteQuiz = () => {
