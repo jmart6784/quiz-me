@@ -28,7 +28,13 @@ class Api::V1::RatingsController < ApplicationController
   end
 
   def rating_show_by_quiz
+    rate = Rating.find_by(quiz_id: params[:quiz_id].to_i, user_id: current_user.id)
     
+    unless rate.nil?
+      render json: rate
+    else
+      render json: {}, status: 404
+    end
   end
 
   private

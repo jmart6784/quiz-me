@@ -51,6 +51,16 @@ const QuizShow = (props) => {
         .then((response) => setQuizResults(response))
         .catch(() => props.history.push("/"));
     }
+
+    fetch(`/api/v1/rating_show_by_quiz/${props.match.params.id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => console.log(response))
+      .catch(() => props.history.push("/"));
   }, []);
 
   const deleteQuiz = () => {
