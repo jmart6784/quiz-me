@@ -33,7 +33,7 @@ class Api::V1::RatingsController < ApplicationController
     unless rate.nil?
       render json: rate
     else
-      render json: {}, status: 404
+      render json: {}
     end
   end
 

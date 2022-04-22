@@ -59,7 +59,7 @@ const QuizShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setRating(response))
+      .then((response) => response.id ? setRating(response) : undefined)
       .catch(() => props.history.push("/"));
   }, []);
 
