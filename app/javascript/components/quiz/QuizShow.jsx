@@ -99,7 +99,9 @@ const QuizShow = (props) => {
 
   const onRateChange = (event) => {
     const { name, value } = event.target;
-    setRating({ ...rating, [name]: value });
+    if (parseInt(value) >= 1 && parseInt(value) <= 5) {
+      setRating({ ...rating, [name]: value });
+    }
   };
 
   const startQuiz = () => {
