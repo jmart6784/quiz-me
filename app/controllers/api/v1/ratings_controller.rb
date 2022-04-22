@@ -15,7 +15,7 @@ class Api::V1::RatingsController < ApplicationController
         render json: rating.errors, status: 422
       end
     else
-      return if rating.user === current_user
+      return unless rating.user === current_user
 
       if rating.update(value: rating_params[:value])
         render json: rating
