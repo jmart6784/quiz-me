@@ -2,13 +2,23 @@ class Api::V1::RatingsController < ApplicationController
   before_action :set_rating, only: [:update]
 
   def create
-    rating = Rating.new(rating_params)
-    rating.user_id = current_user.id
+    rating = Rating.find_by(user_id: current_user.id, quiz_id: rating_params[:quiz_id])
 
-    if rating.save
-      render json: rating
+    if rating.nil?
+      rating = Rating.new(rating_params)
+      rating.user_id = current_user.id
+
+      if rating.save
+        render json: rating
+      else
+        render json: rating.errors, status: 422
+      end
     else
-      render json: rating.errors, status: 422
+      if rating.update(value: rating_params[:value])
+        render json: rating
+      else
+        render json: rating.errors, status: 422
+      end
     end
   end
 

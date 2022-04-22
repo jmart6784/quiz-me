@@ -130,11 +130,9 @@ const QuizShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => console.log("response rate: ", response))
+      .then((response) => undefined)
       .catch((error) => console.log(error.message));
   };
-
-  useEffect(() => console.log(rating), [rating]);
 
   return (
     <div>
