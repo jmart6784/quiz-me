@@ -1,5 +1,6 @@
 class Api::V1::RatingsController < ApplicationController
   before_action :set_rating, only: [:update]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     rating = Rating.find_by(user_id: current_user.id, quiz_id: rating_params[:quiz_id])
