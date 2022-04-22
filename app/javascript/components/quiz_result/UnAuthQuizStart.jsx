@@ -122,7 +122,7 @@ const UnAuthQuizStart = (props) => {
   return (
     <div>
       <h1>Unauthorized Quiz start</h1>
-      <p>Time left: {`${hours}:${minutes}:${seconds}`}</p>
+      {quiz.time > 0 ? <p>Time left: {`${hours}:${minutes}:${seconds}`}</p> : ""}
       <p>Question {`${page}/${quiz.questions.length}`}</p>
 
       <div>
