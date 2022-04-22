@@ -183,6 +183,8 @@ const QuizShow = (props) => {
           value={rating.value}
         />
         <button onClick={submitRating}>Rate</button>
+
+        {rating.id === "" ? <p>Give a rating</p> : <p>My rating {rating.value}</p>}
       </div>
       <br />
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
