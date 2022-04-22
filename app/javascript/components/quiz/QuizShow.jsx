@@ -145,8 +145,6 @@ const QuizShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => undefined)
-      .catch((error) => console.log(error.message));
   };
 
   return (
@@ -175,6 +173,7 @@ const QuizShow = (props) => {
       </p>
       <br />
       <div>
+        <label>Rate:</label><br />
         <input
           type="number"
           name="value"
