@@ -51,7 +51,6 @@ const QuizShow = (props) => {
         .then((response) => setQuizResults(response))
         .catch(() => props.history.push("/"));
     }
-
     if (user.current_user) {
       fetch(`/api/v1/rating_show_by_quiz/${props.match.params.id}`)
         .then((response) => {
@@ -63,7 +62,7 @@ const QuizShow = (props) => {
         .then((response) => response.id ? setRating(response) : undefined)
         .catch(() => props.history.push("/"));
     }
-  }, []);
+  }, [user]);
 
   const deleteQuiz = () => {
     const {
