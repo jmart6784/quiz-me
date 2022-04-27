@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import dateFormat from "../../helpers/dateFormat";
 
 const QuizResultCard = (props) => {
@@ -63,7 +62,6 @@ const QuizResultCard = (props) => {
       {questionResults}
       <p>Score: {`${correctScore}/${result.quiz.questions.length}`}</p>
       <br />
-      <Link to={`/quiz_result/${result.id}`}>Show</Link>
     </div>
   );
 };
