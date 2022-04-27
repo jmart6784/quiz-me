@@ -40,7 +40,29 @@ class Api::V1::RatingsController < ApplicationController
   end
 
   def rating_data
-    
+    id = params[:quiz_id].to_i
+    ratings = Rating.where(quiz_id: id)
+    star_1 = Rating.where(quiz_id: id, value: 1)
+
+    if ratings.length === 0
+      render json: {
+        average: 0, 
+        value_1: [0], 
+        value_2: [0], 
+        value_3: [0], 
+        value_4: [0], 
+        value_5: [0]
+      }
+    else
+      render json: {
+        average: ratings.pluck('avg(value)').first.to_f.round(1),
+        value_1: ratings.where(value: 1),
+        value_2: ratings.where(value: 2),
+        value_3: ratings.where(value: 3),
+        value_4: ratings.where(value: 4),
+        value_5: ratings.where(value: 5),
+      }
+    end
   end
 
   private
