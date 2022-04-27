@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import secondsToTime from "./form_helpers/secondsToTime";
 import QuizResultCard from "../quiz_result/components/QuizResultCard";
 import UserContext from "../context/UserContext";
+import RatingCard from "../rating/components/RatingCard";
 
 const QuizShow = (props) => {
   const [user, setUser] = useContext(UserContext);
@@ -206,6 +207,8 @@ const QuizShow = (props) => {
 
         {rating.id === "" ? <p>Give a rating</p> : <p>My rating {rating.value}</p>}
       </div>
+      <br />
+      <RatingCard ratingData={ratingData} />
       <br />
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
 
