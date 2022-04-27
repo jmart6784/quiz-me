@@ -193,20 +193,23 @@ const QuizShow = (props) => {
         <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
       </p>
       <br />
-      <div>
-        <label>Rate:</label><br />
-        <input
-          type="number"
-          name="value"
-          min="1"
-          max="5"
-          onChange={onRateChange}
-          value={rating.value}
-        />
-        <button onClick={submitRating}>Rate</button>
+      { 
+        user.current_user ? 
+          <div>
+            <label>Rate:</label><br />
+            <input
+              type="number"
+              name="value"
+              min="1"
+              max="5"
+              onChange={onRateChange}
+              value={rating.value}
+            />
+            <button onClick={submitRating}>Rate</button>
 
-        {rating.id === "" ? <p>Give a rating</p> : <p>My rating {rating.value}</p>}
-      </div>
+            {rating.id === "" ? <p>Give a rating</p> : <p>My rating {rating.value}</p>}
+          </div> : <p>Sign in to rate quiz</p>
+      }
       <br />
       <RatingCard ratingData={ratingData} />
       <br />
