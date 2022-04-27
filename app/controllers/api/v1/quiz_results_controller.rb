@@ -60,10 +60,10 @@ class Api::V1::QuizResultsController < ApplicationController
     end
   end
 
-  def destroy
-    quiz_result&.destroy
-    render json: { message: 'Results deleted' }
-  end
+  # def destroy
+  #   quiz_result&.destroy
+  #   render json: { message: 'Results deleted' }
+  # end
 
   def quiz_results_by_quiz_id
     unless Quiz.find_by(id: params[:quiz_id].to_i).nil?
