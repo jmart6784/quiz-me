@@ -22,7 +22,15 @@ const QuizShow = (props) => {
   });
 
   const [quizResults, setQuizResults] = useState([]);
-  const [rating, setRating] = useState({id: "", value: "", user_id: "", quiz_id: ""});
+  const [rating, setRating] = useState({ id: "", value: "", user_id: "", quiz_id: "" });
+  const [ratingData, setRatingData] = useState({
+    average: 0.0, 
+    value_1: 0, 
+    value_2: 0, 
+    value_3: 0, 
+    value_4: 0, 
+    value_5: 0
+  });
 
   useEffect(() => {
     fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
@@ -62,6 +70,16 @@ const QuizShow = (props) => {
         .then((response) => response.id ? setRating(response) : undefined)
         .catch(() => props.history.push("/"));
     }
+
+    fetch(`/api/v1/rating_data/${props.match.params.id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setRatingData(response))
+      .catch(() => props.history.push("/"));
   }, [user]);
 
   const deleteQuiz = () => {
