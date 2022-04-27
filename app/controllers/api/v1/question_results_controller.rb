@@ -86,10 +86,10 @@ class Api::V1::QuestionResultsController < ApplicationController
     end
   end
 
-  def destroy
-    question_result&.destroy
-    render json: { message: 'Question Result deleted' }
-  end
+  # def destroy
+  #   question_result&.destroy
+  #   render json: { message: 'Question Result deleted' }
+  # end
 
   def quiz_question_results
     quiz_result = QuizResult.find(params[:quiz_result_id])
