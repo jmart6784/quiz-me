@@ -4,6 +4,7 @@ import secondsToTime from "./form_helpers/secondsToTime";
 import QuizResultCard from "../quiz_result/components/QuizResultCard";
 import UserContext from "../context/UserContext";
 import RatingCard from "../rating/components/RatingCard";
+import RatingForm from "../rating/components/RatingForm";
 
 const QuizShow = (props) => {
   const [user, setUser] = useContext(UserContext);
@@ -195,20 +196,12 @@ const QuizShow = (props) => {
       <br />
       { 
         user.current_user ? 
-          <div>
-            <label>Rate:</label><br />
-            <input
-              type="number"
-              name="value"
-              min="1"
-              max="5"
-              onChange={onRateChange}
-              value={rating.value}
-            />
-            <button onClick={submitRating}>Rate</button>
-
-            {rating.id === "" ? <p>Give a rating</p> : <p>My rating {rating.value}</p>}
-          </div> : <p>Sign in to rate quiz</p>
+          <RatingForm
+            onRateChange={onRateChange}
+            rating={rating}
+            submitRating={submitRating} 
+          />
+        : <p>Sign in to rate quiz</p>
       }
       <br />
       <RatingCard ratingData={ratingData} />
