@@ -6,8 +6,7 @@ const QuizIndex = (props) => {
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
-    const url = "/api/v1/quizzes/index";
-    fetch(url)
+    fetch("/api/v1/quizzes/index")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -19,13 +18,10 @@ const QuizIndex = (props) => {
   }, []);
 
   const deleteQuiz = (id) => {
-    const url = `/api/v1/quizzes/destroy/${id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    fetch(url, {
+    fetch(`/api/v1/quizzes/destroy/${id}`, {
       method: "DELETE",
       headers: {
-        "X-CSRF-Token": token,
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
         "Content-Type": "application/json",
       },
     })
