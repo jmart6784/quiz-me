@@ -7,13 +7,13 @@ class Api::V1::QuestionResultsController < ApplicationController
     render json: question_results, status: 200
   end
 
-  def show
-    if question_result
-      render json: question_result
-    else
-      render json: question_result.errors
-    end
-  end
+  # def show
+  #   if question_result
+  #     render json: question_result
+  #   else
+  #     render json: question_result.errors
+  #   end
+  # end
 
   def create
     quiz_result = QuizResult.find(question_result_params[:quiz_result_id])
