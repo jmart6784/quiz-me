@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import AddOption from "./question_form_helper/AddOption";
+import UserContext from "../context/UserContext";
 
 const QuestionNew = (props) => {
+  const [user, setUser] = useContext(UserContext);
+  user.current_user ? "" : props.history.push('/');
+
   const [question, setQuestion] = useState({
     id: "",
     question_type: "one answer",

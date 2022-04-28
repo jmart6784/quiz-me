@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import AddQuestion from "./form_helpers/AddQuestion";
 import quizFormInfo from "./form_helpers/quiz_form_info";
 import Question from "./form_helpers/Question";
+import UserContext from "../context/UserContext";
 
 const QuizNew = (props) => {
+  const [user, setUser] = useContext(UserContext);
+  user.current_user ? "" : props.history.push('/');
+
   const [forms, setForms] = useState(quizFormInfo()[0]);
 
   const [clickOptions, setClickOptions] = useState(quizFormInfo()[1]);

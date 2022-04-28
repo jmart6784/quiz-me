@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import QuizResultCard from "./components/QuizResultCard";
 import quizStartObjects from "./quiz_start_helper/quizStartObjects";
+import UserContext from "../context/UserContext";
 
 const QuizResultShow = (props) => { 
+  const [user, setUser] = useContext(UserContext);
+  user.current_user ? "" : props.history.push('/');
+
   const [quizResult, setQuizResult] = useState(quizStartObjects()[1]);
 
   useEffect(() => { 

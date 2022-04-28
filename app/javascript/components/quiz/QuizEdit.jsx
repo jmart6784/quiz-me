@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import secondsToTime from "./form_helpers/secondsToTime";
+import UserContext from "../context/UserContext";
 
 const QuizEdit = (props) => {
+  const [user, setUser] = useContext(UserContext);
+  user.current_user ? "" : props.history.push('/');
+
   const [forms, setForms] = useState({
     cover: "",
     name: "",
