@@ -19,6 +19,8 @@ class Api::V1::QuestionResultsController < ApplicationController
     quiz_result = QuizResult.find(question_result_params[:quiz_result_id])
     question = Question.find(question_result_params[:question_id])
 
+    return unless quiz_result.user === current_user
+
     existing_ques_result = QuestionResult.find_by(
       question_id: question.id,
       quiz_result_id: quiz_result.id,
@@ -78,13 +80,13 @@ class Api::V1::QuestionResultsController < ApplicationController
     end
   end
 
-  def update
-    if question_result.update(question_result_params)
-      render json: {id: question_result.id, message: "Question results updated"}
-    else
-      render json: {id: question_result.id, message: 'Error: Cannot update question results'}, status: 422
-    end
-  end
+  # def update
+  #   if question_result.update(question_result_params)
+  #     render json: {id: question_result.id, message: "Question results updated"}
+  #   else
+  #     render json: {id: question_result.id, message: 'Error: Cannot update question results'}, status: 422
+  #   end
+  # end
 
   # def destroy
   #   question_result&.destroy
