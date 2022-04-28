@@ -10,7 +10,7 @@ class Api::V1::QuizResultsController < ApplicationController
   def create
     quiz = Quiz.find(quiz_result_params[:quiz_id])
 
-    on_going_quiz = QuizResult.where(user_id: current_user.id, quiz_id: quiz.id)
+    on_going_quiz = QuizResult.where(user_id: current_user.id, quiz_id: quiz.id, completed_at: nil)
 
     quiz_result = QuizResult.new(
       start: DateTime.now,
