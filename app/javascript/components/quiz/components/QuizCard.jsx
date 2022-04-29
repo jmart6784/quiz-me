@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const QuizCard = (props) => {
   const { quiz, secondsToTime, deleteQuiz } = props;
+  const [showDesc, setShowDes] = useState(false);
 
   let time = secondsToTime(quiz.time);
   let hours = parseInt(time.hours) <= 9 ? `0${time.hours}` : time.hours;
@@ -19,7 +20,13 @@ const QuizCard = (props) => {
       <div className="quiz-card-content">
         <p>Name: {quiz.name}</p>
 
-        <p>Description: {quiz.description}</p>
+        <div>
+          <button onClick={() => setShowDes(!showDesc)}>
+            {showDesc ? "Hide" : "Show"}
+          </button>
+
+          {showDesc ? <p>Description: {quiz.description}</p> : ""}
+        </div>
 
         {quiz.time > 0 ? (
           <p>
