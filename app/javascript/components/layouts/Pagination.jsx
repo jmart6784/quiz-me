@@ -48,7 +48,7 @@ const Pagination = props => {
         <div className="arrow left">ARROW LEFT</div>
       </button>
       {paginationRange.map(pageNumber => {
-        count += 1;
+        count_id += 1;
         if (pageNumber === DOTS) {
           return <li key={`dots-${pageNumber}-${count_id}`} className="pagination-item dots">...</li>;
         }
