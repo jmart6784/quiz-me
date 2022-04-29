@@ -50,8 +50,9 @@ const QuizIndex = (props) => {
 
   return (
     <div>
-      <h1>Quiz Index</h1>
-      {quizzes.length > 0 ? allQuizzes : noQuizzes}
+      <div className="quiz-index-container">
+        {quizzes.length > 0 ? allQuizzes : noQuizzes}
+      </div>
 
       <Pagination 
         currentPage={currentPage}

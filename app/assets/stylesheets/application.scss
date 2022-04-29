@@ -13,3 +13,65 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  font-family: "Oxygen",
+  sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  line-height: normal;
+}
+
+.background-image {
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+th,
+tr,
+label,
+li,
+i,
+em,
+span,
+div {
+  color: white;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #784BA0;
+  background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  background-attachment: fixed;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.0);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 255, 200);
+  border-radius: 20px;
+  border: 3px solid rgb(0, 255, 200);
+}
