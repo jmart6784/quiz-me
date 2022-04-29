@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 const QuizCard = (props) => {
   const { quiz, secondsToTime, deleteQuiz } = props;
 
+  let time = secondsToTime(quiz.time);
+  let hours = parseInt(time.hours) <= 9 ? `0${time.hours}` : time.hours;
+  let minutes = parseInt(time.minutes) <= 9 ? `0${time.minutes}` : time.minutes;
+  let seconds = parseInt(time.seconds) <= 9 ? `0${time.seconds}` : time.seconds;
+
   return (
     <div style={
         { backgroundImage: `url(${quiz.cover.url})` }
@@ -15,12 +20,11 @@ const QuizCard = (props) => {
         <p>Name: {quiz.name}</p>
 
         <p>Description: {quiz.description}</p>
+
         {quiz.time > 0 ? (
           <p>
             Time:{" "}
-            {`${secondsToTime(quiz.time).hours}:${
-              secondsToTime(quiz.time).minutes
-            }:${secondsToTime(quiz.time).seconds}`}
+            {`${hours}:${minutes}:${seconds}`}
           </p>
         ) : (
           <p>Not Timed</p>
