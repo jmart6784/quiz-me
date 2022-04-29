@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
 import secondsToTime from "./form_helpers/secondsToTime";
 import Pagination from "../layouts/Pagination";
+import QuizCard from "./components/QuizCard";
 
 const QuizIndex = (props) => {
   let pageSize = 10;
@@ -44,31 +44,7 @@ const QuizIndex = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  let allQuizzes = quizzesPage.map((quiz) => (
-    <div key={quiz.id}>
-      <p>Name: {quiz.name}</p>
-      <p>Description: {quiz.description}</p>
-      {quiz.time > 0 ? (
-        <p>
-          Time:{" "}
-          {`${secondsToTime(quiz.time).hours}:${
-            secondsToTime(quiz.time).minutes
-          }:${secondsToTime(quiz.time).seconds}`}
-        </p>
-      ) : (
-        <p>Not Timed</p>
-      )}
-      <Link to={`/quizzes/${quiz.id}`}>Show</Link>
-      <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
-      <button onClick={() => deleteQuiz(quiz.id)}>Delete</button>
-      <br />
-      <p>
-        By: <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
-      </p>
-
-      <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
-    </div>
-  ));
+  let allQuizzes = quizzesPage.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} secondsToTime={secondsToTime} deleteQuiz={deleteQuiz} />);
 
   let noQuizzes = <h1>No Quizzes yet.</h1>;
 
