@@ -4,7 +4,7 @@ import secondsToTime from "./form_helpers/secondsToTime";
 import Pagination from "../layouts/Pagination";
 
 const QuizIndex = (props) => {
-  let pageSize = 2;
+  let pageSize = 10;
   const [quizzes, setQuizzes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
