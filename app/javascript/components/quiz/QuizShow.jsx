@@ -1,12 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 import secondsToTime from "./form_helpers/secondsToTime";
 import QuizResultCard from "../quiz_result/components/QuizResultCard";
 import UserContext from "../context/UserContext";
 import RatingCard from "../rating/components/RatingCard";
 import RatingForm from "../rating/components/RatingForm";
+import Pagination from "../layouts/Pagination";
 
 const QuizShow = (props) => {
+  let pageSize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
   const [user, setUser] = useContext(UserContext);
 
   const [quiz, setQuiz] = useState({
@@ -33,6 +36,12 @@ const QuizShow = (props) => {
     value_4: 0, 
     value_5: 0
   });
+
+  const quizresultsPage = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return quizResults.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, quizResults]);
 
   useEffect(() => {
     fetch(`/api/v1/quizzes/show/${props.match.params.id}`)
@@ -115,7 +124,7 @@ const QuizShow = (props) => {
   if (user.current_user) { 
     quizResultsJsx = <p>No Results Yet.</p>;
 
-    quizResultsJsx = quizResults.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
+    quizResultsJsx = quizresultsPage.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
   }
 
   const onRateChange = (event) => {
@@ -209,6 +218,13 @@ const QuizShow = (props) => {
       <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
 
       {quizResultsJsx}
+
+      <Pagination 
+        currentPage={currentPage}
+        totalCount={quizResults.length}
+        pageSize={pageSize}
+        onPageChange={page => setCurrentPage(page)}
+      />
     </div>
   );
 };
