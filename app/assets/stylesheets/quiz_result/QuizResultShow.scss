@@ -1,5 +1,9 @@
 @import "../variables.scss";
 
+.qrs-parent {
+  padding-bottom: 100px;
+}
+
 .qrc-title {
   text-align: center;
   margin: 100px 0 50px 0;
@@ -26,4 +30,27 @@
 .qrc-back-link:hover {
   color: $aqua-blue;
   background-color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+  .qrc-title {
+    font-size: 35px;
+  }
+
+  .qrc-back-link {
+    font-size: 18px;
+    margin: 0 0 25px 25px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .qrc-title {
+    font-size: 30px;
+  }
+
+  .qrc-back-link {
+    padding: 7px 14px 7px 14px;
+    font-size: 16px;
+    margin: 0;
+  }
 }

@@ -19,7 +19,7 @@ const QuizResultShow = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="qrs-parent">
       <h1 className="qrc-title">Let's see how you did!</h1>
       <Link to={`/quizzes/${quizResult.quiz_id}`} className="qrc-back-link">
         <i className="fa-solid fa-hand-point-left"></i> Back
