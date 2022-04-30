@@ -9,16 +9,16 @@ const Nav = () => {
 
   if (user.current_user) {
     jsxResult = (
-      <div>
-        <Link to="/">HOME</Link>
-        <Link to="/users">Users Index</Link>
-        <Link to="/quizzes/new">Create Quiz</Link>
+      <div className="nav-parent">
+        <Link to="/"><i className="fa-solid fa-book-atlas"></i> Quiz Me</Link>
+        <Link to="/users"><i className="fa-solid fa-people-group"></i> People</Link>
+        <Link to="/quizzes/new"><i className="fa-solid fa-hammer"></i> Build Quiz</Link>
         <Link to={`/users/${user.current_user.id}`}>
-          {user.current_user.username}
+          <i className="fa-solid fa-face-laugh-beam"></i> {user.current_user.username}
         </Link>
-        <a href="/users/edit">Edit Profile</a>
+        <a href="/users/edit"><i className="fa-solid fa-gear"></i> Edit Profile</a>
         <a rel="nofollow" data-method="delete" href="/users/sign_out">
-          Logout
+          <i className="fa-solid fa-power-off"></i> Logout
         </a>
       </div>
     );
