@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import QuizResultCard from "./components/QuizResultCard";
 import quizStartObjects from "./quiz_start_helper/quizStartObjects";
 
@@ -20,6 +21,7 @@ const QuizResultShow = (props) => {
   return (
     <div>
       <h1>Quiz Result Show</h1>
+      <Link to={`/quizzes/${quizResult.quiz_id}`}>Back</Link>
       <QuizResultCard quizResult={quizResult} />
     </div>
   );
