@@ -46,7 +46,7 @@ const QuizIndex = (props) => {
 
   let allQuizzes = quizzesPage.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} secondsToTime={secondsToTime} deleteQuiz={deleteQuiz} />);
 
-  let noQuizzes = <h1>No Quizzes yet.</h1>;
+  let noQuizzes = <div className="quiz-index-no-quiz-parent"><h1>No Quizzes yet.</h1></div>;
 
   return (
     <div>
