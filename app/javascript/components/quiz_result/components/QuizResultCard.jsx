@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import dateFormat from "../../helpers/dateFormat";
 
 const QuizResultCard = (props) => {
+  const [showResults, setShowResults] = useState(false);
   let result = props.quizResult;
+  
+  result.quiz.questions = result.quiz.questions.map((q) => { 
+    if (result.start > q.created_at) {
+      return q;
+    }
+  }).filter((x) => x !== undefined);
 
   let questionResults = <p>No Questions submitted</p>;
 
   let correctScore = 0;
+
+  console.log(result);
 
   if (result.question_results.question_results.length > 0) {
     let count = 0;
@@ -60,10 +69,20 @@ const QuizResultCard = (props) => {
           <p>Not Complete</p>
       }
 
-      {questionResults}
       <p>Score: {`${correctScore}/${result.quiz.questions.length}`}</p>
-      <br />
       <p>{`${percentCorrect}%`}</p>
+
+      {
+        result.question_results.question_results.length > 0 ?
+          <div>
+            <button onClick={() => setShowResults(!showResults)}>
+              {showResults ? "Hide Results" : "Show Results"}
+            </button>
+            {showResults ? questionResults : ""}
+          </div>
+        :
+          ""
+      }
     </div>
   );
 };
