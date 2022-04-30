@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 const QuizCard = (props) => {
   const { quiz, secondsToTime, deleteQuiz } = props;
   const [showDesc, setShowDes] = useState(false);
+  const [user, setUser] = useContext(UserContext);
 
   let time = secondsToTime(quiz.time);
   let hours = parseInt(time.hours) <= 9 ? `0${time.hours}` : time.hours;
   let minutes = parseInt(time.minutes) <= 9 ? `0${time.minutes}` : time.minutes;
   let seconds = parseInt(time.seconds) <= 9 ? `0${time.seconds}` : time.seconds;
+
+  let userOptions = "";
+  
+  if (user.current_user) {
+    if (user.current_user.id === quiz.user.id) {
+      userOptions = <div className="quiz-card-options">
+        <Link to={`/quizzes/edit/${quiz.id}`} className="quiz-card-edit">Edit</Link>
+        <button onClick={() => confirm("Delete quiz?") ? deleteQuiz(quiz.id) : ""} className="quiz-card-delete">Delete</button>
+      </div>
+    }
+  }
 
   return (
     <div
@@ -18,10 +31,7 @@ const QuizCard = (props) => {
       className="quiz-cover-image background-image"
       key={quiz.id}
     >
-      <div className="quiz-card-options">
-        <Link to={`/quizzes/edit/${quiz.id}`} className="quiz-card-edit">Edit</Link>
-        <button onClick={() => deleteQuiz(quiz.id)} className="quiz-card-delete">Delete</button>
-      </div>
+      {userOptions}
 
       <div className="quiz-card-content">
         <p className="quiz-card-name">{quiz.name}</p>
