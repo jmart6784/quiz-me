@@ -43,6 +43,10 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .nav-parent {
+    border-radius: 0 0 0 0;
+  }
+
   .nav-parent > a {
     font-size: 13px;
     padding: 10px 5px 10px 5px;
