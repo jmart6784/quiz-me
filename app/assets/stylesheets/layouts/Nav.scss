@@ -23,3 +23,28 @@
 .nav-parent > a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+@media only screen and (max-width: 850px) {
+  .nav-parent > a {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .nav-icon {
+    display: none;
+  }
+
+  .nav-parent > a {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 0 0 0 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .nav-parent > a {
+    font-size: 13px;
+    padding: 10px 5px 10px 5px;
+  }
+}
