@@ -41,11 +41,14 @@ const quizStartObjects = () => {
     user_id: "",
     time: 0,
     quiz: {
-      id: "",
-      name: "",
-      description: "",
-      cover: { url: "" },
-      time: 0,
+      data: {
+        description: "",
+        id: "",
+        name: "",
+        time: 0,
+        updated_at: "",
+        user_id: "",
+      },
       questions: [],
     },
     user: {

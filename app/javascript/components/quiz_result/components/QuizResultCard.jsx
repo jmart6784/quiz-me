@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import dateFormat from "../../helpers/dateFormat";
 
 const QuizResultCard = (props) => {
@@ -51,7 +51,7 @@ const QuizResultCard = (props) => {
 
   return (
     <div>
-      <p>Quiz name: {result.quiz.name}</p>
+      <p>Quiz name: {result.quiz.data.name}</p>
       {
         result.finished ?
           <p>Completed: {`${dateTime[0]} ${dateTime[1].time}`}</p>
