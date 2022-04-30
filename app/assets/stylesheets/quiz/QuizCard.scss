@@ -106,3 +106,134 @@
   font-size: 13px;
   margin-top: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .quiz-card-content {
+    padding: 80px 10px 10px 10px;
+    width: 450px;
+    row-gap: 12px;
+  }
+
+  // .quiz-card-edit, .quiz-card-delete {
+  //   padding: 3px 7px 3px 7px;
+  //   font-size: 12px;
+  // }
+
+  .quiz-card-name {
+    font-size: 18px;
+  }
+
+  // .quiz-card-time,
+  // .quiz-card-user {
+  //   font-size: 12px;
+  // }
+
+  .quiz-card-start {
+    padding: 3px 12px 3px 12px;
+    font-size: 18px;
+  }
+
+  // .quiz-card-desc-btn {
+  //   font-size: 15px;
+  //   padding: 5px 0 5px 0;
+  // }
+
+  // .quiz-card-desc {
+  //   font-size: 13px;
+  // }
+}
+
+@media only screen and (max-width: 470px) {
+  .quiz-card-content {
+    width: 400px;
+    row-gap: 10px;
+  }
+
+  .quiz-card-name {
+    font-size: 16px;
+  }
+
+  .quiz-card-start {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .quiz-card-content {
+    width: 350px;
+    row-gap: 10px;
+  }
+
+  .quiz-card-edit, .quiz-card-delete {
+    font-size: 11px;
+  }
+
+  .quiz-card-name {
+    font-size: 17px;
+  }
+
+  .quiz-card-start {
+    font-size: 17px;
+  }
+
+  .quiz-card-desc {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .quiz-card-content {
+    padding: 70px 8px 8px 8px;
+    width: 300px;
+  }
+
+  .quiz-card-name {
+    font-size: 16px;
+  }
+
+  .quiz-card-start {
+    padding: 3px 10px 3px 10px;
+    font-size: 16px;
+  }
+
+  .quiz-card-desc-btn {
+    font-size: 13px;
+  }
+
+  .quiz-card-desc {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .quiz-card-content {
+    width: 225px;
+  }
+
+  .quiz-card-edit, .quiz-card-delete {
+    padding: 3px 5px 3px 5px;
+    font-size: 11px;
+  }
+
+  .quiz-card-name {
+    font-size: 15px;
+  }
+
+  .quiz-card-time,
+  .quiz-card-user {
+    font-size: 12px;
+  }
+
+  .quiz-card-start {
+    padding: 3px 8px 3px 8px;
+    font-size: 15px;
+  }
+
+  .quiz-card-desc-btn {
+    font-size: 12px;
+  }
+
+  .quiz-card-desc {
+    font-size: 10px;
+  }
+}

@@ -66,7 +66,7 @@ const Pagination = props => {
           onClick={onNext}
           disabled={currentPage === lastPage}
         >
-          <i class="fa-solid fa-right-long"></i>
+          <i className="fa-solid fa-right-long"></i>
         </button>
       </div>   
     </div>
