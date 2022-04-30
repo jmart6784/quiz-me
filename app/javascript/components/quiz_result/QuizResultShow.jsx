@@ -20,8 +20,10 @@ const QuizResultShow = (props) => {
 
   return (
     <div>
-      <h1>Quiz Result Show</h1>
-      <Link to={`/quizzes/${quizResult.quiz_id}`}>Back</Link>
+      <h1 className="qrc-title">Let's see how you did!</h1>
+      <Link to={`/quizzes/${quizResult.quiz_id}`} className="qrc-back-link">
+        <i className="fa-solid fa-hand-point-left"></i> Back
+      </Link>
 
       <div className="quiz-result-card-parent">
         <QuizResultCard quizResult={quizResult} />
