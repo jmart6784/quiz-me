@@ -45,3 +45,49 @@
 #disabled-page-btn:hover {
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
+
+@media only screen and (max-width: 600px) {
+  .pagination-controls {
+    column-gap: 15px;
+    padding: 7px;
+  }
+
+  .pagination-controls>button {
+    padding: 5px 12px 5px 12px;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .pagination-controls {
+    column-gap: 10px;
+    padding: 5px;
+  }
+
+  .pagination-controls>button {
+    padding: 5px 10px 5px 10px;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .pagination-controls {
+    column-gap: 8px;
+  }
+
+  .pagination-controls>button {
+    padding: 5px 8px 5px 8px;
+    font-size: 11.5px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .pagination-controls {
+    column-gap: 5px;
+  }
+
+  .pagination-controls>button {
+    padding: 6px;
+    font-size: 11.5px;
+  }
+}
