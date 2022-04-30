@@ -48,9 +48,10 @@ const QuizResultCard = (props) => {
   }
 
   let dateTime = dateFormat(result.completed_at);
+  let percentCorrect = (((correctScore).toFixed(1) / (result.quiz.questions.length).toFixed(1)) * 100).toFixed(1);
 
   return (
-    <div>
+    <div className="quiz-result-card">
       <p>Quiz name: {result.quiz.data.name}</p>
       {
         result.finished ?
@@ -62,6 +63,7 @@ const QuizResultCard = (props) => {
       {questionResults}
       <p>Score: {`${correctScore}/${result.quiz.questions.length}`}</p>
       <br />
+      <p>{`${percentCorrect}%`}</p>
     </div>
   );
 };
