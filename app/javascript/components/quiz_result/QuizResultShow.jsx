@@ -22,7 +22,10 @@ const QuizResultShow = (props) => {
     <div>
       <h1>Quiz Result Show</h1>
       <Link to={`/quizzes/${quizResult.quiz_id}`}>Back</Link>
-      <QuizResultCard quizResult={quizResult} />
+
+      <div className="quiz-result-card-parent">
+        <QuizResultCard quizResult={quizResult} />
+      </div>
     </div>
   );
 }
