@@ -10,8 +10,12 @@ const Nav = () => {
   if (user.current_user) {
     jsxResult = (
       <div className="nav-parent">
-        <Link to="/"><i className="fa-solid fa-book-atlas"></i> Quiz Me</Link>
-        <Link to="/users"><i className="fa-solid fa-people-group"></i> People</Link>
+        <Link to="/">
+          <i className="fa-solid fa-book-atlas"></i> Quiz Me
+        </Link>
+        <Link to="/users">
+          <i className="fa-solid fa-people-group"></i> People
+        </Link>
         <Link to="/quizzes/new"><i className="fa-solid fa-hammer"></i> Build Quiz</Link>
         <Link to={`/users/${user.current_user.id}`}>
           <i className="fa-solid fa-face-laugh-beam"></i> {user.current_user.username}
@@ -24,10 +28,19 @@ const Nav = () => {
     );
   } else {
     jsxResult = (
-      <div>
-        <Link to="/">HOME</Link>
-        <a href="/users/sign_in">Sign In</a>
-        <a href="/users/sign_up">Sign Up</a>
+      <div className="nav-parent">
+        <Link to="/">
+          <i className="fa-solid fa-book-atlas"></i> Quiz Me
+        </Link>
+        <Link to="/users">
+          <i className="fa-solid fa-people-group"></i> People
+        </Link>
+        <a href="/users/sign_in">
+          <i className="fa-solid fa-person-booth"></i> Sign In
+        </a>
+        <a href="/users/sign_up">
+          <i className="fa-solid fa-pencil"></i> Sign Up
+        </a>
       </div>
     );
   }
