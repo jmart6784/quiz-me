@@ -11,38 +11,43 @@ const QuizCard = (props) => {
   let seconds = parseInt(time.seconds) <= 9 ? `0${time.seconds}` : time.seconds;
 
   return (
-    <div style={
+    <div
+      style={
         { backgroundImage: `url(${quiz.cover.url})` }
       }
       className="quiz-cover-image background-image"
       key={quiz.id}
     >
+      <div className="quiz-card-options">
+        <Link to={`/quizzes/edit/${quiz.id}`} className="quiz-card-edit">Edit</Link>
+        <button onClick={() => deleteQuiz(quiz.id)} className="quiz-card-delete">Delete</button>
+      </div>
+
       <div className="quiz-card-content">
-        <p>Name: {quiz.name}</p>
-
-        <div>
-          <button onClick={() => setShowDes(!showDesc)}>
-            {showDesc ? "Hide" : "Show"}
-          </button>
-
-          {showDesc ? <p>Description: {quiz.description}</p> : ""}
-        </div>
+        <p className="quiz-card-name">{quiz.name}</p>
 
         {quiz.time > 0 ? (
-          <p>
-            Time:{" "}
+          <p className="quiz-card-time">
+            <i className="fa-solid fa-clock"></i>{" "}
             {`${hours}:${minutes}:${seconds}`}
           </p>
         ) : (
-          <p>Not Timed</p>
+          <p className="quiz-card-time"><i className="fa-solid fa-infinity"></i> Unlimited time</p>
         )}
-        <Link to={`/quizzes/${quiz.id}`}>Show</Link>
-        <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
-        <button onClick={() => deleteQuiz(quiz.id)}>Delete</button>
-        <br />
-        <p>
-          By: <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
-        </p>
+        
+        <Link to={`/users/${quiz.user.id}`} className="quiz-card-user">
+          <i className="fa-solid fa-user"></i> {quiz.user.username}
+        </Link>
+
+        <Link to={`/quizzes/${quiz.id}`} className="quiz-card-start">Start</Link>
+
+        <div>
+          <button onClick={() => setShowDes(!showDesc)} className="quiz-card-desc-btn">
+            {showDesc ? "- Description" : "+ Description"}
+          </button>
+
+          {showDesc ? <p className="quiz-card-desc">{quiz.description}</p> : ""}
+        </div>
       </div>
     </div>
   );
