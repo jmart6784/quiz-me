@@ -18,7 +18,7 @@ const UnAuthQuizResult = (props) => {
   }
 
   let qr = data.quizResult;
-  qr["quiz"] = data.quiz;
+  qr["quiz"]["data"] = data.quiz;
   qr["question_results"] = {
     question_results: data.questionResults,
     questions: data.quiz.questions
