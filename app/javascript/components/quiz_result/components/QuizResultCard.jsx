@@ -67,7 +67,7 @@ const QuizResultCard = (props) => {
   }
 
   let dateTime = dateFormat(result.completed_at);
-  let percentCorrect = parseFloat((((correctScore).toFixed(1) / (result.quiz.questions.length).toFixed(1)) * 100).toFixed(1));
+  let percentCorrect = parseFloat((((correctScore).toFixed(1) / (result.question_results.questions.length).toFixed(1)) * 100).toFixed(1));
 
   let pcColor = { color: "green", border: "3px solid green" };
   
@@ -94,7 +94,7 @@ const QuizResultCard = (props) => {
             }
           </p>
           <p className="quiz-result-card-cs">
-            Score {`${correctScore}/${result.quiz.questions.length}`}
+            Score {`${correctScore}/${result.question_results.questions.length}`}
           </p>
         </div>
         <div className="quiz-result-card-info-right">
