@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useMemo } from "react";
 import UserContext from "../context/UserContext";
 import QuizCard from "../quiz/components/QuizCard";
 import secondsToTime from "../quiz/form_helpers/secondsToTime";
+import Pagination from "../layouts/Pagination";
 
 const UserShow = (props) => {
   const [user, setUser] = useContext(UserContext);
@@ -15,7 +16,16 @@ const UserShow = (props) => {
     bio: "",
     avatar: { url: "" },
   });
+
+  let pageSize = 12;
   const [quizzes, setQuizzes] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const quizzesPage = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return quizzes.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, quizzes]);
 
   useEffect(() => {
     const {
@@ -83,7 +93,7 @@ const UserShow = (props) => {
 
   let quizzesJsx = <div className="quiz-index-no-quiz-parent"><h1>No Quizzes yet.</h1></div>;
   if (quizzes.length > 0) {
-    quizzesJsx = quizzes.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} secondsToTime={secondsToTime} deleteQuiz={deleteQuiz} />);
+    quizzesJsx = quizzesPage.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} secondsToTime={secondsToTime} deleteQuiz={deleteQuiz} />);
   }
 
   return (
@@ -104,6 +114,13 @@ const UserShow = (props) => {
       </div>
 
       <div className="quiz-index-container">{quizzesJsx}</div>
+
+      <Pagination 
+        currentPage={currentPage}
+        totalCount={quizzes.length}
+        pageSize={pageSize}
+        onPageChange={page => setCurrentPage(page)}
+      />
     </div>
   );
 };
