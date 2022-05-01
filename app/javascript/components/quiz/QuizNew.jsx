@@ -179,7 +179,7 @@ const QuizNew = (props) => {
   };
 
   return (
-    <div>
+    <div className="qn-parent-container">
       <h1 className="qn-title">Build Quiz</h1>
 
       <form onSubmit={onSubmit} className="qn-form">

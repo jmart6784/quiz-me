@@ -23,7 +23,7 @@ const Question = (props) => {
                 i.toString()
               )}
             />
-            <label>{`Option ${i}`}</label>
+            <label className="question-option-label">{`Option ${i}`}</label>
           </div>
         );
       }
@@ -39,7 +39,7 @@ const Question = (props) => {
                 i.toString()
               )}
             />
-            <label>{`Option ${i}`}</label>
+            <label className="question-option-label">{`Option ${i}`}</label>
           </div>
         );
       }
@@ -49,12 +49,12 @@ const Question = (props) => {
   };
 
   return (
-    <div>
-      <h3>Question #{ques + 1}</h3>
+    <div className="question-parent-container">
+      <h3 className="question-number">Question #{ques + 1}</h3>
 
-      <div>
-        <label>
-          <span>Type</span>
+      <div className="question-form-input-div">
+        <div>
+          <span>Type </span>
           <select
             name="question_type"
             onChange={(e) => props.handleQuestionType(e, ques)}
@@ -66,24 +66,19 @@ const Question = (props) => {
               Select all (multiple answers)
             </option>
           </select>
-        </label>
+        </div>
 
-        <br />
-        <br />
-
-        <label>
-          <span>Question</span>
+        <div>
+          <p className="qn-label">Question</p>
           <textarea
             name="question"
             rows="5"
             required
             onChange={(e) => props.onQuestionChange(e, ques)}
             value={forms["questions"][ques]["question"]}
+            className="qn-text-area"
           />
-        </label>
-
-        <br />
-        <br />
+        </div>
 
         <Option
           question={ques}
@@ -92,9 +87,6 @@ const Question = (props) => {
           onQuestionChange={props.onQuestionChange}
           forms={forms}
         />
-
-        <br />
-        <br />
 
         <Option
           question={ques}
@@ -132,6 +124,7 @@ const Question = (props) => {
             });
           }
         }}
+        className="qn-add-ques qn-toggle-btn"
       >
         Add Option
       </button>
@@ -155,15 +148,15 @@ const Question = (props) => {
               clickOptions[`question_${ques + 1}`].start
             );
           }}
+          className="qn-remove-ques qn-toggle-btn"
         >
           Remove Option
         </button>
       ) : (
         ""
       )}
-
-      <br />
-      <br />
+      
+      <p className="question-option-label">Select answers: </p>
 
       {answerOptions()}
     </div>

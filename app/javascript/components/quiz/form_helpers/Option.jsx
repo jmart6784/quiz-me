@@ -8,28 +8,30 @@ const Option = (props) => {
 
   if (num > 2) {
     optionJsx = (
-      <label>
-        <span>Option {num}</span>
+      <div className="qn-field-div">
+        <p className="qn-label">Option {num}</p>
         <textarea
           name={`option_${num}`}
           rows="5"
           onChange={(e) => props.onQuestionChange(e, ques)}
           value={forms["questions"][ques][`option_${num}`]}
+          className="qn-text-area"
         />
-      </label>
+      </div>
     );
   } else {
     optionJsx = (
-      <label>
-        <span>Option {num}</span>
+      <div>
+        <p className="qn-label">Option {num}</p>
         <textarea
           name={`option_${num}`}
           rows="5"
           required
           onChange={(e) => props.onQuestionChange(e, ques)}
           value={forms["questions"][ques][`option_${num}`]}
+          className="qn-text-area"
         />
-      </label>
+      </div>
     );
   }
 
