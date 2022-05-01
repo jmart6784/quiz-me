@@ -1,0 +1,136 @@
+@import "../variables.scss";
+
+.qn-title {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.qn-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+  padding: 20px;
+  border-radius: 10px;
+  // max-width: 920px;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: auto;
+}
+
+.qn-quiz-form-section {
+  display: flex;
+  row-gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.qn-cover-image-div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.qn-image {
+  height: 150px;
+  // width: 150px;
+  width: 100%;
+  align-self: center;
+}
+
+.qn-label {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.qn-field-div {
+  width: 100%;
+}
+
+.qn-text-input, .qn-text-area {
+  font-size: 13px;
+}
+
+.qn-text-input {
+  border: 0px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.qn-text-area {
+  resize: none;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.qn-timed-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  flex-direction: column;
+}
+
+.qn-time-input {
+  width: 50px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 0px;
+}
+
+.qn-btn-section {
+  width: 100%;
+  display: flex;
+  row-gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.qn-toggle-btn {
+  width: 100%;
+  border: 0px;
+  padding: 5px 0 5px 0;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.qn-submit-quiz {
+  background-color: $light-blue;
+  color: white;
+  border: 3px solid $light-blue;
+}
+
+.qn-submit-quiz:hover {
+  background-color: white;
+  color: $light-blue;
+}
+
+.qn-add-ques {
+  background-color: $green;
+  color: white;
+  border: 3px solid $green;
+}
+
+.qn-add-ques:hover {
+  background-color: white;
+  color: $green;
+}
+
+.qn-remove-ques {
+  background-color: $danger-red;
+  color: white;
+  border: 3px solid $danger-red;
+}
+
+.qn-remove-ques:hover {
+  background-color: white;
+  color: $danger-red;
+}

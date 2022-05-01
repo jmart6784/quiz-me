@@ -180,214 +180,201 @@ const QuizNew = (props) => {
 
   return (
     <div>
-      <h1>New Quiz</h1>
+      <h1 className="qn-title">Build Quiz</h1>
 
-      <form onSubmit={onSubmit}>
-        {forms.cover != "" ? (
-          <div>
-            <img
-              src={forms.cover}
-              alt="quiz cover image"
-              height="200"
-              width="325"
+      <form onSubmit={onSubmit} className="qn-form">
+        <div className="qn-quiz-form-section">
+
+          <div className="qn-cover-image-div">
+            {forms.cover != "" ? (
+              <div
+                style={{backgroundImage: `url(${forms.cover})`}}
+                className="qn-image background-image"
+              ></div>
+            ) : (
+              ""
+            )}
+
+            <p className="qn-label">Cover Image</p>
+            <input
+              type="file"
+              accept="image/*"
+              name="cover"
+              id="quizCover"
+              onChange={(e) => chooseImage(e)}
+              onClick={(e) => (e.target.value = null)}
             />
-
-            <br />
           </div>
-        ) : (
-          ""
-        )}
 
-        <label htmlFor="quizCover">
-          <span>Cover Image</span>
-          <input
-            type="file"
-            accept="image/*"
-            name="cover"
-            id="quizCover"
-            onChange={(e) => chooseImage(e)}
-            onClick={(e) => (e.target.value = null)}
-          />
-        </label>
+          <div className="qn-field-div">
+            <p className="qn-label">Quiz Name</p>
+            <input
+              type="text"
+              name="name"
+              id="quizName"
+              required
+              onChange={onChange}
+              className="qn-text-input"
+            />
+          </div>
 
-        <br />
-        <br />
+          <div className="qn-field-div">
+            <p className="qn-label">Description</p>
+            <textarea
+              name="description"
+              id="quizDescription"
+              required
+              onChange={onChange}
+              className="qn-text-area"
+              rows="5"
+            />
+          </div>
 
-        <label htmlFor="quizName">
-          <span>Quiz Name</span>
-          <input
-            type="text"
-            name="name"
-            id="quizName"
-            required
-            onChange={onChange}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label htmlFor="quizDescription">
-          <span>Description</span>
-          <input
-            type="text"
-            name="description"
-            id="quizDescription"
-            required
-            onChange={onChange}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          <input
-            type="checkbox"
-            name={`isTimed`}
-            value={forms["isTimed"]}
-            onChange={(e) =>
-              setForms({
-                ...forms,
-                isTimed: !forms["isTimed"],
-                hours: "0",
-                minutes: "0",
-                seconds: "0",
-              })
-            }
-            checked={forms["isTimed"]}
-          />
-          Timed?
-        </label>
-
-        <br />
-        <br />
-
-        {forms["isTimed"] ? (
           <div>
-            <label>
-              <span>Time</span>
+            <span>
               <input
-                type="number"
-                name="hours"
-                id="quizHours"
-                onChange={limitNumbers}
-                value={forms["hours"]}
+                type="checkbox"
+                name={`isTimed`}
+                value={forms["isTimed"]}
+                onChange={(e) =>
+                  setForms({
+                    ...forms,
+                    isTimed: !forms["isTimed"],
+                    hours: "0",
+                    minutes: "0",
+                    seconds: "0",
+                  })
+                }
+                checked={forms["isTimed"]}
               />
-              Hours
-            </label>
-
-            <label>
-              <input
-                type="number"
-                name="minutes"
-                id="quizMinutes"
-                onChange={limitNumbers}
-                value={forms["minutes"]}
-              />
-              Minutes
-            </label>
-
-            <label>
-              <input
-                type="number"
-                name="seconds"
-                id="quizSeconds"
-                onChange={limitNumbers}
-                value={forms["seconds"]}
-              />
-              Seconds
-            </label>
-
-            <br />
-            <br />
-
-            <p>
-              Max: 24h 0m 0s:{" "}
-              {`${forms["hours"]}h ${forms["minutes"]}m ${forms["seconds"]}s`}
-            </p>
+              Timed?
+            </span>
           </div>
-        ) : (
-          ""
-        )}
 
-        <Question
-          question="1"
-          clickOptions={clickOptions}
-          setClickOptions={setClickOptions}
-          forms={forms}
-          onChange={onChange}
-          onQuestionChange={onQuestionChange}
-          handleRadioChange={handleRadioChange}
-          handleCheckbox={handleCheckbox}
-          clearAnswers={clearAnswers}
-          handleQuestionType={handleQuestionType}
-        />
+          {forms["isTimed"] ? (
+            <div className="qn-timed-div">
+              <div>
+                <input
+                  type="number"
+                  name="hours"
+                  id="quizHours"
+                  onChange={limitNumbers}
+                  value={forms["hours"]}
+                  className="qn-time-input"
+                /> Hours
+              </div>
 
-        {clickQuestions.question_1.isClicked ? (
-          <AddQuestion
-            onChange={onChange}
-            onQuestionChange={onQuestionChange}
-            number={clickQuestions.question_1.number}
+              <div>
+                <input
+                  type="number"
+                  name="minutes"
+                  id="quizMinutes"
+                  onChange={limitNumbers}
+                  value={forms["minutes"]}
+                  className="qn-time-input"
+                /> Minutes
+              </div>
+
+              <div>
+                <input
+                  type="number"
+                  name="seconds"
+                  id="quizSeconds"
+                  onChange={limitNumbers}
+                  value={forms["seconds"]}
+                  className="qn-time-input"
+                /> Seconds
+              </div>
+
+              <p>Max: 24h 0m 0s</p>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+        
+        <div className="qn-quiz-form-section">
+          <Question
+            question="1"
             clickOptions={clickOptions}
             setClickOptions={setClickOptions}
             forms={forms}
+            onChange={onChange}
+            onQuestionChange={onQuestionChange}
             handleRadioChange={handleRadioChange}
             handleCheckbox={handleCheckbox}
             clearAnswers={clearAnswers}
             handleQuestionType={handleQuestionType}
           />
-        ) : (
-          ""
-        )}
 
-        {clickQuestions.question_1.number != 50 ? (
-          <button
-            type="button"
-            onClick={() => {
-              if (clickQuestions.question_1.number < 50) {
-                setClickQuestions({
-                  ...clickQuestions,
-                  question_1: {
-                    isClicked: true,
-                    number: clickQuestions.question_1.number + 1,
-                  },
-                });
-              }
-            }}
-          >
-            Add Question
+          {clickQuestions.question_1.isClicked ? (
+            <AddQuestion
+              onChange={onChange}
+              onQuestionChange={onQuestionChange}
+              number={clickQuestions.question_1.number}
+              clickOptions={clickOptions}
+              setClickOptions={setClickOptions}
+              forms={forms}
+              handleRadioChange={handleRadioChange}
+              handleCheckbox={handleCheckbox}
+              clearAnswers={clearAnswers}
+              handleQuestionType={handleQuestionType}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+        
+        <div className="qn-btn-section">
+          {clickQuestions.question_1.number != 50 ? (
+            <button
+              type="button"
+              onClick={() => {
+                if (clickQuestions.question_1.number < 50) {
+                  setClickQuestions({
+                    ...clickQuestions,
+                    question_1: {
+                      isClicked: true,
+                      number: clickQuestions.question_1.number + 1,
+                    },
+                  });
+                }
+              }}
+              className="qn-toggle-btn qn-add-ques"
+            >
+              + Add Question
+            </button>
+          ) : (
+            ""
+          )}
+
+          {clickQuestions.question_1.number != 1 ? (
+            <button
+              type="button"
+              onClick={() => {
+                if (clickQuestions.question_1.number < 50) {
+                  setClickQuestions({
+                    ...clickQuestions,
+                    question_1: {
+                      isClicked: true,
+                      number: clickQuestions.question_1.number - 1,
+                    },
+                  });
+                }
+                resetQuestionForm(clickQuestions.question_1.number);
+              }}
+              className="qn-toggle-btn qn-remove-ques"
+            >
+              - Remove Question
+            </button>
+          ) : (
+            ""
+          )}
+
+          <button type="submit" className="qn-toggle-btn qn-submit-quiz">
+            <i className="fa-solid fa-hammer"></i> Build Quiz
           </button>
-        ) : (
-          ""
-        )}
-
-        {clickQuestions.question_1.number != 1 ? (
-          <button
-            type="button"
-            onClick={() => {
-              if (clickQuestions.question_1.number < 50) {
-                setClickQuestions({
-                  ...clickQuestions,
-                  question_1: {
-                    isClicked: true,
-                    number: clickQuestions.question_1.number - 1,
-                  },
-                });
-              }
-              resetQuestionForm(clickQuestions.question_1.number);
-            }}
-          >
-            Remove Question
-          </button>
-        ) : (
-          ""
-        )}
-
-        <br />
-        <br />
-
-        <button type="submit">Create Quiz</button>
+        </div>
       </form>
     </div>
   );
