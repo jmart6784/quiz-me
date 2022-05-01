@@ -9,12 +9,17 @@ const RatingForm = (props) => {
         name="value"
         min="1"
         max="5"
-        onChange={props.onRateChange}
+        onChange={(e) => props.onRateChange(e)}
         value={props.rating.value}
       />
       <button onClick={props.submitRating}>Rate</button>
 
-      {props.rating.id === "" ? <p>Give a rating</p> : <p>My rating {props.rating.value}</p>}
+      {
+        props.rating.id === "" ?
+          <p>Give a rating</p>
+        :
+          <p>My rating {props.rating.value} <i className="fa-solid fa-star star"></i></p>
+      }
     </div>
   );
 };

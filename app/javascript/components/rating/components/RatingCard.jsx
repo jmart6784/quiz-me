@@ -4,13 +4,15 @@ const RatingCard = (props) => {
   let data = props.ratingData;
 
   return (
-    <div>
-      <p>Average: {data.average}</p>
-      <p>1 Star: {data.value_1}</p>
-      <p>2 Star: {data.value_2}</p>
-      <p>3 Star: {data.value_3}</p>
-      <p>4 Star: {data.value_4}</p>
-      <p>5 Star: {data.value_5}</p>
+    <div className="rating-card-data">
+      <p className="rating-card-average"><i className="fa-solid fa-star star"></i> {data.average}</p>
+      <div>
+        <p>1 <i className="fa-solid fa-star star"></i> {data.value_1}</p>
+        <p>2 <i className="fa-solid fa-star star"></i> {data.value_2}</p>
+        <p>3 <i className="fa-solid fa-star star"></i> {data.value_3}</p>
+        <p>4 <i className="fa-solid fa-star star"></i> {data.value_4}</p>
+        <p>5 <i className="fa-solid fa-star star"></i> {data.value_5}</p>
+      </div>
     </div>
   );
 };
