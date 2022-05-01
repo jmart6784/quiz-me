@@ -178,46 +178,72 @@ const QuizShow = (props) => {
       .catch((error) => console.log(error.message));
   };
 
+  let userOptions = "";
+
+  let time = secondsToTime(quiz.time);
+  let hours = parseInt(time.hours) <= 9 ? `0${time.hours}` : time.hours;
+  let minutes = parseInt(time.minutes) <= 9 ? `0${time.minutes}` : time.minutes;
+  let seconds = parseInt(time.seconds) <= 9 ? `0${time.seconds}` : time.seconds;
+
+  if (user.current_user) {
+    if (user.current_user.id === quiz.user.id) {
+      userOptions = <div className="quiz-show-user-options">
+        <Link to={`/quizzes/edit/${quiz.id}`} className="user-show-edit-btn">Edit</Link>
+        <button onClick={() => confirm("Delete quiz?") ? deleteQuiz() : ""} className="user-show-delete-btn">
+          Delete
+        </button>
+      </div>
+    } 
+  }
+
   return (
     <div>
-      <h1>Quiz Show</h1>
-      <h3>Name: {quiz.name}</h3>
-      <p>Description: {quiz.description}</p>
-      {
-        quiz.time > 0 ?
-          <p>Time: {`${quiz.hours}:${quiz.minutes}:${quiz.seconds}`}</p>
-          :
-          <p>Not timed</p>
-      }
-      {user.current_user ? 
-        <div>
-          <Link to={`/quizzes/edit/${quiz.id}`}>Edit</Link>
-          <button onClick={deleteQuiz}>Delete</button>
-          <br />
-          <button onClick={startQuiz}>Start Quiz</button>
-        </div>
-        : <Link to={`/ua_quiz_start/${quiz.id}`}>Start Quiz</Link>
-      }
-      <p>
-        Created by:{" "}
-        <Link to={`/users/${quiz.user.id}`}>{quiz.user.username}</Link>
-      </p>
-      <br />
-      { 
-        user.current_user ? 
-          <RatingForm
-            onRateChange={onRateChange}
-            rating={rating}
-            submitRating={submitRating} 
-          />
-        : <p>Sign in to rate quiz</p>
-      }
-      <br />
-      <RatingCard ratingData={ratingData} />
-      <br />
-      <img src={quiz.cover.url} alt="quiz cover" height="400" width="600" />
+      <div
+        style={{ backgroundImage: `url(${quiz.cover.url})` }} 
+        className="background-image"
+      >
+        <div className="quiz-show-tint">
+          <p className="quiz-show-name">{quiz.name}</p>
+          <p className="quiz-show-desc"><strong>Description:</strong>
+            <br />{quiz.description}
+          </p>
+          {
+            quiz.time > 0 ?
+              <p className="quiz-show-time">
+                <i className="fa-solid fa-clock"></i> {`${hours}:${minutes}:${seconds}`}
+              </p>
+              :
+              <p className="quiz-show-time">
+                <i className="fa-solid fa-clock"></i> Unlimited time
+              </p>
+          }
+          <Link to={`/users/${quiz.user.id}`} className="quiz-show-author">
+            <i className="fa-solid fa-user"></i> {quiz.user.username}
+          </Link>
+          {
+            user.current_user ?
+              <button onClick={startQuiz} className="quiz-show-start">Start Quiz</button>
+            : <Link to={`/ua_quiz_start/${quiz.id}`} className="quiz-show-start">Start Quiz</Link>
+          }
 
-      {quizResultsJsx}
+          {userOptions}
+        </div>
+      </div>
+
+      <div className="rating-parent-div">
+          { 
+            user.current_user ? 
+              <RatingForm
+                onRateChange={onRateChange}
+                rating={rating}
+                submitRating={submitRating} 
+              />
+            : <p>Sign in to rate quiz</p>
+          }
+          <RatingCard ratingData={ratingData} />
+      </div>
+
+      <div className="quiz-result-card-parent">{quizResultsJsx}</div>
 
       <Pagination 
         currentPage={currentPage}
