@@ -80,3 +80,39 @@
   background-color: $danger-red;
   border: 3px solid $danger-red;
 }
+
+@media only screen and (max-width: 600px) {
+  .quiz-show-tint {
+    row-gap: 15px;
+  }
+  
+  .quiz-show-name {
+    font-size: 20px;
+  }
+  
+  .quiz-show-desc {
+    font-size: 12px;
+  }
+  
+  .quiz-show-time,
+  .quiz-show-author {
+    font-size: 11px;
+  }
+  
+  .quiz-show-start {
+    padding: 7px 0 7px 0;
+    font-size: 16px;
+  }
+  
+  .quiz-show-user-options {
+    padding: 7px;
+  }
+  
+  .user-show-edit-btn,
+  .user-show-delete-btn {
+    text-align: center;
+    border-radius: 10px;
+    padding: 3px 7px 3px 7px;
+    font-size: 14px;
+  }
+}
