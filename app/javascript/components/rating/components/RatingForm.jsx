@@ -17,7 +17,8 @@ const RatingForm = (props) => {
 
   return (
     <div>
-      <div className="rc-form-btn-div">{stars}</div>
+      <h3 className="rf-title">Rate This Quiz</h3>
+      <div className="rf-form-btn-div">{stars}</div>
     </div>
   );
 };

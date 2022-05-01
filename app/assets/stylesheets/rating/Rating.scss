@@ -16,7 +16,7 @@
 }
 
 .rating-card-data {
-  border: 3px solid rgb(255, 255, 255);
+  border-top: 3px solid rgb(255, 255, 255);
   border-radius: 10px;
   width: fit-content;
   padding: 20px;
@@ -33,7 +33,14 @@
   color: yellow;
 }
 
-.rc-form-btn-div {
+.rf-title {
+  font-size: 20px;
+  font-weight: 900;
+  width: 100%;
+  text-align: center;
+}
+
+.rf-form-btn-div {
   display: flex;
   column-gap: 5px;
 }
