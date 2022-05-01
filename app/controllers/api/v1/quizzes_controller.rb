@@ -72,6 +72,7 @@ class Api::V1::QuizzesController < ApplicationController
 
   def quizzes_by_user
     quizzes = Quiz.where(user_id: params[:user_id])
+    render json: quizzes
   end
 
   private
