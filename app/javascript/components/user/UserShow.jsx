@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import UserContext from "../context/UserContext";
+import QuizCard from "../quiz/components/QuizCard";
+import secondsToTime from "../quiz/form_helpers/secondsToTime";
 
 const UserShow = (props) => {
   const [user, setUser] = useContext(UserContext);
@@ -42,6 +44,24 @@ const UserShow = (props) => {
       .then((response) => setQuizzes(response))
       .catch(() => props.history.push("/"));
   }, [props.match.params.id]);
+
+  const deleteQuiz = (id) => {
+    fetch(`/api/v1/quizzes/destroy/${id}`, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(() => window.location.reload())
+      .catch((error) => console.log(error.message));
+  };
   
   let editLink = "";
   if (user.current_user) {
@@ -61,6 +81,11 @@ const UserShow = (props) => {
     }
   }
 
+  let quizzesJsx = <div className="quiz-index-no-quiz-parent"><h1>No Quizzes yet.</h1></div>;
+  if (quizzes.length > 0) {
+    quizzesJsx = quizzes.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} secondsToTime={secondsToTime} deleteQuiz={deleteQuiz} />);
+  }
+
   return (
     <div className="user-show-parent-container">
       <div className="user-show-info-div">
@@ -77,6 +102,8 @@ const UserShow = (props) => {
           {bio}
         </div>
       </div>
+
+      <div className="quiz-index-container">{quizzesJsx}</div>
     </div>
   );
 };
