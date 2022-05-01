@@ -4,7 +4,7 @@ import Pagination from "../layouts/Pagination";
 import QuizCard from "./components/QuizCard";
 
 const QuizIndex = (props) => {
-  let pageSize = 10;
+  let pageSize = 12;
   const [quizzes, setQuizzes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
