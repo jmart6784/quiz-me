@@ -11,21 +11,19 @@ const Nav = () => {
     jsxResult = (
       <div className="nav-parent">
         <Link to="/">
-          <i className="fa-solid fa-book-atlas"></i> Quiz Me
-        </Link>
-        <Link to="/quizzes/new">
-          <i className="fa-solid fa-hammer"></i> <span className="nav-text">Build Quiz</span>
+          <i className="fa-solid fa-book-atlas nav-icon"></i> Quiz Me
         </Link>
         <Link to="/users">
-          <i className="fa-solid fa-people-group"></i> <span className="nav-text">People</span>
+          <i className="fa-solid fa-people-group nav-icon"></i> People
+        </Link>
+        <Link to="/quizzes/new">
+          <i className="fa-solid fa-hammer nav-icon"></i> Build Quiz
         </Link>
         <Link to={`/users/${user.current_user.id}`}>
-          <i className="fa-solid fa-face-laugh-beam"></i> <span className="nav-text">{user.current_user.username}</span>
+          <i className="fa-solid fa-face-laugh-beam nav-icon"></i> Me
         </Link>
-        <a href="/users/edit">
-          <i className="fa-solid fa-gear"></i> <span className="nav-text">Edit Profile</span></a>
         <a rel="nofollow" data-method="delete" href="/users/sign_out">
-          <i className="fa-solid fa-power-off"></i> <span className="nav-text">Log out</span>
+          <i className="fa-solid fa-power-off nav-icon"></i> Log out
         </a>
       </div>
     );

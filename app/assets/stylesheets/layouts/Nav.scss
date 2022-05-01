@@ -56,3 +56,8 @@
     padding: 10px 5px 10px 5px;
   }
 }
+@media only screen and (max-width: 500px) {
+  .nav-parent>a {
+    font-size: 12px;
+  }
+}
