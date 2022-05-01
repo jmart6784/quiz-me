@@ -1,5 +1,9 @@
 @import "../variables.scss";
 
+.quiz-show-parent-container {
+  padding-bottom: 120px;
+}
+
 .quiz-show-tint {
   background-color: rgba(0, 0, 0, 0.3);
   background-image: linear-gradient(360deg, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.1) 80%);

@@ -191,7 +191,7 @@ const QuizShow = (props) => {
   }
 
   return (
-    <div>
+    <div className="quiz-show-parent-container">
       <div
         style={{ backgroundImage: `url(${quiz.cover.url})` }} 
         className="background-image"
