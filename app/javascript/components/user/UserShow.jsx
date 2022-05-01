@@ -37,26 +37,37 @@ const UserShow = (props) => {
   let editLink = "";
   if (user.current_user) {
     if (user.current_user.id === showUser.id) {
-      editLink = <a href="/users/edit">Edit profile</a>
+      editLink = <a href="/users/edit" className="user-show-edit-link">
+        <i className="fa-solid fa-gear"></i> Edit profile
+      </a>
+    }
+  }
+
+  let bio = "";
+  if (showUser.bio !== null) {
+    if (showUser.bio.trim() !== "") {
+      bio = <p><strong>Bio: </strong><br />
+        {showUser.bio}
+      </p>
     }
   }
 
   return (
     <div className="user-show-parent-container">
-      <h1>User Show</h1>
+      <div className="user-show-info-div">
+        <div
+          style={{ backgroundImage: `url(${showUser.avatar.url})` }}
+          className="user-show-avatar background-image"
+        >
+        </div>
 
-      {editLink}
-      <img
-        src={showUser.avatar.url}
-        height="150"
-        width={"150"}
-        alt="User profile picture"
-      />
-      <p>{showUser.username}</p>
-      <p>{`${showUser.first_name} ${showUser.last_name}`}</p>
-      <p>Bio: <br />
-        {showUser.bio}
-      </p>
+        <div className="user-show-text-div">
+          {editLink}
+          <p className="user-show-username">{showUser.username}</p>
+          <p className="user-show-full-name">{`${showUser.first_name} ${showUser.last_name}`}</p>
+          {bio}
+        </div>
+      </div>
     </div>
   );
 };
