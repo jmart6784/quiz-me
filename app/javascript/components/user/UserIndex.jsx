@@ -41,7 +41,7 @@ const UserIndex = () => {
   });
 
   return (
-    <div>
+    <div className="user-index-parent-container">
       <div className="users-container">{usersJsx}</div>
 
       <Pagination 

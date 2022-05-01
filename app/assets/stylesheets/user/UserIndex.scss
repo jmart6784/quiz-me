@@ -1,5 +1,8 @@
+.user-index-parent-container {
+  padding-bottom: 120px;
+}
+
 .users-container {
-  // border: 1px solid rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -33,4 +36,34 @@
   width: 100%;
   text-align: center;
   padding: 10px 0 10px 0;
+}
+
+@media only screen and (max-width: 1300px) {
+  .users-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .users-container {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .users-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .users-container {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .users-container {
+    width: 100%;
+  }
 }
