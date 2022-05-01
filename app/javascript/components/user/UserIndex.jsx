@@ -20,6 +20,7 @@ const UserIndex = () => {
   let usersJsx = users.map((user) => {
     return (
       <div key={user.id}>
+        <img src={user.avatar.url} height="100" width="100" />
         <Link to={`users/${user.id}`}>{user.username}</Link>
       </div>
     );

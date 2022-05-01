@@ -40,16 +40,6 @@ class User < ApplicationRecord
       if !avatar.content_type.in?(%('image/jpeg image/jpg image/png'))
         errors.add(:avatar, "needs to be JPG or PNG")
       end
-    else
-      avatar.attach(
-        io: File.open(
-          Rails.root.join(
-            'app', 'assets', 'images', 'default_avatar.png'
-          )
-        ), 
-        filename: 'default_avatar.png', 
-        content_type: 'image/png'
-      )
     end
   end
 end
