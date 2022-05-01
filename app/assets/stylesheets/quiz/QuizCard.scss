@@ -114,33 +114,14 @@
     row-gap: 12px;
   }
 
-  // .quiz-card-edit, .quiz-card-delete {
-  //   padding: 3px 7px 3px 7px;
-  //   font-size: 12px;
-  // }
-
   .quiz-card-name {
     font-size: 18px;
   }
-
-  // .quiz-card-time,
-  // .quiz-card-user {
-  //   font-size: 12px;
-  // }
 
   .quiz-card-start {
     padding: 3px 12px 3px 12px;
     font-size: 18px;
   }
-
-  // .quiz-card-desc-btn {
-  //   font-size: 15px;
-  //   padding: 5px 0 5px 0;
-  // }
-
-  // .quiz-card-desc {
-  //   font-size: 13px;
-  // }
 }
 
 @media only screen and (max-width: 470px) {
@@ -207,7 +188,7 @@
 
 @media only screen and (max-width: 310px) {
   .quiz-card-content {
-    width: 225px;
+    width: 300px;
   }
 
   .quiz-card-edit, .quiz-card-delete {
@@ -235,5 +216,11 @@
 
   .quiz-card-desc {
     font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 305px) {
+  .quiz-card-content {
+    width: 275px;
   }
 }
