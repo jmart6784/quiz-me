@@ -7,11 +7,33 @@ const RatingCard = (props) => {
     <div className="rating-card-data">
       <p className="rating-card-average"><i className="fa-solid fa-star star"></i> {data.average}</p>
       <div>
-        <p>1 <i className="fa-solid fa-star star"></i> {data.value_1}</p>
-        <p>2 <i className="fa-solid fa-star star"></i> {data.value_2}</p>
-        <p>3 <i className="fa-solid fa-star star"></i> {data.value_3}</p>
-        <p>4 <i className="fa-solid fa-star star"></i> {data.value_4}</p>
-        <p>5 <i className="fa-solid fa-star star"></i> {data.value_5}</p>
+        <p>
+          {data.value_5 + " "}
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+        </p>
+        <p>
+          {data.value_4 + " "}
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+        </p>
+        <p>
+          {data.value_3 + " "}
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+        </p>
+        <p>
+          {data.value_2 + " "}
+          <i className="fa-solid fa-star star"></i>
+          <i className="fa-solid fa-star star"></i>
+        </p>
+        <p>{data.value_1 + " "}<i className="fa-solid fa-star star"></i></p>
       </div>
     </div>
   );
