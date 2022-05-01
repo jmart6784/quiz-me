@@ -34,6 +34,7 @@ const UserShow = (props) => {
   return (
     <div>
       <h1>User Show</h1>
+      <a href="/users/edit">Edit profile</a>
       <img
         src={user.avatar.url}
         height="150"
