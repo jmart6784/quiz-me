@@ -91,7 +91,7 @@ const UserShow = (props) => {
     }
   }
 
-  let quizzesJsx = <div className="quiz-index-no-quiz-parent"><h1>No Quizzes yet.</h1></div>;
+  let quizzesJsx = "";
   if (quizzes.length > 0) {
     quizzesJsx = quizzesPage.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} secondsToTime={secondsToTime} deleteQuiz={deleteQuiz} />);
   }
