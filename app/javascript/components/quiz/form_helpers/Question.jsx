@@ -108,26 +108,30 @@ const Question = (props) => {
           ""
         )}
       </div>
-
-      <button
-        disabled={!(clickOptions[`question_${ques + 1}`].start < 10)}
-        type="button"
-        onClick={() => {
-          if (clickOptions[`question_${ques + 1}`].start < 10) {
-            setClickOptions({
-              ...clickOptions,
-              [`question_${ques + 1}`]: {
-                isClicked: true,
-                start: clickOptions[`question_${ques + 1}`].start + 1,
-                question: clickOptions[`question_${ques + 1}`].question,
-              },
-            });
-          }
-        }}
-        className="qn-add-ques qn-toggle-btn"
-      >
-        Add Option
-      </button>
+      
+      {
+        clickOptions[`question_${ques + 1}`].start < 10 ?
+          <button
+            disabled={!(clickOptions[`question_${ques + 1}`].start < 10)}
+            type="button"
+            onClick={() => {
+              if (clickOptions[`question_${ques + 1}`].start < 10) {
+                setClickOptions({
+                  ...clickOptions,
+                  [`question_${ques + 1}`]: {
+                    isClicked: true,
+                    start: clickOptions[`question_${ques + 1}`].start + 1,
+                    question: clickOptions[`question_${ques + 1}`].question,
+                  },
+                });
+              }
+            }}
+            className="qn-add-ques qn-toggle-btn"
+          >
+            Add Option
+          </button>
+        : ""
+      }
 
       {clickOptions[`question_${ques + 1}`].start != 2 ? (
         <button
