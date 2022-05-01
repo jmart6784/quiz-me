@@ -32,7 +32,7 @@ const UserShow = (props) => {
       })
       .then((response) => setShowUser(response))
       .catch(() => props.history.push("/"));
-  }, []);
+  }, [props.match.params.id]);
   
   let editLink = "";
   if (user.current_user) {
