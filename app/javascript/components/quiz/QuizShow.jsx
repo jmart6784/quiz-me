@@ -119,7 +119,7 @@ const QuizShow = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  let quizResultsJsx = <div><p>Sign in to save results</p></div>;
+  let quizResultsJsx = "";
 
   if (user.current_user) { 
     quizResultsJsx = <p>No Results Yet.</p>;
