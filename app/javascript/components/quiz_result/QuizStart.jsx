@@ -70,6 +70,10 @@ const QuizStart = (props) => {
   }, []);
 
   useEffect(() => {
+    if (quizResult.completed_at != null && quizResult.completed_at != "") { 
+      props.history.push('/');
+    }
+
     if (quiz.time > 0) {
       const quizTimer = setInterval(() => {
         if (quizResult["time"] > 0) {
