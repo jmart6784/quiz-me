@@ -70,6 +70,10 @@ class Api::V1::QuizzesController < ApplicationController
     questions_valid
   end
 
+  def quizzes_by_user
+    quizzes = Quiz.where(user_id: params[:user_id])
+  end
+
   private
 
   def quiz_params
