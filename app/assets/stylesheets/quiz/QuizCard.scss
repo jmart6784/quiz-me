@@ -28,6 +28,14 @@
   padding: 10px;
 }
 
+.quiz-card-rating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px 0 0 10px;
+  font-size: 20px;
+}
+
 .quiz-card-edit {
   text-decoration: none;
   background-color: $light-blue;

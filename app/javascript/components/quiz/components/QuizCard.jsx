@@ -33,6 +33,10 @@ const QuizCard = (props) => {
     >
       {userOptions}
 
+      <p className="quiz-card-rating">
+        <i className="fa-solid fa-star star"></i> {quiz.rating_data.average}
+      </p>
+
       <div className="quiz-card-content">
         <p className="quiz-card-name">{quiz.name}</p>
 
