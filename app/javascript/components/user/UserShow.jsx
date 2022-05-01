@@ -75,7 +75,7 @@ const UserShow = (props) => {
   let bio = "";
   if (showUser.bio !== null) {
     if (showUser.bio.trim() !== "") {
-      bio = <p><strong>Bio: </strong><br />
+      bio = <p className="user-show-bio"><strong>Bio: </strong><br />
         {showUser.bio}
       </p>
     }

@@ -58,3 +58,75 @@
   width: 100%;
   text-align: center;
 }
+
+.user-show-bio {
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .user-show-info-div {
+    max-width: 400px;
+  }
+
+  .user-show-avatar {
+    width: 225px;
+    height: 225px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .user-show-avatar {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .user-show-info-div {
+    max-width: 350px;
+  }
+
+  .user-show-avatar {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .user-show-info-div {
+    max-width: 300px;
+  }
+
+  .user-show-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .user-show-info-div {
+    max-width: 250px;
+  }
+
+  .user-show-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .user-show-info-div {
+    max-width: 250px;
+  }
+
+  .user-show-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .user-show-info-div {
+    max-width: 225px;
+  }
+}
