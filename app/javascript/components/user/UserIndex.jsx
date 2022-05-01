@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Pagination from "../layouts/Pagination";
 
 const UserIndex = () => {
-  let pageSize = 2;
+  let pageSize = 16;
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -28,16 +28,22 @@ const UserIndex = () => {
 
   let usersJsx = usersPage.map((user) => {
     return (
-      <div key={user.id}>
-        <img src={user.avatar.url} height="100" width="100" />
-        <Link to={`users/${user.id}`}>{user.username}</Link>
+      <div key={user.id} className="user-index-div">
+        <Link to={`users/${user.id}`}>
+          <div
+            style={{ backgroundImage: `url(${user.avatar.url})` }}
+            className="background-image user-index-avatar"
+          ></div>
+        </Link>
+        <Link to={`users/${user.id}`} className="user-index-link">{user.username}</Link>
       </div>
     );
   });
 
   return (
     <div>
-      {usersJsx}
+      <div className="users-container">{usersJsx}</div>
+
       <Pagination 
         currentPage={currentPage}
         totalCount={users.length}
