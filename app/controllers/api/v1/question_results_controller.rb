@@ -19,7 +19,7 @@ class Api::V1::QuestionResultsController < ApplicationController
     quiz_result = QuizResult.find(question_result_params[:quiz_result_id])
     question = Question.find(question_result_params[:question_id])
 
-    return unless quiz_result.user === current_user
+    return unless quiz_result.user === current_user || quiz_result.quiz.completed_at.nil?
 
     existing_ques_result = QuestionResult.find_by(
       question_id: question.id,
