@@ -13,6 +13,7 @@ const UserShow = (props) => {
     bio: "",
     avatar: { url: "" },
   });
+  const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
     const {
@@ -21,9 +22,7 @@ const UserShow = (props) => {
       },
     } = props;
 
-    const url = `/api/v1/users/show/${id}`;
-
-    fetch(url)
+    fetch(`/api/v1/users/show/${id}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -31,6 +30,16 @@ const UserShow = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setShowUser(response))
+      .catch(() => props.history.push("/"));
+    
+    fetch(`/api/v1/quizzes_by_user/${id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setQuizzes(response))
       .catch(() => props.history.push("/"));
   }, [props.match.params.id]);
   
