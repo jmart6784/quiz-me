@@ -69,6 +69,8 @@ const QuizResultCard = (props) => {
   let dateTime = dateFormat(result.completed_at);
   let percentCorrect = parseFloat((((correctScore).toFixed(1) / (result.question_results.questions.length).toFixed(1)) * 100).toFixed(1));
 
+  result.question_results.questions.length === 0 ? percentCorrect = 0.0 : "";
+
   let pcColor = { color: "green", border: "3px solid green" };
   
   if (percentCorrect <= 80.0 && percentCorrect > 70.0) {
