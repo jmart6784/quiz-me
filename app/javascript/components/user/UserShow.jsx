@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import UserContext from "../context/UserContext";
 
 const UserShow = (props) => {
-  const [user, setUser] = useState({
+  const [user, setUser] = useContext(UserContext);
+
+  const [showUser, setShowUser] = useState({
     id: "",
     email: "",
     first_name: "",
@@ -27,22 +30,33 @@ const UserShow = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setUser(response))
+      .then((response) => setShowUser(response))
       .catch(() => props.history.push("/"));
   }, []);
+  
+  let editLink = "";
+  if (user.current_user) {
+    if (user.current_user.id === showUser.id) {
+      editLink = <a href="/users/edit">Edit profile</a>
+    }
+  }
 
   return (
-    <div>
+    <div className="user-show-parent-container">
       <h1>User Show</h1>
-      <a href="/users/edit">Edit profile</a>
+
+      {editLink}
       <img
-        src={user.avatar.url}
+        src={showUser.avatar.url}
         height="150"
         width={"150"}
         alt="User profile picture"
       />
-      <p>{user.username}</p>
-      <p>{`${user.first_name} ${user.last_name}`}</p>
+      <p>{showUser.username}</p>
+      <p>{`${showUser.first_name} ${showUser.last_name}`}</p>
+      <p>Bio: <br />
+        {showUser.bio}
+      </p>
     </div>
   );
 };
