@@ -1,8 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "../layouts/Pagination";
 
 const UserIndex = () => {
+  let pageSize = 2;
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const usersPage = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return users.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, users]);
 
   useEffect(() => {
     const url = "/api/v1/users/index";
@@ -17,7 +26,7 @@ const UserIndex = () => {
       .catch(() => console.log("Error getting users index"));
   }, []);
 
-  let usersJsx = users.map((user) => {
+  let usersJsx = usersPage.map((user) => {
     return (
       <div key={user.id}>
         <img src={user.avatar.url} height="100" width="100" />
@@ -28,8 +37,13 @@ const UserIndex = () => {
 
   return (
     <div>
-      <h1>Users Index</h1>
       {usersJsx}
+      <Pagination 
+        currentPage={currentPage}
+        totalCount={users.length}
+        pageSize={pageSize}
+        onPageChange={page => setCurrentPage(page)}
+      />
     </div>
   );
 };
