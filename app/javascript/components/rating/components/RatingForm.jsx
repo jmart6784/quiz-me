@@ -1,25 +1,23 @@
 import React from "react";
 
-const RatingForm = (props) => { 
+const RatingForm = (props) => {
+  let stars = [];
+
+  for (let i = 1; i <= 5; i++) {
+    stars.push(
+      <p onClick={() => props.submitRating(i)} key={`rate-star-${i}`}>
+        {
+          props.rating.value >= i ?
+            <span className="user-rating-full">★</span>
+          : <span className="user-rating-empty">☆</span>
+        }
+      </p>
+    );
+  }
+
   return (
     <div>
-      <label>Rate:</label><br />
-      <input
-        type="number"
-        name="value"
-        min="1"
-        max="5"
-        onChange={(e) => props.onRateChange(e)}
-        value={props.rating.value}
-      />
-      <button onClick={props.submitRating}>Rate</button>
-
-      {
-        props.rating.id === "" ?
-          <p>Give a rating</p>
-        :
-          <p>My rating {props.rating.value} <i className="fa-solid fa-star star"></i></p>
-      }
+      <div className="rc-form-btn-div">{stars}</div>
     </div>
   );
 };

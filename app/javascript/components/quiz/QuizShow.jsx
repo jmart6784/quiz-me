@@ -127,11 +127,6 @@ const QuizShow = (props) => {
     quizResultsJsx = quizresultsPage.map((r) => <QuizResultCard key={`quiz-result-${r.id}`} quizResult={r} />);
   }
 
-  const onRateChange = (event) => {
-    const { name, value } = event.target;
-    setRating({ ...rating, [name]: value });
-  };
-
   const startQuiz = () => {
     const formData = new FormData();
     formData.append("quiz_result[quiz_id]", quiz.id);
@@ -155,9 +150,10 @@ const QuizShow = (props) => {
       .catch((error) => console.log(error.message));
   };
 
-  const submitRating = () => { 
+  const submitRating = (value) => { 
+    setRating({ ...rating, value });
     const formData = new FormData();
-    formData.append("rating[value]", rating.value);
+    formData.append("rating[value]", value);
     formData.append("rating[quiz_id]", props.match.params.id);
 
     fetch("/api/v1/ratings/create", {
@@ -231,11 +227,7 @@ const QuizShow = (props) => {
       <div className="rating-parent-div">
           { 
             user.current_user ? 
-              <RatingForm
-                onRateChange={onRateChange}
-                rating={rating}
-                submitRating={submitRating} 
-              />
+              <RatingForm rating={rating} submitRating={submitRating} />
             : <p>Sign in to rate quiz</p>
           }
           <RatingCard ratingData={ratingData} />

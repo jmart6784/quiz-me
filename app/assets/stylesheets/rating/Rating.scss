@@ -32,3 +32,15 @@
 .star {
   color: yellow;
 }
+
+.rc-form-btn-div {
+  display: flex;
+  column-gap: 5px;
+}
+
+.user-rating-full, .user-rating-empty {
+  color: yellow;
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+}
