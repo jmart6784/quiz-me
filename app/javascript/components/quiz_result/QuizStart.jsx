@@ -178,7 +178,7 @@ const QuizStart = (props) => {
         />
 
         {
-          quiz.questions.length > 0 ?
+          quiz.questions.length > 1 ?
           <div className="qs-naviagtion">
             <button
                 onClick={() => {
