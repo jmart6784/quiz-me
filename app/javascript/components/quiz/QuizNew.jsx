@@ -204,7 +204,7 @@ const QuizNew = (props) => {
               onChange={(e) => chooseImage(e)}
               onClick={(e) => (e.target.value = null)}
             />
-            <label class="forms-notes">jpeg, jpg or png only</label>
+            <label className="forms-notes">jpeg, jpg or png only</label>
           </div>
 
           <div className="qn-field-div">

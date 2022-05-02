@@ -26,9 +26,7 @@ const QuizStart = (props) => {
   };
 
   useEffect(() => {
-    const url = `/api/v1/quiz_results/show/${props.match.params.id}`;
-
-    fetch(url)
+    fetch(`/api/v1/quiz_results/show/${props.match.params.id}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -141,7 +139,16 @@ const QuizStart = (props) => {
     </div>
   );
 
-  if (questionResults.length === quiz.questions.length && questionResults[0]['id'] != '') {
+  let filteredQuestions = quiz.questions;
+
+  for (var i = 0; i < filteredQuestions.length; i++){
+    if (filteredQuestions[i].created_at > quizResult.start){
+        filteredQuestions.splice(i, 1);
+        i--;
+    }
+  }
+
+  if (questionResults.length === filteredQuestions.length && questionResults[0]['id'] != '') {
     btnLogic = <button onClick={() => {
       fetch(`/api/v1/quiz_results/update/${props.match.params.id}`, {
         method: "PUT",
@@ -168,7 +175,7 @@ const QuizStart = (props) => {
       {quiz.time > 0 ? <p className="qs-time">Time: {`${hours}:${minutes}:${seconds}`}</p> : ""}
       
       <div className="qs-question-div">
-        <h3 className="qs-question">Question #{`${page} out of ${quiz.questions.length}`}</h3>
+        <h3 className="qs-question">Question #{`${page} out of ${filteredQuestions.length}`}</h3>
         <p className="qs-question">{question["question"]}</p>
 
         <Options
@@ -178,7 +185,7 @@ const QuizStart = (props) => {
         />
 
         {
-          quiz.questions.length > 1 ?
+          filteredQuestions.length > 1 ?
           <div className="qs-naviagtion">
             <button
                 onClick={() => {
@@ -190,9 +197,9 @@ const QuizStart = (props) => {
 
             <button
               onClick={() => { 
-                quiz.questions.length >= page ? setPage(prevState => prevState + 1) : ""
+                filteredQuestions.length >= page ? setPage(prevState => prevState + 1) : ""
               }}
-              disabled={page === quiz.questions.length}
+              disabled={page === filteredQuestions.length}
               className="qs-nav-btn"
             >Next</button>
           </div>
