@@ -7,26 +7,31 @@
     <div class="field">
       <%= f.label :avatar %><br />
       <%= f.file_field :avatar %>
+      <label class="forms-notes">jpeg, jpg or png only</label>
     </div>
 
     <div class="field">
       <%= f.label :username %><br />
       <%= f.text_field :username, autofocus: true %>
+      <label class="forms-notes">4-16 characters long</label>
     </div>
 
     <div class="field">
       <%= f.label :first_name %><br />
       <%= f.text_field :first_name %>
+      <label class="forms-notes">1-60 characters long</label>
     </div>
 
     <div class="field">
       <%= f.label :last_name %><br />
       <%= f.text_field :last_name %>
+      <label class="forms-notes">1-60 characters long</label>
     </div>
 
     <div class="edit-bio">
       <%= f.label :bio %>
       <%= f.text_area :bio %>
+      <label class="forms-notes">0-150 characters long</label>
     </div>
 
     <div class="field">
@@ -43,7 +48,7 @@
       <%= f.password_field :password, autocomplete: "new-password" %>
       <% if @minimum_password_length %>
         <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <label class="forms-notes">6 characters minimum</label>
       <% end %>
     </div>
 
