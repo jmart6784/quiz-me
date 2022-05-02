@@ -13,9 +13,10 @@ class QuizResultSerializer < ActiveModel::Serializer
   end
 
   def quiz
+    quiz = object.quiz
     h = {}
-    h[:data] = object.quiz
-    h[:questions] = object.quiz.questions
+    h[:data] = quiz
+    h[:questions] = quiz.questions
     h
   end
 end
