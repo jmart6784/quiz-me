@@ -32,7 +32,7 @@ const UaOptions = (props) => {
               onChange={(e) => props.submitQuestion(e, question)}
               checked={JSON.parse(questionResult["user_answer"]).includes(i.toString())}
             />
-            <label>{question[`option_${i}`]}</label>
+            <label className="qs-option-text">{question[`option_${i}`]}</label>
           </div>
         );
       } else if (question["question_type"] === "multiple answers") {
@@ -44,14 +44,14 @@ const UaOptions = (props) => {
               onChange={(e) => props.submitQuestion(e, question)}
               checked={JSON.parse(questionResult["user_answer"]).includes(i.toString())}
             />
-            <label>{question[`option_${i}`]}</label>
+            <label className="qs-option-text">{question[`option_${i}`]}</label>
           </div>
         );
       }
     }
   }
 
-  return <div>{options}</div>;
+  return <div className="qs-options-div">{options}</div>;
 };
 
 export default UaOptions;
