@@ -4,8 +4,13 @@ class UserSerializer < ActiveModel::Serializer
 
   def avatar
     if object.avatar.attached?
+      # development enviornment
+      # {
+      #   url: rails_blob_url(object.avatar)
+      # }
+
       {
-        url: rails_blob_url(object.avatar)
+        url: object.avatar.url
       }
     end
   end

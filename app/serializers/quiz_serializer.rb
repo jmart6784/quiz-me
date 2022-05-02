@@ -6,8 +6,13 @@ class QuizSerializer < ActiveModel::Serializer
 
   def cover
     if object.cover.attached?
+      # development enviornment
+      # {
+      #   url: rails_blob_url(object.cover)
+      # }
+      # Production
       {
-        url: rails_blob_url(object.cover)
+        url: object.cover.url
       }
     end
   end
