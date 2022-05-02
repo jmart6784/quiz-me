@@ -250,7 +250,7 @@ const QuestionEdit = (props) => {
         ) : (
           ""
         )}
-
+        <p className="question-option-label">Select answers: </p>
         {answerOptions()}
 
         <button type="submit" className="qn-toggle-btn qn-submit-quiz">

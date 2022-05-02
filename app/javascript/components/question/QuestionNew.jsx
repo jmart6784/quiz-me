@@ -140,40 +140,35 @@ const QuestionNew = (props) => {
 
   return (
     <div>
-      <h1>New Question</h1>
+      <h1 className="question-edit-title">New Question</h1>
 
-      <form onSubmit={onSubmit}>
-        <label>
-          <span>Type</span>
+      <form onSubmit={onSubmit} className="question-edit-form">
+        <div>
+          <span>Type </span>
           <select
             name="question_type"
             onChange={(e) => handleQuestionType(e)}
             required
-            value={question["question_type"]}
+            value={question[`question_type`]}
           >
             <option value="one answer">Muliple choice (one answer)</option>
             <option value="multiple answers">
               Select all (multiple answers)
             </option>
           </select>
-        </label>
+        </div>
 
-        <br />
-        <br />
-
-        <label>
-          <span>Question</span>
+        <div>
+          <p className="qn-label">Question</p>
           <textarea
             name="question"
             rows="5"
             required
             onChange={onChange}
             value={question["question"]}
+            className="qn-text-area"
           />
-        </label>
-
-        <br />
-        <br />
+        </div>
 
         <AddOption
           onChange={onChange}
@@ -181,23 +176,25 @@ const QuestionNew = (props) => {
           question={question}
         />
 
-        <br />
-        <br />
-
-        <button
-          disabled={!(clickOptions["start"] < 10)}
-          type="button"
-          onClick={() => {
-            if (clickOptions["start"] < 10) {
-              setClickOptions({
-                isClicked: true,
-                start: clickOptions["start"] + 1,
-              });
-            }
-          }}
-        >
-          Add Option
-        </button>
+        {
+          (clickOptions["start"] < 10) ?
+          <button
+            disabled={!(clickOptions["start"] < 10)}
+            type="button"
+            onClick={() => {
+              if (clickOptions["start"] < 10) {
+                setClickOptions({
+                  isClicked: true,
+                  start: clickOptions["start"] + 1,
+                });
+              }
+            }}
+            className="qn-add-ques qn-toggle-btn"
+          >
+            Add Option
+          </button>
+          : ""
+        }
 
         {clickOptions["start"] != 2 ? (
           <button
@@ -214,22 +211,20 @@ const QuestionNew = (props) => {
                 });
               }
             }}
+            className="qn-remove-ques qn-toggle-btn"
           >
             Remove Option
           </button>
         ) : (
           ""
         )}
-
-        <br />
-        <br />
-
+        
+        <p className="question-option-label">Select answers: </p>
         {answerOptions()}
 
-        <br />
-        <br />
-
-        <button type="submit">Create Question</button>
+        <button type="submit" className="qn-toggle-btn qn-submit-quiz">
+          <i className="fa-solid fa-gavel"></i> Create Question
+        </button>
       </form>
     </div>
   );
