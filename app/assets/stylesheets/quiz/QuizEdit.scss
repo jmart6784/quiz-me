@@ -1,0 +1,104 @@
+@import "../variables.scss";
+
+.qe-questions-div {
+  margin-top: 50px;
+}
+
+.qe-title {
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  width: 100%;
+}
+
+.qe-new-question-btn {
+  font-size: 20px;
+  font-weight: 900;
+  text-decoration: none;
+  background-color: $light-blue;
+  border: 3px solid $light-blue;
+  border-radius: 10px;
+  display: block;
+  width: fit-content;
+  padding: 10px 30px 10px 30px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+
+.qe-new-question-btn:hover {
+  background-color: white;
+  color: $light-blue;
+}
+
+.qe-edit-list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  justify-content: space-evenly;
+}
+
+.qe-question-div {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 300px;
+  height: fit-content;
+  word-wrap: break-word;
+}
+
+.qe-question-question {
+  font-size: 20px;
+}
+
+.qe-question-option {
+  font-size: 15px;
+}
+
+.qe-question-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.qe-edit-question {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 900;
+  border-radius: 10px;
+  border: 3px solid $light-blue;
+  background-color: $light-blue;
+  text-align: center;
+}
+
+.qe-edit-question:hover {
+  background-color: white;
+  color: $light-blue;
+}
+
+.qe-delete-question {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 900;
+  border-radius: 10px;
+  border: 3px solid $danger-red;
+  background-color: $danger-red;
+  text-align: center;
+  color: white;
+}
+
+.qe-delete-question:hover {
+  background-color: white;
+  color: $danger-red;
+}

@@ -171,7 +171,7 @@ const QuizEdit = (props) => {
       for (let i = 1; i <= 10; i++) {
         if (question[`option_${i}`] != "") {
           optionsJsx.push(
-            <p key={`ques_${question.id}_option_${i}`}>
+            <p key={`ques_${question.id}_option_${i}`} className="qe-question-option">
               <strong>Option {i} </strong>
               {question[`option_${i}`]}
             </p>
@@ -180,23 +180,31 @@ const QuizEdit = (props) => {
       }
       let answers = JSON.parse(question.answer);
       return (
-        <div key={question.id}>
-          <h3>Question #{numberLabel}</h3>
-          <p>{question.question}</p>
+        <div key={question.id} className="qe-question-div">
+          <h3 className="qe-question-question">Question #{numberLabel}</h3>
+          <p className="qe-question-option">
+            <strong>{question.question}</strong>
+          </p>
           {optionsJsx}
           <p>
             {`Answer${answers.length > 1 ? "s" : ""}: ` + answers.join(", ")}
           </p>
 
-          <Link to={`/question/edit/${question.id}`}>Edit</Link>
+          <div className="qe-question-options">
+            <Link to={`/question/edit/${question.id}`} className="qe-edit-question">Edit</Link>
 
-          {numberLabel === 1 ? (
-            ""
-          ) : (
-            <button type="button" onClick={() => deleteQuestion(question.id)}>
-              Delete
-            </button>
-          )}
+            {numberLabel === 1 ? (
+              ""
+            ) : (
+              <button
+                type="button"
+                onClick={() => confirm("Delete question?") ? deleteQuestion(question.id) : ""}
+                className="qe-delete-question"
+              >
+                Delete
+              </button>
+            )}
+          </div>
         </div>
       );
     });
@@ -214,140 +222,133 @@ const QuizEdit = (props) => {
 
   return (
     <div>
-      <h1>Edit Quiz</h1>
+      <h1 className="qn-title">Edit Quiz</h1>
 
-      <img src={forms.cover} alt="quiz cover image" height="200" width="325" />
+      <form onSubmit={onSubmit} className="qn-form">
+        <div className="qn-quiz-form-section">
+          
+          <div className="qn-cover-image-div">
+            <div
+              style={{backgroundImage: `url(${forms.cover})`}}
+              className="qn-image background-image"
+            ></div>
 
-      <form onSubmit={onSubmit}>
-        <label htmlFor="quizCover">
-          <span>Cover Image</span>
-          <input
-            type="file"
-            accept="image/*"
-            name="cover"
-            id="quizCover"
-            onChange={(e) => chooseImage(e)}
-            onClick={(e) => (e.target.value = null)}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label htmlFor="quizName">
-          <span>Quiz Name</span>
-          <input
-            type="text"
-            name="name"
-            id="quizName"
-            required
-            onChange={onChange}
-            value={forms.name}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label htmlFor="quizDescription">
-          <span>Description</span>
-          <textarea
-            name="description"
-            id="quizDescription"
-            required
-            onChange={onChange}
-            value={forms.description}
-            rows="5"
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          <input
-            type="checkbox"
-            name={`isTimed`}
-            value={forms["isTimed"]}
-            onChange={(e) =>
-              setForms({
-                ...forms,
-                isTimed: !forms["isTimed"],
-                hours: "0",
-                minutes: "0",
-                seconds: "0",
-              })
-            }
-            checked={forms["isTimed"]}
-          />
-          Timed?
-        </label>
-
-        <br />
-        <br />
-
-        {forms["isTimed"] ? (
-          <div>
-            <label>
-              <span>Time</span>
-              <input
-                type="number"
-                name="hours"
-                id="quizHours"
-                onChange={limitNumbers}
-                value={forms["hours"]}
-              />
-              Hours
-            </label>
-
-            <label>
-              <input
-                type="number"
-                name="minutes"
-                id="quizMinutes"
-                onChange={limitNumbers}
-                value={forms["minutes"]}
-              />
-              Minutes
-            </label>
-
-            <label>
-              <input
-                type="number"
-                name="seconds"
-                id="quizSeconds"
-                onChange={limitNumbers}
-                value={forms["seconds"]}
-              />
-              Seconds
-            </label>
-
-            <br />
-            <br />
-
-            <p>
-              Max: 24h 0m 0s:{" "}
-              {`${forms["hours"]}h ${forms["minutes"]}m ${forms["seconds"]}s`}
-            </p>
+            <p className="qn-label">Cover Image</p>
+            <input
+              type="file"
+              accept="image/*"
+              name="cover"
+              id="quizCover"
+              onChange={(e) => chooseImage(e)}
+              onClick={(e) => (e.target.value = null)}
+            />
           </div>
+
+          <div className="qn-field-div">
+            <p className="qn-label">Quiz Name</p>
+            <input
+              type="text"
+              name="name"
+              id="quizName"
+              required
+              onChange={onChange}
+              value={forms.name}
+              className="qn-text-input"
+            />
+          </div>
+
+          <div className="qn-field-div">
+            <p className="qn-label">Description</p>
+            <textarea
+              name="description"
+              id="quizDescription"
+              required
+              onChange={onChange}
+              value={forms.description}
+              className="qn-text-area"
+              rows="5"
+            />
+          </div>
+
+          <div>
+            <span>
+              <input
+                type="checkbox"
+                name={`isTimed`}
+                value={forms["isTimed"]}
+                onChange={(e) =>
+                  setForms({
+                    ...forms,
+                    isTimed: !forms["isTimed"],
+                    hours: "0",
+                    minutes: "0",
+                    seconds: "0",
+                  })
+                }
+                checked={forms["isTimed"]}
+              />
+              Timed?
+            </span>
+          </div>
+
+          {forms["isTimed"] ? (
+            <div className="qn-timed-div">
+              <div>
+                <input
+                  type="number"
+                  name="hours"
+                  id="quizHours"
+                  onChange={limitNumbers}
+                  value={forms["hours"]}
+                  className="qn-time-input"
+                /> Hours
+              </div>
+
+              <div>
+                <input
+                  type="number"
+                  name="minutes"
+                  id="quizMinutes"
+                  onChange={limitNumbers}
+                  value={forms["minutes"]}
+                  className="qn-time-input"
+                /> Minutes
+              </div>
+
+              <div>
+                <input
+                  type="number"
+                  name="seconds"
+                  id="quizSeconds"
+                  onChange={limitNumbers}
+                  value={forms["seconds"]}
+                  className="qn-time-input"
+                /> Seconds
+              </div>
+
+              <p>Max: 24h 0m 0s</p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          <button type="submit" className="qn-toggle-btn qn-submit-quiz">
+            <i className="fa-solid fa-pen"></i> Edit
+          </button>
+        </div>
+      </form>
+
+      <div className="qe-questions-div">
+        <h3 className="qe-title">{`Questions ${forms.questions.length}/50`}</h3>
+
+        {forms.questions.length < 50 ? (
+          <Link to={`/question/new/${props.match.params.id}`} className="qe-new-question-btn">New Question</Link>
         ) : (
           ""
         )}
 
-        <button type="submit">Edit</button>
-      </form>
-
-      <p>{`Questions ${forms.questions.length}/50`}</p>
-
-      <br />
-
-      {forms.questions.length < 50 ? (
-        <Link to={`/question/new/${props.match.params.id}`}>New Question</Link>
-      ) : (
-        ""
-      )}
-
-      <div>{questionsJsx}</div>
+        <div className="qe-edit-list">{questionsJsx}</div>
+      </div>
     </div>
   );
 };
