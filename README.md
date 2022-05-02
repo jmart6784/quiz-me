@@ -1,24 +1,18 @@
-# README
+![screen shot](screenshot.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The main purpose of this project was to practice Rails APIs with React. And to create a logical quiz application using those tools.
 
-Things you may want to cover:
+Visit this project live at: https://app-quiz-me.herokuapp.com/#/
 
-* Ruby version
+OR
 
-* System dependencies
+Run the project locally (prerequisites: ruby 3.0.0, rails 6.0.3.2):
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Download or clone the repository.
+2. Open the terminal inside the root of the project and run:
+3. bundle install
+4. rails db:create
+5. rails db:migrate
+6. rails db:seed
+7. rails s
+8. In your internet browser visit localhost:3000
