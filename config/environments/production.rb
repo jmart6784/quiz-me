@@ -66,7 +66,7 @@ Rails.application.configure do
 
   config.force_ssl = true
 
-  config.action_mailer.default_url_options = { host: 'quick-chats-app.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'app-quiz-me.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true 
   config.raise_delivery_errors = true
