@@ -1,0 +1,23 @@
+.question-edit-title {
+  font-size: 35px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.question-edit-form {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: fit-content;
+  margin: auto;
+}
+
+.qe-text-area {
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+}

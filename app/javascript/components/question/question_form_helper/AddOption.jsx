@@ -10,28 +10,30 @@ const AddOption = (props) => {
 
     if (i > 2) {
       option = (
-        <label key={`question_${question.id}_option_${i}`}>
-          <span>Option {i}</span>
+        <div key={`question_${question.id}_option_${i}`}>
+          <p className="qn-label">Option {i}</p>
           <textarea
             name={`option_${i}`}
             rows="5"
             onChange={props.onChange}
             value={question[`option_${i}`]}
+            className="qn-text-area"
           />
-        </label>
+        </div>
       );
     } else {
       option = (
-        <label key={`question_${question.id}_option_${i}`}>
-          <span>Option {i}</span>
+        <div key={`question_${question.id}_option_${i}`}>
+          <p className="qn-label">Option {i}</p>
           <textarea
             name={`option_${i}`}
             rows="5"
             required
             onChange={props.onChange}
             value={question[`option_${i}`]}
+            className="qn-text-area"
           />
-        </label>
+        </div>
       );
     }
 
