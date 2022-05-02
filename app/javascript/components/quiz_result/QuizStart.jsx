@@ -135,14 +135,14 @@ const QuizStart = (props) => {
   let question = quiz["questions"][page - 1];
 
   let btnLogic = (
-    <div>
-      <label>Answer all questions before submitting</label>
+    <div className="btn-logic-disabled">
+      <p>Answer all questions before submitting </p>
       <button disabled={true}>Submit</button>
     </div>
   );
 
   if (questionResults.length === quiz.questions.length && questionResults[0]['id'] != '') {
-    btnLogic = <button onClick={() => { 
+    btnLogic = <button onClick={() => {
       fetch(`/api/v1/quiz_results/update/${props.match.params.id}`, {
         method: "PUT",
         headers: {
@@ -157,38 +157,47 @@ const QuizStart = (props) => {
         })
         .then(() => props.history.push(`/quiz_result/${quizResult.id}`))
         .catch((error) => console.log(error.message));
-    }}>Submit</button>
+    }}
+      className="qs-submit-btn"
+    >Submit</button>
   }
 
   return (
-    <div>
-      <h1>Quiz name: {quiz.name}</h1>
-      {quiz.time > 0 ? <p>Time left: {`${hours}:${minutes}:${seconds}`}</p> : ""}
-      <p>{`${page}/${quiz.questions.length}`}</p>
+    <div className="qs-parent-div">
+      <h3 className="qs-quiz-title">{quiz.name}</h3>
+      {quiz.time > 0 ? <p className="qs-time">Time: {`${hours}:${minutes}:${seconds}`}</p> : ""}
       
-      <div>
-        <h3>Question #{page}</h3>
-        <p>Question: {question["question"]}</p>
+      <div className="qs-question-div">
+        <h3 className="qs-question">Question #{`${page} out of ${quiz.questions.length}`}</h3>
+        <p className="qs-question">{question["question"]}</p>
 
         <Options
           question={question}
           submitQuestion={submitQuestion}
           questionResults={questionResults}
         />
-        <br />
-        <button
-          onClick={() => {
-            page > 1 ? setPage(prevState => prevState - 1) : ""
-          }}
-          disabled={page === 1}
-        >Previous</button>
 
-        <button
-          onClick={() => { 
-            quiz.questions.length >= page ? setPage(prevState => prevState + 1) : ""
-          }}
-          disabled={page === quiz.questions.length}
-        >Next</button>
+        {
+          quiz.questions.length > 0 ?
+          <div className="qs-naviagtion">
+            <button
+                onClick={() => {
+                  page > 1 ? setPage(prevState => prevState - 1) : ""
+                }}
+                disabled={page === 1}
+                className="qs-nav-btn"
+            >Previous</button>
+
+            <button
+              onClick={() => { 
+                quiz.questions.length >= page ? setPage(prevState => prevState + 1) : ""
+              }}
+              disabled={page === quiz.questions.length}
+              className="qs-nav-btn"
+            >Next</button>
+          </div>
+          : ""
+        }
 
         {btnLogic}
       </div>

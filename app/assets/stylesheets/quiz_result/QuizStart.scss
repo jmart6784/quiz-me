@@ -1,0 +1,131 @@
+@import "../variables.scss";
+
+.qs-parent-div {
+  padding-bottom: 50px;
+}
+
+.qs-quiz-title {
+  font-size: 22px;
+  width: 100%;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+.qs-time {
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.qs-question-div {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 600px;
+  word-wrap: break-word;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  column-gap: 50px;
+}
+
+.qs-question {
+  font-size: 19px;
+  padding-bottom: 10px;
+}
+
+.qs-options-div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 30px 0 30px 0;
+}
+
+.qs-naviagtion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+  column-gap: 20px;
+}
+
+.qs-option-text {
+  font-size: 15px;
+}
+
+.qs-nav-btn {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 900;
+  background-color: $light-blue;
+  border: 3px solid $light-blue;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.qs-nav-btn:hover {
+  background-color: white;
+  color: $light-blue;
+}
+
+.qs-nav-btn:disabled,
+.qs-nav-btn[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.qs-nav-btn:disabled,
+.qs-nav-btn[disabled]:hover {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.btn-logic-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.btn-logic-disabled button {
+  color: white;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border-radius: 10px;
+  border: 3px solid rgb(120, 163, 202);
+  background-color: rgb(120, 163, 202);
+  font-size: 20px;
+}
+
+.qs-submit-btn {
+  color: white;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border-radius: 10px;
+  border: 3px solid $light-blue;
+  background-color: $light-blue;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.qs-submit-btn:hover {
+  background-color: white;
+  color: $light-blue;
+}
+
+@media only screen and (max-width: 500px) {
+  .qs-question {
+    font-size: 17px;
+  }
+  
+  .qs-option-text {
+    font-size: 13px;
+  }
+}
