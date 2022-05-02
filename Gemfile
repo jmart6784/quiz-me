@@ -27,6 +27,10 @@ gem "mini_magick"
 gem 'devise'
 gem 'active_model_serializers'
 
+gem 'aws-sdk-s3', require: false
+gem 'sendgrid-ruby'
+gem "figaro"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
