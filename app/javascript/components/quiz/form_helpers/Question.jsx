@@ -78,6 +78,7 @@ const Question = (props) => {
             value={forms["questions"][ques]["question"]}
             className="qn-text-area"
           />
+          <label className="forms-notes">{forms["questions"][ques]["question"].length} of 300 characters</label>
         </div>
 
         <Option

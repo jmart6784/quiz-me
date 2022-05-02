@@ -255,6 +255,7 @@ const QuizEdit = (props) => {
               value={forms.name}
               className="qn-text-input"
             />
+            <label className="forms-notes">{forms.name.length} of 50 characters</label>
           </div>
 
           <div className="qn-field-div">
@@ -268,6 +269,7 @@ const QuizEdit = (props) => {
               className="qn-text-area"
               rows="5"
             />
+            <label className="forms-notes">{forms.description.length} of 1000 characters</label>
           </div>
 
           <div>

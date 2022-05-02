@@ -17,6 +17,7 @@ const Option = (props) => {
           value={forms["questions"][ques][`option_${num}`]}
           className="qn-text-area"
         />
+        <label className="forms-notes">{forms["questions"][ques][`option_${num}`].length} of 300 characters</label>
       </div>
     );
   } else {
@@ -31,6 +32,7 @@ const Option = (props) => {
           value={forms["questions"][ques][`option_${num}`]}
           className="qn-text-area"
         />
+        <label className="forms-notes">{forms["questions"][ques][`option_${num}`].length} of 300 characters</label>
       </div>
     );
   }

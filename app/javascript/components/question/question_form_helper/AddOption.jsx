@@ -19,6 +19,7 @@ const AddOption = (props) => {
             value={question[`option_${i}`]}
             className="qn-text-area"
           />
+          <label className="forms-notes">{question[`option_${i}`].length} of 300 characters</label>
         </div>
       );
     } else {
@@ -33,6 +34,7 @@ const AddOption = (props) => {
             value={question[`option_${i}`]}
             className="qn-text-area"
           />
+          <label className="forms-notes">{question[`option_${i}`].length} of 300 characters</label>
         </div>
       );
     }
