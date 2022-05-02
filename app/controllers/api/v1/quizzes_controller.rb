@@ -3,7 +3,7 @@ class Api::V1::QuizzesController < ApplicationController
   before_action :set_quiz, only: [:update, :destroy]
 
   def index
-    quizzes = Quiz.all.order(created_at: :desc)
+    quizzes = Quiz.all.order('created_at DESC')
     render json: quizzes, status: 200
   end
 

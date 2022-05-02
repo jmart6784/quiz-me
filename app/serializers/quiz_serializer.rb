@@ -38,6 +38,6 @@ class QuizSerializer < ActiveModel::Serializer
   end
 
   def questions
-    object.questions.order( 'created_at ASC' )
+    object.questions.order('created_at ASC')
   end
 end
