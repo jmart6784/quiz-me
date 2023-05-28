@@ -8,7 +8,7 @@ class UserSerializer < ActiveModel::Serializer
       # {
       #   url: rails_blob_url(object.avatar)
       # }
-
+      # Production
       {
         url: object.avatar.url
       }
